@@ -1,26 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<base href="<%=basePath%>">
 <link type="text/css" rel="stylesheet" href="static/css/style.css" />
 <script type="text/javascript" src="static/js/function.js"></script>
 </head>
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="#" class="shopping">购物车</a><a href="login.jsp">登录</a><a href="register.html">注册</a><a href="guestbook.html">留言</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
+	<div class="help"><a href="login.jsp">登录</a></div>
 </div>
 <div id="childNav">
 	<div class="wrap">
@@ -68,6 +65,6 @@
 	</div>
 	<div class="clear"></div>
 </div>
-<div id="footer">Copyright &copy; 2013 长沙堂学堂 All Rights Reserved. 京ICP证1000001号</div>
+<div id="footer">Copyright &copy; 2017 长沙堂学堂 All Rights Reserved.</div>
 </body>
 </html>

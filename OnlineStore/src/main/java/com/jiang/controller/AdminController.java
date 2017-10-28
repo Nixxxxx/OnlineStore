@@ -11,7 +11,7 @@ import com.jiang.service.AdminService;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired
+	
 	private AdminService adminService;
 	
 	@RequestMapping("/login")
