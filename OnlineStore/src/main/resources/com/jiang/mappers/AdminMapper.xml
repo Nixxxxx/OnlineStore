@@ -39,32 +39,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--</select>-->
 	<!---->
 
-	<!---->
-	<!--<update id="update" parameterType="Resources">-->
-		<!--update t_resources-->
-		<!--<set>-->
-		    <!--<if test="name!=null and name!='' ">-->
-				<!--name=#{name},-->
-			<!--</if>-->
-			<!--<if test="publishDate!=null">-->
-				<!--publishDate=#{publishDate},-->
-			<!--</if>-->
-			<!--<if test="hits!=null ">-->
-				<!--hits=#{hits},-->
-			<!--</if>-->
-			<!--<if test="downloads!=null ">-->
-				<!--downloads=#{downloads},-->
-			<!--</if>-->
-			<!--<if test="shareDate!=null">-->
-				<!--shareDate=#{shareDate},-->
-			<!--</if>-->
-			<!--<if test="shareUrl!=null and shareUrl!='' ">-->
-				<!--shareUrl=#{shareUrl},-->
-			<!--</if>-->
-		<!--</set>-->
-		<!--where id=#{id}-->
-	<!--</update>-->
-	<!---->
+	<insert id="add" parameterType="Admin">
+		insert t_admin
+		<set>
+		    <if test="userName!=null and userName!='' ">
+				name=#{userName},
+			</if>
+		    <if test="password!=null and password!='' ">
+				password=#{password},
+			</if>
+		</set>
+	</insert>
+
+	<update id="update" parameterType="Admin">
+		update t_admin
+		<set>
+		    <if test="userName!=null and userName!='' ">
+				name=#{userName},
+			</if>
+		    <if test="password!=null and password!='' ">
+				password=#{password},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
 	<delete id="delete" parameterType="Integer">
 		delete from t_admin where id=#{id}
 	</delete>
@@ -76,7 +75,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--</select>-->
 	<!---->
 	<select id="findById" parameterType="Integer" resultMap="AdminResult">
-		select * from passenger where id=#{id}
+		select * from t_admin where id=#{id}
+	</select>
+	
+	<select id="findAll" resultMap="AdminResult">
+		select * from t_admin
 	</select>
 
 	<!--<select id="randomList" parameterType="Integer" resultMap="PassengerResult">-->

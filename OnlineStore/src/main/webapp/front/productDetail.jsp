@@ -9,9 +9,9 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>51商城</title>
+<title>${title } - 蜂巢</title>
 <base href="<%=basePath%>">
-<link rel="stylesheet" href="css/mr-01.css" type="text/css">
+<link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
 
 <script src="./static/js/jsArr01.js" type="text/javascript"></script>
 <script src="./static/js/module.js" type="text/javascript"></script>
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<jsp:include page="index-loginCon.jsp" />
+	<jsp:include page="/front/common/index-loginCon.jsp" />
 	<!-- 网站头部 -->
 	<%@ include file="/front/common/header.jsp"%>
 	<!-- //网站头部 -->
@@ -52,12 +52,6 @@
 													<label class="control-label" for="shuliang"> 数量 </label>
 													<input type="number" name="quantity" value="1" size="2"
 														id="shuliang" class="form-control"> <br>
-													<div class="btn-group">
-														<button type="button" onclick="addCart()" class="btn btn-primary btn-primary">
-															<i class="fa fa-shopping-cart"></i> 添加到购物车</button>
-														<button type="button" id="button-wishlist" data-toggle="tooltip" class="btn"
-														 title="收藏" data-original-title="收藏"> <i class="fa fa-heart"></i></button>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -86,6 +80,6 @@
 	<!-- 版权栏 -->
 	<%@ include file="/front/common/footer.jsp"%>
 	<!-- //版权栏 -->
-	<script src="js/jquery.1.3.2.js" type="text/javascript"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 </body>
 </html>

@@ -1,5 +1,18 @@
 package com.jiang.dao;
 
-public class UserDao {
+import java.util.List;
 
+import com.jiang.entity.User;
+
+public interface UserDao {
+
+	public Integer add(User user);
+	
+	public Integer delete(Integer id);
+	
+	public Integer update(User user);
+	
+	public User findById(Integer id);
+	
+	public List<User> findAll();
 }

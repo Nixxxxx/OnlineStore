@@ -19,9 +19,8 @@
 	
 	<!-- 配置数据源 -->
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="url" value="jdbc:mysql://localhost:3306/db_onlinestore?useUnicode=true&amp;characterEncoding=UTF-8"/>
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="username" value="root"/>
 		<property name="password" value="123456"/>
 	</bean>
@@ -30,7 +29,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mappers.xml文件 -->
-		<property name="mapperLocations" value="classpath:com.jiang.mappers/*.xml"></property>
+		<property name="mapperLocations" value="classpath:com/jiang/mappers/*.xml"></property>
 		<!-- mybatis配置文件 -->
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
@@ -47,7 +46,37 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-
+	<!-- 自定义Realm -->
+	<bean id="myRealm" class="com.jiang.realm.MyRealm"/>  
+	
+	<!-- 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+  	  <property name="realm" ref="myRealm"/>  
+	</bean>
+	
+	<!-- Shiro过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+	    <!-- Shiro的核心安全接口,这个属性是必须的 -->  
+	    <property name="securityManager" ref="securityManager"/>
+	    <!-- 身份认证失败，则跳转到登录页面的配置  --> 
+	    <property name="loginUrl" value="/index.jsp"/> 
+	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
+	    <property name="filterChainDefinitions">  
+	        <value>
+				/login=anon
+				/admin/**=authc
+	        </value>  
+	    </property>
+	</bean>  
+	
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行  --> 
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>  
+	
+	<!-- 开启Shiro注解 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>  
+  		<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
+  	  <property name="securityManager" ref="securityManager"/>  
+    </bean>
   
 	<!-- 配置事务通知属性 -->  
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  
@@ -80,4 +109,5 @@
     
     <!-- 自动扫描 -->
 	<context:component-scan base-package="com.jiang.service" />
+
 </beans>

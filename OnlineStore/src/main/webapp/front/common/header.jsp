@@ -16,10 +16,10 @@
 								data-target="#">首页 </a></li>
 							<li itemprop="name" data-id="510" data-level="1"><a
 								id="jingying" itemprop="url" class=""
-								href="goodsList.jsp?type=14" data-target="#">快递单</a></li>
+								href="#" data-target="#">快递单</a></li>
 
 							<li itemprop="name" data-id="510" data-level="1"><a
-								id="wenyi" itemprop="url" class="" href="goodsList.jsp?type=15"
+								id="wenyi" itemprop="url" class="" href="#"
 								data-target="#">关于我们</a></li>
 						</ul>
 					</div>

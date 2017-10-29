@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<base href="<%=basePath %>">
+<title>蜂巢</title>
+<base href="<%=basePath%>">
 <link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
 <script src="./static/js/jsArr01.js" type="text/javascript"></script>
 <script src="./static/js/module.js" type="text/javascript"></script>
@@ -18,9 +18,9 @@
 <script src="./static/js/tab.js" type="text/javascript"></script>
 </head>
 <body>
-    <jsp:include page="./front/index-loginCon.jsp"></jsp:include>
+    <jsp:include page="/front/common/index-loginCon.jsp"></jsp:include>
 	<!-- 网站头部 -->
-	<%@ include file="./front/common/header.jsp"%>
+	<%@ include file="/front/common/header.jsp"%>
 	<!-- //网站头部 -->
 	<!-- 轮播广告及热门商品 -->
 	<div class="container mr-sl mr-sl-1">
@@ -64,70 +64,10 @@
 					</div>
 				</div>
 			</div>
-			<!-- 显示热门商品 -->
-			<div
-				class="col-lg-3 col-md-6 hidden-md col-sm-3 hidden-sm col-xs-6 hidden-xs ">
-				<div class="mr-module module highlight " id="Mod160">
-					<div class="module-inner">
-						<h3 class="module-title ">
-							<span>热门商品</span>
-						</h3>
-						<div class="module-ct">
-							<div class="mijoshop">
-								<div class="container_oc">
-									<div class="box_oc">
-										<!-- 循环显示热门商品 ：添加两条商品信息-->
-										<div class="box-product product-grid">
-											<div>
-												<div class="image">
-													<a href=""><img
-														src="" width="250px">
-													</a>
-												</div>
-												<div class="name">
-													<a href="">
-													</a>
-												</div>
-												<!-- 星级评分条 -->
-												<div class="rating">
-													<span class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span>
-												</div>
-												<!-- // 星级评分条 -->
-												<!-- 商品价格 -->
-												<div class="price">
-													<span class="price-new">价格： 元
-													</span>
-												</div>
-												<!-- // 商品价格 -->
-											</div>
-										</div>
-										<!-- // 循环显示热门商品 ：添加两条商品信息-->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- // 显示热门商品 -->
 		</div>
 	</div>
 	<!-- //轮播广告及热门商品  -->
-	<!-- 最新上架及打折商品展示 -->
+	<!-- 最新上架商品展示 -->
 	<nav class="container mr-masstop hidden-sm hidden-xs">
 	<div class="custom">
 		<div>
@@ -145,37 +85,28 @@
 								<div class="container_oc">
 									<div class="row">
 										<!-- 循环显示最新上架商品 ：添加12条商品信息-->
+										<c:forEach items="product" var="productList">
 										<div class="product-grid col-lg-2 col-md-3 col-sm-6 col-xs-12">
 											<div class="product-thumb transition">
 												<div class="actions">
 													<div class="image">
-														<a href="goodsDetail.jsp?ID="> <img
-															src="../images/goods/"
-															alt="" class="img-responsive"></a>
-													</div>
-													<div class="button-group">
-														<div class="cart">
-															<button class="btn btn-primary btn-primary" type="button"
-																data-toggle="tooltip"
-																onclick='javascript:window.location.href="cart_add.jsp?goodsID= &num=1"; '
-																style="display: none; width: 33.3333%;"
-																data-original-title="加入到购物车">
-																<i class="fa fa-shopping-cart"></i>
-															</button>
-														</div>
+														<a href="goods/detail/${product.id }"> <img
+															src="${product.img }"
+															alt="${product.name }" class="img-responsive"></a>
 													</div>
 												</div>
 												<div class="caption">
 													<div class="name" style="height: 40px">
-														<a href="goodsDetail.jsp?ID="> <span
+														<a href="goods/detail/${product.id }"> <span
 															style="color: #0885B1">商品名：</span> </a>
 													</div>
 													<p class="price">
-														价格：元
+														价格： ${product.price }元
 													</p>
 												</div>
 											</div>
 										</div>
+										</c:forEach>
 										<!-- //循环显示最新上架商品：添加12条商品信息 -->
 									</div>
 								</div>
@@ -189,7 +120,7 @@
 	</nav>
 	<!-- //最新上架及打折商品展示 -->
 	<!-- 版权栏 -->
-	<%@ include file="./front/common/footer.jsp"%>
+	<%@ include file="/front/common/footer.jsp"%>
 	<!-- //版权栏 -->
 </body>
 </html>
