@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<jsp:include page="/front/common/index-loginCon.jsp" />
+	<jsp:include page="/front/common/top.jsp" />
 	<!-- 网站头部 -->
 	<%@ include file="/front/common/header.jsp"%>
 	<!-- //网站头部 -->
