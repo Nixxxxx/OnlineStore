@@ -44,14 +44,14 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/insert")
-	public void insert(Admin adm, HttpServletRequest request, HttpServletResponse response) {
+	public JSONObject insert(Admin admin, HttpServletRequest request, HttpServletResponse response) {
 		boolean result = false;
 		String msg = "";
-		if(!checkUserName(adm.getUserName(), 0)){
+		if(!checkUserName(admin.getUserName(), 0)){
 			msg = "该邮箱已存在";
 		}else {
-			adm.setPassword(CryptographyUtil.md5(adm.getPassword(), "jiang"));
-			if(adminService.add(adm)){
+			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
+			if(adminService.add(admin) == 1){
 				result = true;
 				msg = "注册成功";
 			}else msg = "注册失败";
@@ -59,19 +59,19 @@ public class AdminController {
 		JSONObject resultJson = new JSONObject();
 		resultJson.put("result", result);
 		resultJson.put("msg", msg);
-		ResponseUtil.writeJson(response, resultJson);
+		return resultJson;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/update")
-	public JSONObject update(Admin adm, HttpServletRequest request, HttpServletResponse response) {
+	public JSONObject update(Admin admin, HttpServletRequest request, HttpServletResponse response) {
 		boolean result = false;
 		String msg = "";
-		if (!checkUserName(adm.getUserName(), adm.getId())) {
+		if (!checkUserName(admin.getUserName(), admin.getId())) {
 			msg = "该邮箱已存在";
 		}else {
-			adm.setPassword(CryptographyUtil.md5(adm.getPassword(), "jiang"));
-			if(adminService.update(adm)){
+			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
+			if(adminService.update(admin) == 1){
 				result = true;
 				msg ="更新成功";
 			}
@@ -88,7 +88,7 @@ public class AdminController {
 	public JSONObject delete(Integer id, HttpServletRequest request, HttpServletResponse response) {
 		boolean result = false;
 		String msg = "";
-		if(adminService.delete(id)){
+		if(adminService.delete(id) ==1 ){
 			result = true;
 			msg = "删除成功";
 		}

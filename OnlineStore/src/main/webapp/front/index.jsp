@@ -18,9 +18,8 @@
 <script src="./static/js/tab.js" type="text/javascript"></script>
 </head>
 <body>
-    <jsp:include page="/front/common/top.jsp"></jsp:include>
 	<!-- 网站头部 -->
-	<%@ include file="/front/common/header.jsp"%>
+    <jsp:include page="/front/common/header.jsp"></jsp:include>
 	<!-- //网站头部 -->
 	<!-- 轮播广告及热门商品 -->
 	<div class="container mr-sl mr-sl-1">
