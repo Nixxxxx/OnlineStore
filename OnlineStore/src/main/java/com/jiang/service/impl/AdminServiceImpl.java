@@ -1,12 +1,14 @@
 package com.jiang.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jiang.dao.AdminDao;
 import com.jiang.entity.Admin;
+import com.jiang.entity.User;
 import com.jiang.service.AdminService;
 
 @Service("adminService")
@@ -42,5 +44,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	public List<Admin> findAll() {
 		return adminDao.findAll();
+	}
+
+	public List<Admin> findByPage(Map<String, Object> map) {
+		return adminDao.findByPage(map);
 	}
 }

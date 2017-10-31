@@ -94,7 +94,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 								<a type="button" id="refreshSystem" class="btn btn-success btn-flat">更新服务器缓存</a>
 							</div>
 							<div class="pull-right">
-								<a href="admin/logout" class="btn btn-info btn-flat">退出登录</a>
+								<a href="manage/admin/logout" class="btn btn-info btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -107,50 +107,12 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		<section class="sidebar">
 		<ul class="sidebar-menu">
 			<li class="header">MAIN NAVIGATION</li>
-			<li class="treeview">
-				<a href="#"><i class="fa fa-dashboard"></i>
-					<span>总览</span> 
-					<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="#">
-					<i class="fa fa-circle-o"></i> 总览</a></li>
-				</ul>
-			</li>
-			<li class="treeview">
-				<a href="#"><i class="fa fa-dashboard"></i>
-					<span>用户管理</span> 
-					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="admin/list">
-					<i class="fa fa-circle-o"></i> 管理员 </a></li>
-					<li><a href="user/list">
-					<i class="fa fa-circle-o"></i> 用户 </a></li>
-				</ul>
-			</li>
-			<li class="treeview">
-				<a href="#"><i class="fa fa-dashboard"></i>
-					<span>商品管理</span> 
-					<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="admin/product/list">
-					<i class="fa fa-circle-o"></i> 商品列表 </a></li>
-					<li><a href="admin/product/message">
-					<i class="fa fa-circle-o"></i> 商品留言 </a></li>
-				</ul>
-			</li>
-			<li class="treeview">
-				<a href="#"><i class="fa fa-dashboard"></i>
-					<span>疾蜂取件</span> 
-					<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="admin/express/list">
-					<i class="fa fa-circle-o"></i> 订单列表 </a></li>
-				</ul>
-			</li>
+			<li><a href="#"><i class="fa fa-circle-o"></i> 通知</a></li>
+			<li><a href="manage/admin/list"><i class="fa fa-circle-o"></i> 管理员管理 </a></li>
+			<li><a href="manage/user/list"><i class="fa fa-circle-o"></i> 用户管理 </a></li>
+			<li><a href="manage/product/list"><i class="fa fa-circle-o"></i> 商品管理 </a></li>
+			<li><a href="manage/message/list"><i class="fa fa-circle-o"></i> 留言管理 </a></li>
+			<li><a href="manage/express/list"><i class="fa fa-circle-o"></i> 疾蜂取件 </a></li>
 			<li class="header">THEMES</li>
 			<li><a href="javascript:void(0)" data-skin="skin-blue">
 				<i class="fa fa-circle-o text-aqua"></i> <span>Blue</span></a></li>

@@ -1,8 +1,10 @@
 package com.jiang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jiang.entity.Admin;
+import com.jiang.entity.User;
 
 public interface AdminService {
 	
@@ -41,4 +43,6 @@ public interface AdminService {
 	 * @return
 	 */
 	public List<Admin> findAll();
+
+	public List<Admin> findByPage(Map<String, Object> map);
 }

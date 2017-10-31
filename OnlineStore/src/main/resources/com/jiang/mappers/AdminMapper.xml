@@ -82,8 +82,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_admin
 	</select>
 
-	<!--<select id="randomList" parameterType="Integer" resultMap="PassengerResult">-->
-		<!--select * from t_resources order by RAND() limit #{n}-->
-	<!--</select>-->
-	
+	<select id="findByPage" parameterType="Map" resultMap="AdminResult">
+		select * from t_admin
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+	</select>	
 </mapper> 

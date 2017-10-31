@@ -6,10 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Express" id="ExpressResult">
 		<result property="id" column="id"/>
-		<result property="userId" column="userId"/>
+		<association property="user" column="userId" select="com.jiang.dao.YunUserDao.findById"></association>
 		<result property="message" column="message"/>
 		<result property="verify" column="verify"/>
-		<result property="senderId" column="senderId"/>
+		<association property="sender" column="senderId" select="com.jiang.dao.YunUserDao.findById"></association>
 	</resultMap>
 	
 	<insert id="add" parameterType="Express">
@@ -61,4 +61,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_express
 	</select>
 
+	<select id="findByPage" parameterType="Map" resultMap="ExpressResult">
+		select * from t_express
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+	</select>
 </mapper> 

@@ -8,8 +8,8 @@ package com.jiang.entity;
 public class Message {
 
 	private Integer id;         //商品留言id
-	private Integer userId;     //用户id
-	private Integer productId;  //商品id 
+	private User user;          //用户
+	private Product product;    //商品 
 	private String message;     //留言信息
 	
 	
@@ -19,17 +19,17 @@ public class Message {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public Integer getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	public String getMessage() {
 		return message;

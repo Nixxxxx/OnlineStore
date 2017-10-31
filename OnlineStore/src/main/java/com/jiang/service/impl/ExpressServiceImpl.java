@@ -1,12 +1,14 @@
 package com.jiang.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jiang.dao.ExpressDao;
 import com.jiang.entity.Express;
+import com.jiang.entity.User;
 import com.jiang.service.ExpressService;
 
 @Service("expressService")
@@ -33,5 +35,9 @@ public class ExpressServiceImpl implements ExpressService{
 
 	public List<Express> findAll() {
 		return expressDao.findAll();
+	}
+	
+	public List<Express> findByPage(Map<String, Object> map) {
+		return expressDao.findByPage(map);
 	}
 }

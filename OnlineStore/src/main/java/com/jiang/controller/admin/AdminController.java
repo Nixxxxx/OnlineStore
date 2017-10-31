@@ -1,18 +1,29 @@
 package com.jiang.controller.admin;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jiang.entity.Admin;
+import com.jiang.entity.User;
 import com.jiang.service.AdminService;
 import com.jiang.util.CryptographyUtil;
+import com.jiang.util.PageUtil;
+import com.jiang.util.ResponseUtil;
+import com.jiang.util.StringUtil;
 
 @Controller
 @RequestMapping("/manage/admin")
@@ -37,7 +48,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/insert")
-	public JSONObject insert(Admin admin, HttpServletRequest request, HttpServletResponse response) {
+	public void insert(Admin admin, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(!adminService.checkUserName(admin.getUserName(), 0)){
@@ -52,12 +63,12 @@ public class AdminController {
 		JSONObject resultJson = new JSONObject();
 		resultJson.put("result", result);
 		resultJson.put("msg", msg);
-		return resultJson;
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
 	@ResponseBody
 	@RequestMapping("/update")
-	public JSONObject update(Admin admin, HttpServletRequest request, HttpServletResponse response) {
+	public void update(Admin admin, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if (!adminService.checkUserName(admin.getUserName(), admin.getId())) {
@@ -73,12 +84,12 @@ public class AdminController {
 		JSONObject resultJson = new JSONObject();
 		resultJson.put("result", result);
 		resultJson.put("msg", msg);
-		return resultJson;
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
 	@ResponseBody
-	@RequestMapping("/del")
-	public JSONObject delete(Integer id, HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/delete")
+	public void delete(Integer id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(adminService.delete(id)){
@@ -89,29 +100,28 @@ public class AdminController {
 		JSONObject resultJson = new JSONObject();
 		resultJson.put("result", result);
 		resultJson.put("msg", msg);
-		return resultJson;
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
-//	@RequestMapping("/list")
-//	public ModelAndView list(@RequestParam(required = false)String page, 
-//			HttpServletRequest request, HttpServletResponse response) {
-//		if (StringUtil.isEmpty(page)) {
-//			page = "1";
-//		}
-//		PageBean pageBean = new PageBean(Integer.parseInt(page), 10);
-//		List<Admin> adminList = adminService.findList(pageBean);
-//		for(Admin admin:adminList){
-//			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
-//		}
-//		int total = adminList.size();
-//		String pageCode = PageUtil.genPagination("admin/list", total, pageBean.getPage(),pageBean.getPageSize(), null);
-//		ModelAndView mav = new ModelAndView("admin/index");
-//		mav.addObject("pagePath", "./admin/list.jsp");
-//		if(!adminList.isEmpty()){
-//			mav.addObject("pageCode", pageCode);
-//			mav.addObject("adminList", adminList);
-//		}
-//		return mav;
-//	}
-	
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam(required = false)String page, 
+			HttpServletRequest request, HttpServletResponse response) {
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("start", (Integer.parseInt(page)-1)*10);
+		map.put("quantity", 10);
+		List<Admin> adminList = adminService.findByPage(map);
+		int total = adminService.findAll().size();
+		String pageCode = PageUtil.genPagination("manage/admin/list", total, Integer.parseInt(page),10, null);
+		ModelAndView mav = new ModelAndView("manage/index");
+		mav.addObject("pagePath", "./admin/list.jsp");
+		if(!adminList.isEmpty()){
+			mav.addObject("pageCode", pageCode);
+			mav.addObject("adminList", adminList);
+		}
+		return mav;
+	}
 }

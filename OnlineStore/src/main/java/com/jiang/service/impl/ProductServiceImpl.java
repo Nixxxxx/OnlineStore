@@ -1,6 +1,7 @@
 package com.jiang.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,9 @@ public class ProductServiceImpl implements ProductService{
 
 	public List<Product> findAll() {
 		return prodcutDao.findAll();
+	}
+
+	public List<Product> findByPage(Map<String, Object> map) {
+		return prodcutDao.findByPage(map);
 	}
 }

@@ -1,8 +1,10 @@
 package com.jiang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jiang.entity.Express;
+import com.jiang.entity.User;
 
 public interface ExpressService {
 
@@ -39,4 +41,6 @@ public interface ExpressService {
 	 * @return
 	 */
 	public List<Express> findAll();
+
+	public List<Express> findByPage(Map<String, Object> map);
 }

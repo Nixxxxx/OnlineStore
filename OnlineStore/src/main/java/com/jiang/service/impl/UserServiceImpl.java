@@ -1,12 +1,12 @@
 package com.jiang.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jiang.dao.UserDao;
-import com.jiang.entity.PageBean;
 import com.jiang.entity.User;
 import com.jiang.service.UserService;
 import com.jiang.util.CryptographyUtil;
@@ -66,8 +66,12 @@ public class UserServiceImpl implements UserService{
 		return userDao.findAll();
 	}
 	
-	public List<User> findByPage(PageBean pageBean) {
-		return userDao.findByPage(pageBean);
+	public List<User> findByPage(Map<String, Object> map) {
+		return userDao.findByPage(map);
+	}
+	
+	public Integer getTotal() {
+		return userDao.getTotal();
 	}
 	
 }

@@ -8,11 +8,10 @@ package com.jiang.entity;
 public class Express {
 
 	private Integer id;        //快递单id
-	private Integer userId;    //用户id
+	private User user;         //发布用户
 	private String message;    //快递单信息
 	private Integer verify;    //审核（0：未审核 1：审核未通过 2：已审核 3：已被接单）
-	private Integer senderId;  //配送用户id
-	
+	private User sender; 	   //配送用户
 	
 	public Integer getId() {
 		return id;
@@ -20,11 +19,11 @@ public class Express {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getMessage() {
 		return message;
@@ -38,10 +37,10 @@ public class Express {
 	public void setVerify(Integer verify) {
 		this.verify = verify;
 	}
-	public Integer getSenderId() {
-		return senderId;
+	public User getSender() {
+		return sender;
 	}
-	public void setSenderId(Integer senderId) {
-		this.senderId = senderId;
+	public void setSender(User sender) {
+		this.sender = sender;
 	}
 }

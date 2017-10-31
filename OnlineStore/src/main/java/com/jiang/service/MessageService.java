@@ -1,6 +1,7 @@
 package com.jiang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jiang.entity.Message;
 
@@ -39,4 +40,6 @@ public interface MessageService {
 	 * @return
 	 */
 	public List<Message> findAll();
+
+	public List<Message> findByPage(Map<String, Object> map);
 }

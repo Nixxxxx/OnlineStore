@@ -194,6 +194,13 @@
 	    <classifier>jdk15</classifier>
 	</dependency>
 	
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20160810</version>
+	</dependency>
+	
+	
 	<!-- 添加百度编辑器ueditor支持 -->
 	<dependency>
 	    <groupId>cn.songxinqiang</groupId>

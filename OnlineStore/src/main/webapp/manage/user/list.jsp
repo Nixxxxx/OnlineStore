@@ -43,14 +43,15 @@
 									<td>${user.email }</td>
 									<td>${user.college }</td>
 									<td>
-										<c:if test="${user.bee == 0}">未认证</c:if>
-										<c:if test="${user.bee == 1}">待审核</c:if>
-										<c:if test="${user.bee == 2}">未通过</c:if>
-										<c:if test="${user.bee == 3}">已认证</c:if>
+										<c:if test="${user.verify == 0}">未认证</c:if>
+										<c:if test="${user.verify == 1}">待审核</c:if>
+										<c:if test="${user.verify == 2}">未通过</c:if>
+										<c:if test="${user.verify == 3}">已认证</c:if>
 									</td>
 									<td>
-										<a data-id="${user.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>未通过</a>
-										<a data-id="${user.id }" class="deny" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核通过</a>
+										<a data-id="${user.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>通过</a>
+										<a data-id="${user.id }" class="deny" href="javascript:void(0)"> <i class="fa fa-trash"></i>拒绝</a>
+										<a data-id="${user.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i>删除用户</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -78,13 +79,12 @@
 $(function(){
 	//通过审核
 	$(".approve").click(function () {
-
 	    if (confirm("确认通过审核吗？")) {
 	        var id = $(this).data("id");
 	        $.ajax({
-	            url: "admin/user/approve",
+	            url: "manage/user/update",
 	            type: "post",
-	            data: {id: id},
+	            data: {id: id, verify: 3},
 	            dataType: "json",
 	            success: function (data) {
 	                alert(data.msg);
@@ -106,13 +106,12 @@ $(function(){
 
 	//拒绝审核
 	$(".deny").click(function () {
-
 	  if (confirm("确认拒绝审核吗？")) {
 	      var id = $(this).data("id");
 	      $.ajax({
-	          url: "admin/user/deny",
+	          url: "manage/user/update",
 	          type: "post",
-	          data: {id: id},
+	          data: {id: id, verify: 2},
 	          dataType: "json",
 	          success: function (data) {
 	              alert(data.msg);
@@ -125,6 +124,32 @@ $(function(){
 	                  alert("审核超时！");
 	              } else {
 	                  alert("审核失败！");
+	              }
+	          }
+	      })
+	  }
+	});
+	
+	//删除用户
+	$(".del").click(function () {
+	  if (confirm("确认删除用户吗？")) {
+	      var id = $(this).data("id");
+	      $.ajax({
+	          url: "manage/user/delete",
+	          type: "post",
+	          data: {id: id},
+	          dataType: "json",
+	          success: function (data) {
+	              alert(data.msg);
+	              if (data.result) {
+	              	window.location.reload();
+	              }
+	          },
+	          error: function (XMLHttpRequest, textStatus) {
+	              if (textStatus === "timeout") {
+	                  alert("删除超时！");
+	              } else {
+	                  alert("删除失败！");
 	              }
 	          }
 	      })

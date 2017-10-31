@@ -52,4 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_message
 	</select>
 
+	<select id="findByPage" parameterType="Map" resultMap="MessageResult">
+		select * from t_message
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+	</select>
 </mapper> 

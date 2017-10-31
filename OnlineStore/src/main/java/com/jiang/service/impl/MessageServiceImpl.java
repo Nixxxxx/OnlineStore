@@ -1,6 +1,7 @@
 package com.jiang.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,9 @@ public class MessageServiceImpl implements MessageService{
 
 	public List<Message> findAll() {
 		return messageDao.findAll();
+	}
+
+	public List<Message> findByPage(Map<String, Object> map) {
+		return messageDao.findByPage(map);
 	}
 }

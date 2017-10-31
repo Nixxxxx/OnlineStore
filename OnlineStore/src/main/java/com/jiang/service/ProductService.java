@@ -1,6 +1,7 @@
 package com.jiang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jiang.entity.Product;
 
@@ -39,4 +40,6 @@ public interface ProductService {
 	 * @return
 	 */
 	public List<Product> findAll();
+
+	public List<Product> findByPage(Map<String, Object> map);
 }

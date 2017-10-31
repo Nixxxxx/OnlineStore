@@ -5,7 +5,7 @@
 	<section class="content-header">
 	<ol class="breadcrumb">
 		<li><i class="fa fa-dashboard"></i>首页</li>
-		<li class="active">管理员列表</li>
+		<li class="active">管理员管理</li>
 	</ol>
 	</section>
 
@@ -79,10 +79,10 @@
 			          <div class="text-danger wrapper-xs text-center invisible" id="error_msg1">错误信息</div>
 						<div class="box-body">
 							<div class="form-group">
-								<label for="admin_add_email" class="col-sm-2 control-label">用户名</label>
+								<label for="admin_add_userName" class="col-sm-2 control-label">用户名</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="admin_add_email"
-										maxlength="30" placeholder="Email" required>
+									<input type="text" class="form-control" id="admin_add_userName"
+										maxlength="30" placeholder="userName" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -119,10 +119,10 @@
 						<div class="box-body">
 							<input type="hidden" id="admin_update_id" name="id">
 							<div class="form-group">
-								<label for="admin_update_email" class="col-sm-2 control-label">用户名</label>
+								<label for="admin_update_userName" class="col-sm-2 control-label">用户名</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="admin_update_email"
-										maxlength="30" placeholder="Email" required>
+									<input type="text" class="form-control" id="admin_update_userName"
+										maxlength="30" placeholder="userName" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -149,11 +149,10 @@
 
         //删除
         $(".del").click(function () {
-
             if (confirm("确认要删除吗？")) {
                 var id = $(this).data("id");
                 $.ajax({
-                    url: "admin/del",
+                    url: "manage/admin/delete",
                     type: "post",
                     data: {id: id},
                     dataType: "json",
@@ -177,7 +176,7 @@
         //更新modal
         $(".update").click(function () {
             $("#admin_update_id").val($(this).data("id"));
-            $("#admin_update_email").val($(this).parent().prevAll(".admin_email").text());
+            $("#admin_update_userName").val($(this).parent().prevAll(".admin_userName").text());
             $("#admin_update_password").val($(this).parent().prevAll(".admin_password").text());
         });
 
@@ -191,11 +190,11 @@
         	$error_msg.addClass("invisible");
 
             var id = $.trim($("#admin_update_id").val());
-            var email = $.trim($("#admin_update_email").val());
+            var userName = $.trim($("#admin_update_userName").val());
 			var password = $.trim($("#admin_update_password").val());
 			var ePattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 			var uPattern = /^[a-zA-Z0-9_@.]{4,20}$/;
-			if (!ePattern.test(email)) {
+			if (!ePattern.test(userName)) {
 				show_error("请输入正确格式的用户名");
 				return false;
 			}
@@ -206,12 +205,12 @@
 			
             var $update_btn = $("#admin_update_button");
             $.ajax({
-                url: "admin/update",
+                url: "manage/admin/update",
                 type: "post",
                 dataType: "json",
                 data: {
                 	id :id,
-                	email : email,
+                	userName : userName,
                 	password : password,
                 	},
                 beforeSend: function () {
@@ -246,11 +245,11 @@
             };
         	$error_msg.addClass("invisible");
         	
-            var email = $.trim($("#admin_add_email").val());
+            var userName = $.trim($("#admin_add_userName").val());
 			var password = $.trim($("#admin_add_password").val());
 			var ePattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 			var uPattern = /^[a-zA-Z0-9_@.]{4,20}$/;
-			if (!ePattern.test(email)) {
+			if (!ePattern.test(userName)) {
 				show_error("请输入正确格式的用户名");
 				return false;
 			}
@@ -260,10 +259,10 @@
 			}
             var $add_btn = $("#admin_add_button");
             $.ajax({
-                url: "admin/insert",
+                url: "manage/admin/insert",
                 type: "POST",
                 data: {
-                	email : email,
+                	userName : userName,
                 	password : password,
                 	},
                 dataType: "json",

@@ -1,8 +1,8 @@
 package com.jiang.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.jiang.entity.PageBean;
 import com.jiang.entity.User;
 
 /**
@@ -69,6 +69,14 @@ public interface UserService {
 	 */
 	public List<User> findAll();
 
-	public List<User> findByPage(int parseInt, int quantity);
+	/**
+	 * 分页查询
+	 * @param map
+	 * @return
+	 */
+	public List<User> findByPage(Map<String, Object> map);
+	
+
+	public Integer getTotal();
 	
 }

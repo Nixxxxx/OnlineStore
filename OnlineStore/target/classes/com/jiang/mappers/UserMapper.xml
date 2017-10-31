@@ -82,4 +82,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_user
 	</select>
 	
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from t_user
+	</select>
+	
+	<select id="findByPage" parameterType="Map" resultMap="UserResult">
+		select * from t_user
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+	</select>
 </mapper> 

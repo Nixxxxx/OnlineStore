@@ -1,8 +1,8 @@
 package com.jiang.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import com.jiang.entity.PageBean;
 import com.jiang.entity.User;
 
 public interface UserDao {
@@ -17,5 +17,7 @@ public interface UserDao {
 	
 	public List<User> findAll();
 
-	public List<User> findByPage(PageBean pageBean);
+	public List<User> findByPage(Map<String, Object> map);
+
+	public Integer getTotal();
 }

@@ -5,8 +5,7 @@
 	<section class="content-header">
 	<ol class="breadcrumb">
 		<li><i class="fa fa-dashboard"></i>首页</li>
-		<li>博客管理</li>
-		<li class="active">博客类型管理</li>
+		<li class="active">留言管理</li>
 	</ol>
 	</section>
 
@@ -15,11 +14,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">博客类型列表</h3>
-					<div class="box-tools">
-						<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-remote="false"
-							data-target="#blogType_add_modal" data-backdrop="static">添加博客类型</button>
-					</div>
+					<h3 class="box-title">留言列表</h3>
 				</div>
 				<div class="box-body table-responsive no-padding">
 					<table class="table table-hover table-bordered text-center">
@@ -196,38 +191,4 @@
             return false;
         });
 
-        //添加
-        var $blogType_add_form = $("#blogType_add_form");
-        $blogType_add_form.submit(function () {
-            var typeName = $.trim($("#blogType_add_form input[name=typeName]").val());
-            var $add_btn = $("#blogType_add_button");
-            $.ajax({
-                url: "admin/blogType/insert",
-                type: "POST",
-                data: {typeName : typeName},
-                dataType: "json",
-                beforeSend: function () {
-                    $add_btn.button("loading");
-                },
-                complete: function () {
-                    $add_btn.button("reset");
-                },
-                success: function (data) {
-                    alert(data.msg);
-                    if (data.result) {
-                        window.location.reload();
-                    }
-                },
-                error: function (XMLHttpRequest, textStatus) {
-                    if (textStatus === "timeout") {
-                        alert("添加超时！");
-                    } else {
-                        alert("添加失败！");
-                    }
-                }
-            });
-            return false;
-        });
-
-    })
 </script>

@@ -1,6 +1,7 @@
 package com.jiang.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jiang.entity.Express;
 
@@ -15,4 +16,6 @@ public interface ExpressDao {
 	public Express findById(Integer id);
 	
 	public List<Express> findAll();
+
+	public List<Express> findByPage(Map<String, Object> map);
 }
