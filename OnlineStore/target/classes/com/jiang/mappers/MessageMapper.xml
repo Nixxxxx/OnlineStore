@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.dao.MessageDao">
+
+	<resultMap type="Message" id="MessageResult">
+		<result property="id" column="id"/>
+		<result property="userId" column="userId"/>
+		<result property="productId" column="productId"/>
+		<result property="message" column="message"/>
+	</resultMap>
+	
+
+	<insert id="add" parameterType="Message">
+		insert t_message
+		<set>
+		    <if test="userId!=null and userId!='' ">
+				userId=#{userId},
+			</if>
+		    <if test="productId!=null and productId!='' ">
+				productId=#{productId},
+			</if>
+		    <if test="message!=null and message!='' ">
+				message=#{message},
+			</if>
+		</set>
+	</insert>
+
+	<update id="update" parameterType="Message">
+		update t_message
+		<set>
+		    <if test="userName!=null and userName!='' ">
+				name=#{userName},
+			</if>
+		    <if test="password!=null and password!='' ">
+				password=#{password},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_message where id=#{id}
+	</delete>
+
+	<select id="findById" parameterType="Integer" resultMap="MessageResult">
+		select * from t_message where id=#{id}
+	</select>
+	
+	<select id="findAll" resultMap="MessageResult">
+		select * from t_message
+	</select>
+
+</mapper> 

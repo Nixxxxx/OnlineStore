@@ -10,7 +10,7 @@ public class Product {
 	private Integer id;
 	private String name;
 	private float price;
-	private String introduce;
+	private String introduction;
 	
 	public Integer getId() {
 		return id;
@@ -30,10 +30,10 @@ public class Product {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public String getIntroduce() {
-		return introduce;
+	public String getIntroduction() {
+		return introduction;
 	}
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 }

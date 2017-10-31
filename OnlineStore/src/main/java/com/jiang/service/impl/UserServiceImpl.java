@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jiang.dao.UserDao;
 import com.jiang.entity.User;
 import com.jiang.service.UserService;
+import com.jiang.util.CryptographyUtil;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -32,6 +33,16 @@ public class UserServiceImpl implements UserService{
 				return false;
 		}
 		return true;
+	}
+	
+	public User login(User user) {
+		List<User> users = userDao.findAll();
+		for(User u:users){
+			if(u.getUserName().equals(user.getUserName()) && CryptographyUtil.md5(user.getPassword(), "jiang").equals(u.getPassword())){
+				return user;
+			}
+		}
+		return null;
 	}
 	
 	public Integer add(User user) {

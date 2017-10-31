@@ -21,7 +21,7 @@ import com.jiang.util.PageUtil;
 import com.jiang.util.StringUtil;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/manage/admin")
 public class AdminController {
 
 	@Autowired
@@ -46,7 +46,7 @@ public class AdminController {
 	public JSONObject insert(Admin admin, HttpServletRequest request, HttpServletResponse response) {
 		boolean result = false;
 		String msg = "";
-		if(!checkUserName(admin.getUserName(), 0)){
+		if(!adminService.checkUserName(admin.getUserName(), 0)){
 			msg = "该邮箱已存在";
 		}else {
 			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
@@ -66,7 +66,7 @@ public class AdminController {
 	public JSONObject update(Admin admin, HttpServletRequest request, HttpServletResponse response) {
 		boolean result = false;
 		String msg = "";
-		if (!checkUserName(admin.getUserName(), admin.getId())) {
+		if (!adminService.checkUserName(admin.getUserName(), admin.getId())) {
 			msg = "该邮箱已存在";
 		}else {
 			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
@@ -98,34 +98,27 @@ public class AdminController {
 		return resultJson;
 	}
 	
-	@RequestMapping("/list")
-	public ModelAndView list(@RequestParam(required = false)String page, 
-			HttpServletRequest request, HttpServletResponse response) {
-		if (StringUtil.isEmpty(page)) {
-			page = "1";
-		}
-		PageBean pageBean = new PageBean(Integer.parseInt(page), 10);
-		List<Admin> adminList = adminService.findList(pageBean);
-		for(Admin admin:adminList){
-			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
-		}
-		int total = adminList.size();
-		String pageCode = PageUtil.genPagination("admin/list", total, pageBean.getPage(),pageBean.getPageSize(), null);
-		ModelAndView mav = new ModelAndView("admin/index");
-		mav.addObject("pagePath", "./admin/list.jsp");
-		if(!adminList.isEmpty()){
-			mav.addObject("pageCode", pageCode);
-			mav.addObject("adminList", adminList);
-		}
-		return mav;
-	}
+//	@RequestMapping("/list")
+//	public ModelAndView list(@RequestParam(required = false)String page, 
+//			HttpServletRequest request, HttpServletResponse response) {
+//		if (StringUtil.isEmpty(page)) {
+//			page = "1";
+//		}
+//		PageBean pageBean = new PageBean(Integer.parseInt(page), 10);
+//		List<Admin> adminList = adminService.findList(pageBean);
+//		for(Admin admin:adminList){
+//			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
+//		}
+//		int total = adminList.size();
+//		String pageCode = PageUtil.genPagination("admin/list", total, pageBean.getPage(),pageBean.getPageSize(), null);
+//		ModelAndView mav = new ModelAndView("admin/index");
+//		mav.addObject("pagePath", "./admin/list.jsp");
+//		if(!adminList.isEmpty()){
+//			mav.addObject("pageCode", pageCode);
+//			mav.addObject("adminList", adminList);
+//		}
+//		return mav;
+//	}
 	
-	public boolean checkUserName(String userName, Integer id){
-		List<Admin> admins = adminService.findAll();
-		for(Admin admin:admins){
-			if(admin.getUserName().equals(userName) && admin.getId() != id)
-				return false;
-		}
-		return true;
-	}
+	
 }

@@ -11,10 +11,28 @@ import com.jiang.entity.User;
  */
 public interface UserService {
 
-	
+	/**
+	 * 检查用户名是否已存在
+	 * @param userName
+	 * @param id
+	 * @return
+	 */
 	public boolean checkUserName(String userName, int id);
 	
+	/**
+	 * 检查邮箱是否已存在
+	 * @param email
+	 * @param id
+	 * @return
+	 */
 	public boolean checkEmail(String email, int id);
+	
+	/**
+	 * 登录
+	 * @param user
+	 * @return
+	 */
+	public User login(User user);
 	
 	/**
 	 * 添加用户

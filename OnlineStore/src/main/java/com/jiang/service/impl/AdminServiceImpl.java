@@ -15,6 +15,15 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDao adminDao;
 	
+	public boolean checkUserName(String userName, Integer id) {
+		List<Admin> admins = adminDao.findAll();
+		for(Admin admin:admins){
+			if(admin.getUserName().equals(userName) && admin.getId() != id)
+				return false;
+		}
+		return true;
+	}
+	
 	public Integer add(Admin admin) {
 		return adminDao.add(admin);
 	}

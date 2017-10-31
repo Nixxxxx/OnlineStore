@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.dao.ExpressDao">
+
+	<resultMap type="Express" id="ExpressResult">
+		<result property="id" column="id"/>
+		<result property="userId" column="userId"/>
+		<result property="message" column="message"/>
+		<result property="verify" column="verify"/>
+		<result property="senderId" column="senderId"/>
+	</resultMap>
+	
+	<insert id="add" parameterType="Express">
+		insert t_express
+		<set>
+		    <if test="userId!=null and userId!='' ">
+				userId=#{userId},
+			</if>
+		    <if test="message!=null and message!='' ">
+				message=#{message},
+			</if>
+		    <if test="verify!=null and verify!='' ">
+				verify=#{verify},
+			</if>
+		    <if test="senderId!=null and senderId!='' ">
+				senderId=#{senderId},
+			</if>
+		</set>
+	</insert>
+
+	<update id="update" parameterType="Express">
+		update t_express
+		<set>
+		    <if test="userId!=null and userId!='' ">
+				userId=#{userId},
+			</if>
+		    <if test="message!=null and message!='' ">
+				message=#{message},
+			</if>
+		    <if test="verify!=null and verify!='' ">
+				verify=#{verify},
+			</if>
+		    <if test="senderId!=null and senderId!='' ">
+				senderId=#{senderId},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_express where id=#{id}
+	</delete>
+
+	<select id="findById" parameterType="Integer" resultMap="ExpressResult">
+		select * from t_express where id=#{id}
+	</select>
+	
+	<select id="findAll" resultMap="ExpressResult">
+		select * from t_express
+	</select>
+
+</mapper> 

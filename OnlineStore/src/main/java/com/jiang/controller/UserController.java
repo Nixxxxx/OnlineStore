@@ -1,7 +1,5 @@
 package com.jiang.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,20 +26,16 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public JSONObject login(User u, HttpServletRequest request, HttpServletResponse response){
-		List<User> users = userService.findAll();
+	public JSONObject login(User user, HttpServletRequest request, HttpServletResponse response){
 		String msg = "";
 		boolean result = false;
 		JSONObject resultJson=new JSONObject();
-		for(User user:users){
-			if(u.getEmail().equals(user) && CryptographyUtil.md5(u.getPassword(), "jiang").equals(user.getPassword())){
-				request.getSession().setAttribute("user", user);
-				result = true;
-				break;
-			}else {
-				request.setAttribute("user", u);
-				msg = "邮箱或密码错误";
-			}
+		user = userService.login(user);
+		if(user == null) {
+			msg = "";
+		}else {
+			result = true;
+			msg = "";
 		}
 		resultJson.put("result", result);
 		resultJson.put("msg", msg);
@@ -101,7 +95,7 @@ public class UserController {
 		return resultJson;
 	}
 
-	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public ModelAndView info() {
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("pagePath", "./front/user/info.jsp");

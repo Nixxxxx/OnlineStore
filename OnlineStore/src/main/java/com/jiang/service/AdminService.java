@@ -5,6 +5,8 @@ import java.util.List;
 import com.jiang.entity.Admin;
 
 public interface AdminService {
+	
+	public boolean checkUserName(String userName, Integer id);
 
 	/**
 	 * 添加管理员
