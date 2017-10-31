@@ -18,7 +18,6 @@ import com.jiang.entity.PageBean;
 import com.jiang.service.AdminService;
 import com.jiang.util.CryptographyUtil;
 import com.jiang.util.PageUtil;
-import com.jiang.util.ResponseUtil;
 import com.jiang.util.StringUtil;
 
 @Controller

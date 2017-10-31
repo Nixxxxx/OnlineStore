@@ -4,8 +4,18 @@ import java.util.List;
 
 import com.jiang.entity.User;
 
+/**
+ * 用户业务类
+ * @author JH
+ *
+ */
 public interface UserService {
 
+	
+	public boolean checkUserName(String userName, int id);
+	
+	public boolean checkEmail(String email, int id);
+	
 	/**
 	 * 添加用户
 	 * @param user

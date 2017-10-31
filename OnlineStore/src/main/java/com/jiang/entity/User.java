@@ -1,5 +1,10 @@
 package com.jiang.entity;
 
+/**
+ * 普通用户类
+ * @author JH
+ *
+ */
 public class User {
 
 	private Integer id;         //用户id
@@ -9,7 +14,7 @@ public class User {
 	private String mobile;      //手机号
 	private String email;       //邮箱
 	private String college;     //学院专业班级
-	private Integer bee;        //小蜜蜂认证(未认证：0  待审核：1 未通过：2 已认证：3)
+	private Integer verify;        //小蜜蜂认证(未认证：0  待审核：1 未通过：2 已认证：3)
 	
 	
 	public Integer getId() {
@@ -54,10 +59,10 @@ public class User {
 	public void setCollege(String college) {
 		this.college = college;
 	}
-	public Integer getBee() {
-		return bee;
+	public Integer getVerify() {
+		return verify;
 	}
-	public void setBee(Integer bee) {
-		this.bee = bee;
+	public void setVerify(Integer verify) {
+		this.verify = verify;
 	}
 }

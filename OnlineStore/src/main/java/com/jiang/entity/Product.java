@@ -1,5 +1,10 @@
 package com.jiang.entity;
 
+/**
+ * 商品类
+ * @author JH
+ *
+ */
 public class Product {
 
 	private Integer id;

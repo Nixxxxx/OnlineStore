@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -26,7 +27,7 @@ public class UserController {
 	private UserService userService;
 
 	@ResponseBody
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public JSONObject login(User u, HttpServletRequest request, HttpServletResponse response){
 		List<User> users = userService.findAll();
 		String msg = "";
@@ -47,34 +48,16 @@ public class UserController {
 		return resultJson;
 	}
 	
-	
-	public boolean checkUserName(String userName, int id){
-		List<User> users = userService.findAll();
-		for (User user : users) {
-			if (user.getUserName().equals(userName) && user.getId() != id)
-				return false;
-		}
-		return true;
-	}
-	
-	public boolean checkEmail(String email, int id){
-		List<User> users = userService.findAll();
-		for(User user:users){
-			if(user.getEmail().equals(email) && user.getId() != id)
-				return false;
-		}
-		return true;
-	}
 
 	@ResponseBody
-	@RequestMapping("/register")
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public JSONObject register(User user, @RequestParam String captcha,@SessionAttribute String sRand,
 			HttpServletRequest request, HttpServletResponse response) {
 		String msg = "";
 		boolean result = false;
 		JSONObject resultJson=new JSONObject();
 		if(captcha.equalsIgnoreCase(sRand)){
-			if(!checkEmail(user.getUserName(), 0)){
+			if(!userService.checkUserName(user.getUserName(), 0)){
 				msg = "该用户名已存在";
 			}else {
 				user.setPassword(CryptographyUtil.md5(request.getParameter("password"), "jiang"));
@@ -90,20 +73,20 @@ public class UserController {
 	}
 	
 
-	@RequestMapping("/logout")
+	@RequestMapping(value = "/logout",method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().removeAttribute("user");
 		return null;
 	}
 
 	@ResponseBody
-	@RequestMapping("/update")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public JSONObject update(User user, HttpServletRequest request, HttpServletResponse response){
 		String msg = "";
 		boolean result = false;
-		if (!checkEmail(user.getEmail(), user.getId())) {
+		if (!userService.checkEmail(user.getEmail(), user.getId())) {
 			msg = "该邮箱已存在";
-		} else if(!checkUserName(user.getUserName(), user.getId())){
+		} else if(!userService.checkUserName(user.getUserName(), user.getId())){
 			msg = "该用户名已存在";
 		} else {
 			if(userService.update(user) == 1){
@@ -118,7 +101,7 @@ public class UserController {
 		return resultJson;
 	}
 
-	@RequestMapping("/info")
+	@RequestMapping(value = "/info", method = RequestMethod.POST)
 	public ModelAndView info() {
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("pagePath", "./front/user/info.jsp");

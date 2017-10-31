@@ -1,5 +1,10 @@
 package com.jiang.entity;
 
+/**
+ * 管理员类
+ * @author JH
+ *
+ */
 public class Admin {
 
 	private Integer id;

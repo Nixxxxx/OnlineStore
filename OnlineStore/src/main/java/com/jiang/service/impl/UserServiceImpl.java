@@ -15,6 +15,25 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 	
+
+	public boolean checkUserName(String userName, int id){
+		List<User> users = userDao.findAll();
+		for (User user : users) {
+			if (user.getUserName().equals(userName) && user.getId() != id)
+				return false;
+		}
+		return true;
+	}
+	
+	public boolean checkEmail(String email, int id){
+		List<User> users = userDao.findAll();
+		for(User user:users){
+			if(user.getEmail().equals(email) && user.getId() != id)
+				return false;
+		}
+		return true;
+	}
+	
 	public Integer add(User user) {
 		return userDao.add(user);
 	}
