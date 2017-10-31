@@ -13,21 +13,21 @@ public interface AdminService {
 	 * @param admin
 	 * @return
 	 */
-	public Integer add(Admin admin);
+	public boolean add(Admin admin);
 	
 	/**
 	 * 删除管理员
 	 * @param id
 	 * @return
 	 */
-	public Integer delete(Integer id);
+	public boolean delete(Integer id);
 	
 	/**
 	 * 更新管理员信息
 	 * @param admin
 	 * @return
 	 */
-	public Integer update(Admin admin);
+	public boolean update(Admin admin);
 	
 	/**
 	 * 根据id查找管理员

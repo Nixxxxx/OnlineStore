@@ -1,7 +1,5 @@
 package com.jiang.controller.admin;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,16 +7,12 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jiang.entity.Admin;
-import com.jiang.entity.PageBean;
 import com.jiang.service.AdminService;
 import com.jiang.util.CryptographyUtil;
-import com.jiang.util.PageUtil;
-import com.jiang.util.StringUtil;
 
 @Controller
 @RequestMapping("/manage/admin")
@@ -50,7 +44,7 @@ public class AdminController {
 			msg = "该邮箱已存在";
 		}else {
 			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
-			if(adminService.add(admin) == 1){
+			if(adminService.add(admin)){
 				result = true;
 				msg = "注册成功";
 			}else msg = "注册失败";
@@ -70,7 +64,7 @@ public class AdminController {
 			msg = "该邮箱已存在";
 		}else {
 			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
-			if(adminService.update(admin) == 1){
+			if(adminService.update(admin)){
 				result = true;
 				msg ="更新成功";
 			}
@@ -87,7 +81,7 @@ public class AdminController {
 	public JSONObject delete(Integer id, HttpServletRequest request, HttpServletResponse response) {
 		boolean result = false;
 		String msg = "";
-		if(adminService.delete(id) ==1 ){
+		if(adminService.delete(id)){
 			result = true;
 			msg = "删除成功";
 		}
@@ -119,6 +113,5 @@ public class AdminController {
 //		}
 //		return mav;
 //	}
-	
 	
 }

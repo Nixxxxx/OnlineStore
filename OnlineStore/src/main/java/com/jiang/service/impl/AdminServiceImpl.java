@@ -24,16 +24,16 @@ public class AdminServiceImpl implements AdminService{
 		return true;
 	}
 	
-	public Integer add(Admin admin) {
-		return adminDao.add(admin);
+	public boolean add(Admin admin) {
+		return adminDao.add(admin) == 1? true : false;
 	}
 	
-	public Integer delete(Integer id) {
-		return adminDao.delete(id);
+	public boolean delete(Integer id) {
+		return adminDao.delete(id) == 1? true : false;
 	}
 	
-	public Integer update(Admin admin) {
-		return adminDao.update(admin);
+	public boolean update(Admin admin) {
+		return adminDao.update(admin) == 1? true : false;
 	}
 	
 	public Admin findById(Integer id) {

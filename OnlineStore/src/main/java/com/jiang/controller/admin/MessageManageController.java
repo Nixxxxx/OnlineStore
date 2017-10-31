@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jiang.service.ProductService;
+import com.jiang.service.MessageService;
 
 @Controller
-@RequestMapping("/admin/product")
-public class ProductController {
-	
-	@Autowired
-	private ProductService ProductService;
+@RequestMapping("/admin/message")
+public class MessageManageController {
 
+	@Autowired
+	private MessageService messageService;
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView index() {
-		return new ModelAndView("index").addObject("page", "");
+	public ModelAndView list() {
+		return new ModelAndView("manage/index");
 	}
 }

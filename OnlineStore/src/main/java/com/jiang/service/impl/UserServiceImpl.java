@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jiang.dao.UserDao;
+import com.jiang.entity.PageBean;
 import com.jiang.entity.User;
 import com.jiang.service.UserService;
 import com.jiang.util.CryptographyUtil;
@@ -45,16 +46,16 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 	
-	public Integer add(User user) {
-		return userDao.add(user);
+	public boolean add(User user) {
+		return userDao.add(user) == 1? true : false;
 	}
 	
-	public Integer delete(Integer id) {
-		return userDao.delete(id);
+	public boolean delete(Integer id) {
+		return userDao.delete(id) == 1? true : false;
 	}
 	
-	public Integer update(User user) {
-		return userDao.update(user);
+	public boolean update(User user) {
+		return userDao.update(user) == 1? true : false;
 	}
 	
 	public User findById(Integer id) {
@@ -63,6 +64,10 @@ public class UserServiceImpl implements UserService{
 	
 	public List<User> findAll() {
 		return userDao.findAll();
+	}
+	
+	public List<User> findByPage(PageBean pageBean) {
+		return userDao.findByPage(pageBean);
 	}
 	
 }

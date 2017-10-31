@@ -2,6 +2,7 @@ package com.jiang.dao;
 
 import java.util.List;
 
+import com.jiang.entity.PageBean;
 import com.jiang.entity.User;
 
 public interface UserDao {
@@ -15,4 +16,6 @@ public interface UserDao {
 	public User findById(Integer id);
 	
 	public List<User> findAll();
+
+	public List<User> findByPage(PageBean pageBean);
 }

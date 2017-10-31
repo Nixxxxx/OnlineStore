@@ -55,7 +55,7 @@ public class UserController {
 				msg = "该用户名已存在";
 			}else {
 				user.setPassword(CryptographyUtil.md5(request.getParameter("password"), "jiang"));
-				if(userService.add(user) == 1){
+				if(userService.add(user)){
 					result = true;
 					msg = "注册成功，去邮箱激活";
 				}else msg = "注册失败";
@@ -83,7 +83,7 @@ public class UserController {
 		} else if(!userService.checkUserName(user.getUserName(), user.getId())){
 			msg = "该用户名已存在";
 		} else {
-			if(userService.update(user) == 1){
+			if(userService.update(user)){
 				result = true;
 				msg = "更新成功";
 				request.getSession().setAttribute("user", userService.findById(user.getId()));
