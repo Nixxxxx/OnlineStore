@@ -9,6 +9,7 @@ public class Product {
 
 	private Integer id;
 	private String name;
+	private String avater;
 	private float price;
 	private String introduction;
 	
@@ -23,6 +24,12 @@ public class Product {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getAvater() {
+		return avater;
+	}
+	public void setAvater(String avater) {
+		this.avater = avater;
 	}
 	public float getPrice() {
 		return price;

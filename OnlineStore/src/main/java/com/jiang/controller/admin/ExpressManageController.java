@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
@@ -29,8 +28,7 @@ public class ExpressManageController {
 	private ExpressService expressService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam(required = false)String page, 
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView list(@RequestParam(required = false)String page) {
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
@@ -39,7 +37,7 @@ public class ExpressManageController {
 		map.put("quantity", 10);
 		List<Express> expressList = expressService.findByPage(map);
 		int total = expressService.findAll().size();
-		String pageCode = PageUtil.genPagination("admin/express/list", total, Integer.parseInt(page),10, null);
+		String pageCode = PageUtil.genPagination("manage/express/list", total, Integer.parseInt(page),10, null);
 		ModelAndView mav = new ModelAndView("manage/index");
 		mav.addObject("pagePath", "./express/list.jsp");
 		if(!expressList.isEmpty()){
@@ -50,7 +48,7 @@ public class ExpressManageController {
 	}
 	
 	@RequestMapping(value = "/update")
-	public void update(Express express, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void update(Express express, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(expressService.update(express)){
@@ -62,7 +60,7 @@ public class ExpressManageController {
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(int id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void delete(int id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(expressService.delete(id)){

@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jiang.entity.Admin;
-import com.jiang.entity.User;
 import com.jiang.service.AdminService;
 import com.jiang.util.CryptographyUtil;
 import com.jiang.util.PageUtil;
@@ -48,11 +46,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/insert")
-	public void insert(Admin admin, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void insert(Admin admin, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(!adminService.checkUserName(admin.getUserName(), 0)){
-			msg = "该邮箱已存在";
+			msg = "该用户名已存在";
 		}else {
 			admin.setPassword(CryptographyUtil.md5(admin.getPassword(), "jiang"));
 			if(adminService.add(admin)){
@@ -68,7 +66,7 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping("/update")
-	public void update(Admin admin, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void update(Admin admin, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if (!adminService.checkUserName(admin.getUserName(), admin.getId())) {
@@ -89,7 +87,7 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping("/delete")
-	public void delete(Integer id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void delete(Integer id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(adminService.delete(id)){
@@ -105,8 +103,7 @@ public class AdminController {
 	
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam(required = false)String page, 
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView list(@RequestParam(required = false)String page) {
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}

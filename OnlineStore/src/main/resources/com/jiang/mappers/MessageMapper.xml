@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Message" id="MessageResult">
 		<result property="id" column="id"/>
-		<result property="userId" column="userId"/>
-		<result property="productId" column="productId"/>
 		<result property="message" column="message"/>
+		<association property="user" column="userId" select="com.jiang.dao.UserDao.findById"></association>
+		<association property="product" column="productId" select="com.jiang.dao.ProductDao.findById"></association>
 	</resultMap>
 	
 

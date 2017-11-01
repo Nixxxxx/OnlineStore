@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.jiang.dao.AdminDao;
 import com.jiang.entity.Admin;
-import com.jiang.entity.User;
 import com.jiang.service.AdminService;
 
 @Service("adminService")

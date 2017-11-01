@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.jiang.dao.ExpressDao;
 import com.jiang.entity.Express;
-import com.jiang.entity.User;
 import com.jiang.service.ExpressService;
 
 @Service("expressService")

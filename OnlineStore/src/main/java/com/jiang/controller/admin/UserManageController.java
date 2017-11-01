@@ -4,17 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jiang.entity.User;
@@ -32,8 +29,7 @@ public class UserManageController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam(required = false)String page, 
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView list(@RequestParam(required = false)String page) {
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
@@ -42,7 +38,7 @@ public class UserManageController {
 		map.put("quantity", 10);
 		List<User> userList = userService.findByPage(map);
 		int total = userService.findAll().size();
-		String pageCode = PageUtil.genPagination("admin/user/list", total, Integer.parseInt(page),10, null);
+		String pageCode = PageUtil.genPagination("manage/user/list", total, Integer.parseInt(page),10, null);
 		ModelAndView mav = new ModelAndView("manage/index");
 		mav.addObject("pagePath", "./user/list.jsp");
 		if(!userList.isEmpty()){
@@ -53,7 +49,7 @@ public class UserManageController {
 	}
 	
 	@RequestMapping(value = "/update")
-	public void update(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void update(User user, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if (!StringUtil.isEmpty(user.getUserName())) {
@@ -72,7 +68,7 @@ public class UserManageController {
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(int id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void delete(int id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(userService.delete(id)){

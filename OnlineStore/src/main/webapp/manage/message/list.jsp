@@ -21,27 +21,36 @@
 						<thead>
 							<tr>
 								<th>序号</th>
-								<th>博客类型</th>
+								<th>用户</th>
+								<th>商品</th>
+								<th>留言</th>
 								<th>操作</th>
 							</tr>
 						</thead>
-						<c:if test="${blogTypeList != null }">
-							<c:forEach var="blogType" items="${blogTypeList }" varStatus="status">
+						<c:if test="${messageList != null }">
+							<c:forEach var="message" items="${messageList }" varStatus="status">
 								<tr>
 									<td>${status.index+1 }</td>
-									<td class="blogType_typeName">${blogType.typeName }</td>
+						            <td class="message_user">
+						              <input class="user_userName" type="hidden" value="${message.user.userName }">
+						              <input class="user_name" type="hidden" value="${message.user.name }">
+						              <input class="user_mobile" type="hidden" value="${message.user.mobile }">
+						              <input class="user_email" type="hidden" value="${message.user.email }">
+						              <input class="user_college" type="hidden" value="${message.user.college }">
+						              <input class="user_verify" type="hidden" value="${message.user.verify }">
+						              <a class="user" href="javascript:void(0)" data-toggle="modal" data-remote="false" data-target="#user_modal" data-backdrop="static">
+						                  ${message.user.userName }</a></td>
+									<td><a href="front/product/${product.id }" target="_blank">${message.product.name }</a></td>
+									<td>${message.message }</td>
 									<td>
-										<a href="admin/blog/list?typeId=${blogType.id }"> <i class="fa fa-th"></i> 查看博客</a>
-										<a data-id="${blogType.id }" class="update" href="javascript:void(0)" data-toggle="modal"
-										data-remote="false" data-target="#blogType_update_modal" data-backdrop="static"> <i class="fa fa-edit"></i> 编辑</a>
-										<a data-id="${blogType.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i> 删除</a>
+										<a data-id="${message.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i> 删除</a>
 									</td>
 								</tr>
 							</c:forEach>
 						</c:if>
-						<c:if test="${blogTypeList == null }">
+						<c:if test="${messageList == null }">
 							<tr>
-								<td colspan="3">无记录！</td>
+								<td colspan="5">无记录！</td>
 							</tr>
 						</c:if>
 					</table>
@@ -58,137 +67,102 @@
 	</div>
 	</section>
 	
-<!-- 添加Modal -->
-	<div class="modal fade" id="blogType_add_modal" tabindex="-1" role="dialog" aria-labelledby="blogType_add_label">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h3 class="box-title" id="blogType_add_label">添加博客类型</h3>
-					</div>
-					<form class="form-horizontal" id="blogType_add_form">
-						<div class="box-body">
-							<div class="form-group">
-								<label for="blogType_add_typeName" class="col-sm-2 control-label">类型名</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="blogType_add_typeName"
-										name="typeName" maxlength="10" placeholder="请输入类型名" required>
-								</div>
-							</div>
-						</div>
-						<div class="box-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button type="submit" class="btn btn-info pull-right" id="blogType_add_button" data-loading-text="添加中...">添加</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Modal -->
+<div class="modal fade" id="user_modal" tabindex="-1" role="dialog" aria-labelledby="user_update_label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- Horizontal Form -->
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h3 class="box-title" id="user_update_label">用户信息</h3>
+        </div>
+        <!-- /.box-header -->
+          <div class="box-body">
+            <div class="form-group">
+              <label for="user_userName" class="col-sm-2 control-label">用户名</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control pull-right" id="user_userName" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user_name" class="col-sm-2 control-label">真实姓名</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control pull-right" id="user_name" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user_mobile" class="col-sm-2 control-label">手机</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control pull-right" id="user_mobile" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user_email" class="col-sm-2 control-label">邮箱</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control pull-right" id="user_email" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user_college" class="col-sm-2 control-label">学院专业班级</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control pull-right" id="user_college" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user_verify" class="col-sm-2 control-label">小蜜蜂</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control pull-right" id="user_verify" readonly>
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+          <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</div>
 
-<!-- 编辑Modal -->
-	<div class="modal fade" id="blogType_update_modal" tabindex="-1" role="dialog" aria-labelledby="blogType_update_label">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h3 class="box-title" id="blogType_update_label">编辑</h3>
-					</div>
-					<form class="form-horizontal" id="blogType_update_form">
-						<div class="box-body">
-							<input type="hidden" id="blogType_update_id" name="id">
-							<div class="form-group">
-								<label for="blogType_update_typeName" class="col-sm-2 control-label">类型名</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="blogType_update_typeName"
-										name="typeName" maxlength="10" placeholder="请输入类型名" required>
-								</div>
-							</div>
-						</div>
-						<div class="box-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button type="submit" class="btn btn-info pull-right" id="blogType_update_button" data-loading-text="更新中...">更新</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<script>
+$(function(){
+   	$(".user").click(function () {
+        $("#user_userName").val($(this).prevAll(".user_userName").val());
+        $("#user_name").val($(this).prevAll(".user_name").val());
+        $("#user_mobile").val($(this).prevAll(".user_mobile").val());
+        $("#user_email").val($(this).prevAll(".user_email").val());
+        $("#user_college").val($(this).prevAll(".user_college").val());
+    });
+	
+    //删除
+    $(".del").click(function () {
 
-
-	<script>
-    $(function(){
-
-        //删除
-        $(".del").click(function () {
-
-            if (confirm("确认要删除吗？")) {
-                var id = $(this).data("id");
-                $.ajax({
-                    url: "admin/blogType/del",
-                    type: "post",
-                    data: {id: id},
-                    dataType: "json",
-                    success: function (data) {
-                        alert(data.msg);
-                        if (data.result) {
-                        	window.location.reload();
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus) {
-                        if (textStatus === "timeout") {
-                            alert("删除超时！");
-                        } else {
-                            alert("删除失败！");
-                        }
-                    }
-                })
-            }
-        });
-
-        //更新modal
-        $(".update").click(function () {
-            $("#blogType_update_id").val($(this).data("id"));
-            $("#blogType_update_typeName").val($(this).parent().prevAll(".blogType_typeName").text());
-        });
-
-        //更新
-        var $blogType_update_form = $("#blogType_update_form");
-        $blogType_update_form.submit(function () {
-            var $update_btn = $("#blogType_update_button");
-
+        if (confirm("确认要删除吗？")) {
+            var id = $(this).data("id");
             $.ajax({
-                url: "admin/blogType/update",
+                url: "manage/message/delete",
                 type: "post",
+                data: {id: id},
                 dataType: "json",
-                data: $blogType_update_form.serialize(),
-                beforeSend: function () {
-                    $update_btn.button("loading");
-                },
-                complete: function () {
-                    $update_btn.button("reset");
-                },
                 success: function (data) {
                     alert(data.msg);
                     if (data.result) {
-                        window.location.reload();
+                    	window.location.reload();
                     }
                 },
                 error: function (XMLHttpRequest, textStatus) {
                     if (textStatus === "timeout") {
-                        alert("更新超时！");
+                        alert("删除超时！");
                     } else {
-                        alert("更新失败！");
+                        alert("删除失败！");
                     }
                 }
-            });
-            return false;
-        });
-
+            })
+        }
+    });
+})
 </script>

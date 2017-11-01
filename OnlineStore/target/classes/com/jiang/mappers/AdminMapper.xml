@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert t_admin
 		<set>
 		    <if test="userName!=null and userName!='' ">
-				name=#{userName},
+				userName=#{userName},
 			</if>
 		    <if test="password!=null and password!='' ">
 				password=#{password},

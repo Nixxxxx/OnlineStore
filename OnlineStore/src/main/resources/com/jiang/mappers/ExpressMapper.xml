@@ -6,10 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Express" id="ExpressResult">
 		<result property="id" column="id"/>
-		<association property="user" column="userId" select="com.jiang.dao.YunUserDao.findById"></association>
 		<result property="message" column="message"/>
 		<result property="verify" column="verify"/>
-		<association property="sender" column="senderId" select="com.jiang.dao.YunUserDao.findById"></association>
+		<association property="user" column="userId" select="com.jiang.dao.UserDao.findById"></association>
+		<association property="sender" column="senderId" select="com.jiang.dao.UserDao.findById"></association>
 	</resultMap>
 	
 	<insert id="add" parameterType="Express">

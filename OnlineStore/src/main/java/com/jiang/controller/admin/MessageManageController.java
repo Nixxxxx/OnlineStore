@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
@@ -29,17 +28,16 @@ public class MessageManageController {
 	private MessageService messageService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam(required = false)String page, 
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView list(@RequestParam(required = false)String page) {
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		List<Message> messageList = messageService.findByPage(map);
 		int total = messageService.findAll().size();
-		String pageCode = PageUtil.genPagination("admin/message/list", total, Integer.parseInt(page),10, null);
+		String pageCode = PageUtil.genPagination("manage/message/list", total, Integer.parseInt(page),10, null);
 		ModelAndView mav = new ModelAndView("manage/index");
 		mav.addObject("pagePath", "./message/list.jsp");
 		if(!messageList.isEmpty()){
@@ -50,7 +48,7 @@ public class MessageManageController {
 	}
 	
 	@RequestMapping(value = "/update")
-	public void update(Message message, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void update(Message message, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(messageService.update(message)){
@@ -62,7 +60,7 @@ public class MessageManageController {
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(int id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void delete(int id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
 		if(messageService.delete(id)){

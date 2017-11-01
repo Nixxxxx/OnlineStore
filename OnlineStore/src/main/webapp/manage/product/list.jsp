@@ -17,7 +17,7 @@
 				<div class="box-header">
 					<h3 class="box-title">商品列表</h3>
 					<div class="box-tools">
-						<a class="btn btn-info btn-sm" href="manage/product/insert">添加商品</a>
+						<a class="btn btn-info btn-sm" href="manage/product/0">添加商品</a>
 					</div>
 				</div>
 				<div class="box-body table-responsive no-padding">
@@ -34,11 +34,11 @@
 							<c:forEach var="product" items="${productList }" varStatus="status">
 								<tr>
 									<td>${status.index+1 }</td>
-									<td>${product.title }</td>
+									<td>${product.name }</td>
 									<td>${product.price }</td>
-									<td><a href="manage/product/modify/${product.id }"><i class="fa fa-edit"></i> 编辑</a>
-										<a data-id="${product.id }" class="del"
-										href="javascript:void(0)"> <i class="fa fa-trash"></i> 删除</a>
+									<td>
+									  <a href="manage/product/${product.id }"><i class="fa fa-edit"></i> 编辑</a>
+									  <a data-id="${product.id }" class="del" href="javascript:void(0)"><i class="fa fa-trash"></i> 删除</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -64,14 +64,12 @@
 
 	<script>
     $(function(){
-
         //删除
         $(".del").click(function () {
-
             if (confirm("确认要删除吗？")) {
                 var id = $(this).data("id");
                 $.ajax({
-                    url: "admin/product/del",
+                    url: "manage/product/delete",
                     type: "POST",
                     data: {id: id},
                     dataType: "json",

@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,6 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.11/css/AdminLTE.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.11/css/skins/_all-skins.min.css">
+<script src="https://cdn.bootcss.com/admin-lte/2.3.11/js/app.min.js"></script>
+<script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 
 <style>
 body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
@@ -60,12 +62,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header">
-			<a href="./" class="logo">
-			<span class="logo-mini"><b>蜂巢</b></span>
+			<a href="javascript:void(0)" class="logo">
 			<span class="logo-lg"><b>蜂巢商城后台</b></span>
 		</a>
 		<nav class="navbar navbar-static-top">
-		<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span></a>
 
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
@@ -73,31 +73,6 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 					<span class="hidden-xs">${admin.userName }</span>
 				  </a>
-					<ul class="dropdown-menu">
-						<!-- User image -->
-						<li class="user-header"><img src="#" class="img-circle" alt="User Image">
-							<p>
-                				${admin.userName }-超级管理员
-							</p></li>
-						<!-- Menu Body -->
-						<li class="user-body">
-							<div class="row">
-								<div class="col-xs-5">上次登录时间</div>
-								<div class="col-xs-7"></div>
-								<div class="col-xs-5">上次登录IP</div>
-								<div class="col-xs-7"></div>
-							</div> <!-- /.row -->
-						</li>
-						<!-- Menu Footer-->
-						<li class="user-footer">
-							<div class="pull-left">
-								<a type="button" id="refreshSystem" class="btn btn-success btn-flat">更新服务器缓存</a>
-							</div>
-							<div class="pull-right">
-								<a href="manage/admin/logout" class="btn btn-info btn-flat">退出登录</a>
-							</div>
-						</li>
-					</ul>
 				</li>
 			</ul>
 		</div>
@@ -136,76 +111,6 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		</footer>
 	</div>
 
-<script src="https://cdn.bootcss.com/admin-lte/2.3.11/js/app.min.js"></script>
 <script src="https://cdn.bootcss.com/admin-lte/2.3.11/js/demo.js"></script>
-<script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
-<script>
-$(function(){
-	var refreshSystem = $("#refreshSystem");
-	refreshSystem.click(function(){
-		$.ajax({
-	        url: "admin/refreshSystem",
-	        type: "post",
-	        dataType: "json",
-	        beforeSend: function () {
-	        	refreshSystem.button("loading");
-	        },
-	        complete: function () {
-	        	refreshSystem.button("reset");
-	        },
-	        success: function (data) {
-	            alert(data.msg);
-	        },
-	        error: function (XMLHttpRequest, textStatus) {
-	            if (textStatus === "timeout") {
-	                alert("超时！");
-	            } else {
-	                alert("失败！");
-	            }
-	        }
-	    });
-	})
-	    
-})
-</script>
-	<!-- <script>
- $(function () {
-    /**
-     * 根据url高亮菜单
-     * @param pathname location.pathname
-     */
-    function select_menu(pathname) {
-        
-        var $now_selected = null;
-        $(".treeview-menu a").each(function () {
-            if (pathname.indexOf($(this).data("menu")) >= 0) {
-                $now_selected = $(this);
-                return false;
-            }
-        });
-        $(".treeview-menu:visible").hide();
-        $(".treeview.active").removeClass("active");
-        $(".treeview li.active").removeClass("active");
-        $now_selected.parents(".treeview").addClass("active");
-        $now_selected.parents(".treeview-menu").show();
-        $now_selected.parent().addClass("active");
-    }
-
-    select_menu(location.pathname);
-
-    //定时检测location.href是否变化 如果变化则选定当前url的菜单
-    var old_href = location.href;
-
-    function checkHrefChange() {
-        if (old_href == location.href)
-            return;
-        old_href = location.href;
-        select_menu(location.pathname);
-    }
-    setInterval(checkHrefChange, 300);
-
-
-})
-</script> -->
 </body>
 </html>

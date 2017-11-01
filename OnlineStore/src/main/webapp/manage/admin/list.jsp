@@ -192,7 +192,7 @@
             var id = $.trim($("#admin_update_id").val());
             var userName = $.trim($("#admin_update_userName").val());
 			var password = $.trim($("#admin_update_password").val());
-			var ePattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+			var ePattern = /^[a-zA-Z0-9_@.]{4,20}$/;
 			var uPattern = /^[a-zA-Z0-9_@.]{4,20}$/;
 			if (!ePattern.test(userName)) {
 				show_error("请输入正确格式的用户名");

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.jiang.entity.Express;
-import com.jiang.entity.User;
 
 public interface ExpressService {
 
