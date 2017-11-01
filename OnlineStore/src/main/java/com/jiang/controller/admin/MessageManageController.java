@@ -47,7 +47,7 @@ public class MessageManageController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/update")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(Message message, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
@@ -59,7 +59,7 @@ public class MessageManageController {
 		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(int id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";

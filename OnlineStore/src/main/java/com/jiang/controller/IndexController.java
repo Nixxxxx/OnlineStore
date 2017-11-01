@@ -39,4 +39,11 @@ public class IndexController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "/product/{id}")
+	public ModelAndView productDetail(@PathVariable Integer id) {
+		ModelAndView mav = new ModelAndView("front/productDetail");
+		mav.addObject("product", productService.findById(id));
+		return mav;
+	}
 }

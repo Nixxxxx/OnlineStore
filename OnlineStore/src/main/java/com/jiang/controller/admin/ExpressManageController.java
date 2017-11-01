@@ -47,7 +47,7 @@ public class ExpressManageController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/update")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(Express express, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
@@ -59,7 +59,7 @@ public class ExpressManageController {
 		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(int id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";

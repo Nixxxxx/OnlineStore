@@ -91,13 +91,13 @@
 											<div class="product-thumb transition">
 												<div class="actions">
 													<div class="image">
-														<a href="product/detail/${product.id }"> 
+														<a href="product/${product.id }"> 
 														  <img src="${product.avater }" alt="${product.name }" class="img-responsive"></a>
 													</div>
 												</div>
 												<div class="caption">
 													<div class="name" style="height: 40px">
-														<a href="product/detail/${product.id }"> <span
+														<a href="product/${product.id }"> <span
 															style="color: #0885B1">商品名：${product.name }</span> </a>
 													</div>
 													<p class="price">

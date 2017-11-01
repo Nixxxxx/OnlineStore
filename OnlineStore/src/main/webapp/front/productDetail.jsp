@@ -37,7 +37,7 @@
 								<div class="row">
 									<div class="col-xs-12 col-md-4 col-sm-4">
 										<ul class="thumbnails" style="list-style: none">
-											<li><a class="thumbnail" href="#"> <img src="${product.img }"></a></li>
+											<li><img src="${product.avater }"></li>
 										</ul>
 									</div>
 									<div class="col-xs-12 col-md-8 col-sm-8">
@@ -61,7 +61,7 @@
 												aria-expanded="true">商品描述</a></li>
 										</ul>
 										<div class="tab-content" style="border: 1px solid #eee; overflow: hidden;">
-											<div class="tab-pane active" id="tab-description">${product.introduce }</div>
+											<div class="tab-pane active" id="tab-description">${product.introduction }</div>
 										</div>
 									</div>
 								</div>

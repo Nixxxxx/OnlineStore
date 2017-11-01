@@ -48,7 +48,7 @@ public class UserManageController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/update")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(User user, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
@@ -67,7 +67,7 @@ public class UserManageController {
 		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(int id, HttpServletResponse response) throws Exception {
 		boolean result = false;
 		String msg = "";
