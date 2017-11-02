@@ -18,7 +18,7 @@
 				<input type="hidden" name="id" value="${product.id }"> 
 				<div class="form-group input-group">
 					<span class="input-group-addon">封&nbsp;&nbsp;&nbsp;面</span> 
-					<input type="file" id="imageFile" name="imageFile" accept="image" disabled>
+					<input type="file" id="image" name="image" accept="image">
 				</div>
 				<div class="form-group input-group">
 					<span class="input-group-addon">名&nbsp;&nbsp;&nbsp;称</span> 
@@ -29,13 +29,12 @@
 					<input type="text" class="form-control" id="price" name="price" value="${product.price }" maxlength="20" size="20" required>
 				</div>
 				<div class="form-group input-group">
-					<span class="input-group-addon">关于博主</span>
+					<span class="input-group-addon">商品介绍</span>
 					<textarea id="introduction" name="introduction">${product.introduction }</textarea>
 				</div>
 
 				<div class="form-group">
-					<input type="button" id="edit" class="btn btn-success btn-block" value="编辑">
-					<input type="submit" id="updateBtn" class="btn btn-success btn-block invisible" value="保存">
+					<input type="submit" id="updateBtn" class="btn btn-success btn-block" value="保存">
 				</div>
 			</form>
 		</div>

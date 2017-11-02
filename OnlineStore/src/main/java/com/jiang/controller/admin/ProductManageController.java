@@ -1,12 +1,10 @@
 package com.jiang.controller.admin;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
@@ -63,49 +61,41 @@ public class ProductManageController {
 	
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public void update(Product product, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void update(@RequestParam(value = "image", required = false) MultipartFile image, Product product, 
+			HttpServletResponse response) throws Exception{
 		boolean result = false;
-		String msg = "";
-		if(productService.update(product)){
-			result = true;
-			msg ="更新成功";
+		String msg;
+		if(!image.isEmpty()){
+			String fileName = System.currentTimeMillis() + "." + image.getOriginalFilename().split("\\.")[1];
+			product.setAvater("/OnlineStore/image/avater/"+fileName);
+			try {
+				File file = new File("C:/image/avater/" + fileName);
+				if (!file.exists()) { // 如果路径不存在，创建 
+					file.mkdirs();  
+				} 
+			image.transferTo(file);
+			} catch (Exception e) {
+				e.printStackTrace();
+				msg = "更新异常";
+			}
 		}
-		else msg = "更新失败";
+		if(product.getId() != null) {
+			if(productService.update(product)) {
+				result = true;
+				msg = "更新成功";
+			}else {
+				msg = "更新失败";
+			}
+		}else {
+			if(productService.add(product)) {
+				result = true;
+				msg = "添加成功";
+			}else {
+				msg = "添加失败";
+			}
+		}
 		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
-	
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//	public void update(@RequestParam("imageFile") MultipartFile imageFile, Product product, 
-//			HttpServletResponse response) throws IOException{
-//		boolean result = false;
-//		String msg;
-//		if(!imageFile.isEmpty()){
-//			String fileName = "blogger" + "." + imageFile.getOriginalFilename().split("\\.")[1];
-//			String imagePath = "C:/image/avater/";
-//			product.setImagePath("/BBlog/image/avater/"+fileName);
-//			try {
-//				File file = new File(imagePath+fileName);
-//				if (!file.exists()) { // 如果路径不存在，创建 
-//					file.mkdirs();  
-//				} 
-//			imageFile.transferTo(file);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				msg = "更新异常";
-//			}
-//		}else {
-//			product.setImagePath(productService.findById(1).getImagePath());
-//		}
-//		if(productService.update(product)){
-//			result = true;
-//			msg = "更新成功";
-//		}else msg = "更新失败";
-//		if(result == true){
-//			response.sendRedirect("info");
-//		}else {
-//			ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
-//		}
-//	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(int id, HttpServletResponse response) throws Exception {

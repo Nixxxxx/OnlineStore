@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="Product" id="ProductResult">
 		<result property="id" column="id"/>
 		<result property="name" column="name"/>
+		<result property="avater" column="avater"/>
 		<result property="price" column="price"/>
 		<result property="introduction" column="introduction"/>
 	</resultMap>
@@ -16,6 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<set>
 		    <if test="name!=null and name!='' ">
 				name=#{name},
+			</if>
+		    <if test="avater!=null and avater!='' ">
+				avater=#{avater},
 			</if>
 		    <if test="price!=null and price!='' ">
 				price=#{price},
@@ -29,11 +33,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="Product">
 		update t_product
 		<set>
-		    <if test="userName!=null and userName!='' ">
-				name=#{userName},
+		    <if test="name!=null and name!='' ">
+				name=#{name},
 			</if>
-		    <if test="password!=null and password!='' ">
-				password=#{password},
+		    <if test="avater!=null and avater!='' ">
+				avater=#{avater},
+			</if>
+		    <if test="price!=null and price!='' ">
+				price=#{price},
+			</if>
+		    <if test="introduction!=null and introduction!='' ">
+				introduction=#{introduction},
 			</if>
 		</set>
 		where id=#{id}
