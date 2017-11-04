@@ -13,7 +13,6 @@
 <base href="<%=basePath%>">
 <link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
 </head>
-
 <body>
 	<div id="mr-mainbody" class="container mr-mainbody">
 		<div class="row">
@@ -24,58 +23,53 @@
 						<a href="product" title="点击返回首页"><img src="./static/images/51logo.png"></a>
 					</div>
 					<div class="login">
-						<div class="page-header" style="pause: 0px;"> <h1 class="login_h1">会员登录</h1> </div>
+						<div class="page-header" style="pause: 0px;"><h1 class="login_h1">会员登录</h1> </div>
 						<!-- 会员登录表单 -->
-						<form action="user/login" method="post" class="form-horizontal">
-							<fieldset>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="username-lbl" for="username" class="required">账户 ：</label>
-									</div>
-									<div class="col-sm-8">
-										<!-- 账户文本框 -->
-										<input type="text" name="username" id="username" value="" size="38"
-											class="validate-username required" required="required" autofocus="">
-									</div>
+						<form id="login_form" class="form-horizontal">
+							<div align="center" id="error_msg" style="color:#ff0000" hidden>错误信息</div>
+							<div class="form-group">
+								<div class="col-sm-4 control-label">
+									<label for="username" class="required">账户 ：</label>
 								</div>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="password-lbl" for="password" class="required">密码 ：</label>
-									</div>
-									<div class="col-sm-8">
-										<!-- 密码文本框 -->
-										<input type="password" name=PWD id="password" value=""
-											class="validate-password required" size="38" maxlength="99"
-											required="required" aria-required="true">
-									</div>
+								<div class="col-sm-8">
+									<!-- 账户文本框 -->
+									<input type="text" name="userName" id="userName" size=35 maxlength=20
+										class="validate-username required" required autofocus="">
 								</div>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="password-lbl" for="password" class="required">验证码 ：</label>
-									</div>
-									<div class="col-sm-8" style="clear: none;">
-										<!-- 验证码文本框 -->
-										<input type="text" name="checkCode" id="checkCode" value=""
-											class="validate-password required" style="float: left;"
-											title="验证码区分大小写" size="18" maxlength="4" required="required"
-											aria-required="true"> 
-											<!-- 显示验证码 -->
-											<img id="randImage" name="randImage" src="image.jsp" onclick="javascript:loadImage();"
-												width="116" height="43" class="img_checkcode"/>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 control-label">
+									<label for="password" class="required">密码 ：</label>
 								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-4 col-sm-8">
-										<button type="submit" class="btn btn-primary login">登录</button>
-									</div>
+								<div class="col-sm-8">
+									<!-- 密码文本框 -->
+									<input type="password" name="password" id="password" size=35 maxlength=20
+										class="validate-password required" required aria-required="true">
 								</div>
-								<div class="form-group"
-									style="border-top: 1px solid #D9D9D9; margin: 20px;">
-									<label
-										style="float: right; color: #858585; margin-right: 40px; margin-top: 10px; font-size: 14px;">没有账户？
-										<a href="front/register.jsp">立即注册</a></label>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 control-label">
+									<label for="password" class="required">验证码 ：</label>
 								</div>
-							</fieldset>
+								<div class="col-sm-8" style="clear: none;">
+									<!-- 验证码文本框 -->
+									<input type="text" name="captcha" id="captcha"
+										class="validate-password required" style="float: left;"
+										size=18 maxlength=4 required aria-required="true"> 
+										<!-- 显示验证码 -->
+										<img id="randImage" name="randImage" src="image.jsp" onclick="javascript:loadImage();"
+											width=116 height=43 class="img_checkcode"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-4 col-sm-8">
+									<button id="login_btn" type="submit" class="btn btn-primary login">登录</button>
+								</div>
+							</div>
+							<div class="form-group" style="border-top: 1px solid #D9D9D9; margin: 20px;">
+								<label style="float: right; color: #858585; margin-right: 40px; margin-top: 10px; font-size: 14px;">没有账户？
+									<a href="front/register.jsp">立即注册</a></label>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -89,10 +83,9 @@
 $(function () {
     var $error_msg = $("#error_msg");
     var show_error = function (error_msg) {
-        $error_msg.text(error_msg).removeClass("invisible");
+        /* $error_msg.text(error_msg).addClass(); */
     };
     $("#login_form").submit(function () {
-        $error_msg.addClass("invisible")
         var userName = $.trim($("#userName").val());
         var password = $.trim($("#password").val());
         var captcha = $.trim($("#captcha").val());
@@ -114,23 +107,19 @@ $(function () {
             show_error("请输入正确格式的验证码");
             return false;
         }
-        /*var shaObj = new jsSHA("SHA-1", "TEXT");
-        shaObj.update(password);
-        var hash_password = shaObj.getHash("HEX", {
-            "outputUpper": false
-        });*/
+    	alert(1);
         var login_btn = $("#login_btn");
         $.ajax({
-            url: "admin/login",
+            url: "user/login",
             type: "POST",
             data: {
                 userName: userName,
                 password: password,
-                captcha: captcha,
-                checkbox:$("#checkbox").prop("checked")
+                captcha: captcha
             },
             dataType: "json",
             beforeSend: function () {
+            	alert(1);
                 login_btn.button("loading");
             },
             complete: function () {
@@ -140,10 +129,10 @@ $(function () {
                 $("#randImage").trigger("click");
             },
             success: function (data) {
-            	if(data.result==""){
-            		window.location.href ="admin/index";
+            	if(data.result){
+            		window.location.href = "product";
             	}else{
-                    show_error(data.result);
+                    show_error(data.msg);
             	}
             },
             error: function (XMLHttpRequest, textStatus) {

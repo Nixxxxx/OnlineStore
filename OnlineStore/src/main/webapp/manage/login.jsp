@@ -15,7 +15,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="./static/images/51logo.png">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="./static/css/login.css">
-
 <style>
 body {
 	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial,
@@ -76,8 +75,8 @@ body {
 	</div>
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
 $(function () {
@@ -115,13 +114,12 @@ $(function () {
         });*/
         var login_btn = $("#login_btn");
         $.ajax({
-            url: "admin/login",
+            url: "manage/admin/login",
             type: "POST",
             data: {
                 userName: userName,
                 password: password,
-                captcha: captcha,
-                checkbox:$("#checkbox").prop("checked")
+                captcha: captcha
             },
             dataType: "json",
             beforeSend: function () {
@@ -134,10 +132,10 @@ $(function () {
                 $("#randImage").trigger("click");
             },
             success: function (data) {
-            	if(data.result==""){
-            		window.location.href ="admin/index";
+            	if(data.result){
+            		window.location.href ="manage/admin/index";
             	}else{
-                    show_error(data.result);
+                    show_error(data.msg);
             	}
             },
             error: function (XMLHttpRequest, textStatus) {

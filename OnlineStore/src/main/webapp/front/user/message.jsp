@@ -45,13 +45,15 @@
 		          </table>
 				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 				  <tr>
-				    <td height="30" align="right">当前页数：[/]&nbsp;
-					  <c:if test="">
-					  <a href="index.jsp?Page=1">第一页</a>　<a href="">上一页</a>
+				    <td height="30" align="right">当前页数：[ ${page } / ${total } ]&nbsp;
+				      <a href="user/message?page=1">首页</a>
+					  <c:if test="${page > 1 }">
+					  <a href="user/message?page=${page-1 }">上一页</a>
 					  </c:if>
-					  <c:if test="${message != null }">
-					  <a href="">下一页</a><a href="">最后一页&nbsp;</a>
+					  <c:if test="${page < total }">
+					  <a href="user/message?page=${page+1 }">下一页</a>
 					  </c:if>
+					  <a href="user/message?page=${total }">尾页</a>
 					</td>
 				  </tr>
 				</table>

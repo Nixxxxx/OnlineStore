@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.jiang.dao.UserDao;
 import com.jiang.entity.User;
 import com.jiang.service.UserService;
-import com.jiang.util.CryptographyUtil;
+import com.jiang.util.MD5Util;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
 	public User login(User user) {
 		List<User> users = userDao.findAll();
 		for(User u:users){
-			if(u.getUserName().equals(user.getUserName()) && CryptographyUtil.md5(user.getPassword(), "jiang").equals(u.getPassword())){
+			if(u.getUserName().equals(user.getUserName()) && MD5Util.getMD5Code(user.getPassword()).equals(u.getPassword())){
 				return user;
 			}
 		}

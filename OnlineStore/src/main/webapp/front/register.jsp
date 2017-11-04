@@ -85,28 +85,6 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="password-lbl" for="password" class="required">
-											联系电话 ：</label>
-									</div>
-									<div class="col-sm-8" style="clear: none;">
-										<!-- 输入联系电话的文本框 -->
-										<input type="text" name="tel" class="validate-email " id="tel"
-											value="" size="38" aria-required="true">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="password-lbl" for="password" class="required">
-											邮箱 ：</label>
-									</div>
-									<div class="col-sm-8" style="clear: none;">
-										<!-- 输入邮箱的文本框 -->
-										<input type="email" name="email" class="validate-email"
-											id="jform_email2" value="" size="38" aria-required="true">
-									</div>
-								</div>
-								<div class="form-group">
 									<div style="float: right; padding-right: 216px;">
 										51商城<a href="" style="color: #0885B1;">《使用条款》</a>
 									</div>
@@ -130,29 +108,5 @@
 	</div>
 	<!-- //主体内容 -->
 </body>
-<!-- 验证输入的注册信息是否合法 -->
-<script src="js/jquery.1.3.2.js" type="text/javascript"></script>
-<script>
-	function regis() {
-		/* ----------- 验证输入的账户是否合法 ------------------------- */
-		if (/^[\u4e00-\u9fa5]+$/.test($('#username').val())) {
-			alert("账户不能输入汉字！");
-			return false;
-		}
-		/* ----------- 验证输入的联系电话是否合法 --------------------- */
-		if (isNaN($('#tel').val())) {
-			alert("联系电话请输入数字");
-			return false;
-		}
-		/* ----------- 验证两次输入的密码是否一致 --------------------- */
-		var pwd = document.getElementById("pwd").value;
-		var pwd2 = document.getElementById("pwd2").value;
-		if (pwd !== pwd2) {
-			alert('密码前后不一致！');
-			return false;
-		}
-		return true;
-	}
-</script>
-<!-- //验证输入的信息是否合法 -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </html>

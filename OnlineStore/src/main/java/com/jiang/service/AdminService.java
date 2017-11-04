@@ -44,4 +44,6 @@ public interface AdminService {
 	public List<Admin> findAll();
 
 	public List<Admin> findByPage(Map<String, Object> map);
+
+	public Admin login(Admin admin);
 }

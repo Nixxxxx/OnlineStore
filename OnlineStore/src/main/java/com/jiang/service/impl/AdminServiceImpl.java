@@ -9,12 +9,23 @@ import org.springframework.stereotype.Service;
 import com.jiang.dao.AdminDao;
 import com.jiang.entity.Admin;
 import com.jiang.service.AdminService;
+import com.jiang.util.MD5Util;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
 
 	@Autowired
 	private AdminDao adminDao;
+	
+	public Admin login(Admin admin) {
+		List<Admin> admins = adminDao.findAll();
+		for(Admin a:admins){
+			if(a.getUserName().equals(admin.getUserName()) && MD5Util.getMD5Code(admin.getPassword()).equals(a.getPassword())){
+				return admin;
+			}
+		}
+		return null;
+	}
 	
 	public boolean checkUserName(String userName, Integer id) {
 		List<Admin> admins = adminDao.findAll();

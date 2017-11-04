@@ -41,11 +41,11 @@
 	              </tr>
 	              </c:forEach>
 		          </table>
-				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
-				    <td height="30" align="right">当前页数：[/]&nbsp;
+				    <td height="30" align="right">当前页数：[ ${page } / ${total } ]&nbsp;
 					  <c:if test="">
-					  <a href="index.jsp?Page=1">第一页</a>　<a href="">上一页</a>
+					  <a href="express?page=1">第一页</a>　<a href="">上一页</a>
 					  </c:if>
 					  <c:if test="${express != null }">
 					  <a href="">下一页</a><a href="">最后一页&nbsp;</a>

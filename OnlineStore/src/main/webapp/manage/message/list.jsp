@@ -40,7 +40,7 @@
 						              <input class="user_verify" type="hidden" value="${message.user.verify }">
 						              <a class="user" href="javascript:void(0)" data-toggle="modal" data-remote="false" data-target="#user_modal" data-backdrop="static">
 						                  ${message.user.userName }</a></td>
-									<td><a href="front/product/${product.id }" target="_blank">${message.product.name }</a></td>
+									<td><a href="product/${message.product.id }" target="_blank">${message.product.name }</a></td>
 									<td>${message.message }</td>
 									<td>
 										<a data-id="${message.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i> 删除</a>

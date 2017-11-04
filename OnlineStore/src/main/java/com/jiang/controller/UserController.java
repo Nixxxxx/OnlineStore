@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +22,8 @@ import com.jiang.entity.User;
 import com.jiang.service.ExpressService;
 import com.jiang.service.MessageService;
 import com.jiang.service.UserService;
-import com.jiang.util.CryptographyUtil;
+import com.jiang.util.MD5Util;
+import com.jiang.util.ResponseUtil;
 import com.jiang.util.StringUtil;
 
 @Controller
@@ -37,45 +37,41 @@ public class UserController {
 	@Autowired
 	private ExpressService expressService;
 
-	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public JSONObject login(User user, HttpServletRequest request, HttpServletResponse response){
-		String msg = "";
+	public void login(User user, String captcha, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println(1111);
+		String sRand = (String) request.getSession().getAttribute("sRand"); //获取图片验证码实际值
 		boolean result = false;
-		JSONObject resultJson=new JSONObject();
-		user = userService.login(user);
-		if(user == null) {
-			msg = "";
-		}else {
-			result = true;
-			msg = "";
+		String msg = "验证码错误";
+		if (captcha.equalsIgnoreCase(sRand)) {
+			msg = "用户名或密码错误";
+			user = userService.login(user);
+			if(user != null) {
+				result = true;
+				request.getSession().setAttribute("user", user);
+			}
 		}
-		resultJson.put("result", result);
-		resultJson.put("msg", msg);
-		return resultJson;
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public JSONObject register(User user, @RequestParam String captcha,@SessionAttribute String sRand,
-			HttpServletRequest request, HttpServletResponse response) {
+	public void register(User user, @RequestParam String captcha,@SessionAttribute String sRand,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String msg = "";
 		boolean result = false;
-		JSONObject resultJson=new JSONObject();
 		if(captcha.equalsIgnoreCase(sRand)){
 			if(!userService.checkUserName(user.getUserName(), 0)){
 				msg = "该用户名已存在";
 			}else {
-				user.setPassword(CryptographyUtil.md5(request.getParameter("password"), "jiang"));
+				user.setPassword(MD5Util.getMD5Code(request.getParameter("password")));
 				if(userService.add(user)){
 					result = true;
 					msg = "注册成功";
 				}else msg = "注册失败";
 			}
 		}else msg = "验证码错误";
-		resultJson.put("result", result);
-		resultJson.put("msg", msg);
-		return resultJson;
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
 
@@ -86,7 +82,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public JSONObject update(User user, HttpServletRequest request, HttpServletResponse response){
+	public void update(User user, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String msg = "";
 		boolean result = false;
 		if (!userService.checkEmail(user.getEmail(), user.getId())) {
@@ -100,17 +96,12 @@ public class UserController {
 				request.getSession().setAttribute("user", userService.findById(user.getId()));
 			}else msg = "更新失败";
 		}
-		JSONObject resultJson=new JSONObject();
-		resultJson.put("result", result);
-		resultJson.put("msg", msg);
-		return resultJson;
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
 	@RequestMapping(value = "/express", method = RequestMethod.GET)
 	public ModelAndView express(String page, HttpServletRequest request) {
 		User user = (User) request.getSession().getAttribute("user");
-		if(user == null)
-			return new ModelAndView("front/login");
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
@@ -120,9 +111,10 @@ public class UserController {
 		map.put("userId", user.getId());
 		List<Express> expressList = expressService.findByUserId(map);
 		ModelAndView mav = new ModelAndView("front/user/index");
-		mav.addObject("page", "front/user/express");
+		mav.addObject("pagePath", "front/user/express");
 		if(!expressList.isEmpty())
 			mav.addObject("expressList", expressList);
+		mav.addObject("page", Integer.parseInt(page));
 		return mav;
 	}
 	
@@ -140,7 +132,7 @@ public class UserController {
 		map.put("userId", user.getId());
 		List<Message> messageList = messageService.findByUserId(map);
 		ModelAndView mav = new ModelAndView("front/user/index");
-		mav.addObject("page", "front/user/message");
+		mav.addObject("pagePath", "front/user/message");
 		if(!messageList.isEmpty())
 			mav.addObject("messageList", messageList);
 		return mav;
@@ -149,7 +141,7 @@ public class UserController {
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public ModelAndView info() {
 		ModelAndView mav = new ModelAndView("front/user/index");
-		mav.addObject("page", "front/user/info");
+		mav.addObject("pagePath", "front/user/info");
 		return mav;
 	}
 }

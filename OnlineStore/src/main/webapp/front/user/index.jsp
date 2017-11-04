@@ -22,7 +22,7 @@
 </table>
 <table width="1280" height="288" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr>
-  	<jsp:include page="${page }"></jsp:include>
+  	<jsp:include page="${pagePath }"></jsp:include>
 	<td width="182" valign="top">
 	  <table width="100%" height="431"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
