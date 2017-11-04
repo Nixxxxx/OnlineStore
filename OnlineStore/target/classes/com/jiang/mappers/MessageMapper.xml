@@ -58,4 +58,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{quantity}
 		</if>
 	</select>
+	
+	<select id="findByUserId" parameterType="Map" resultMap="MessageResult">
+		select * from t_message
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+		where userId=#{userId}
+	</select>
 </mapper> 

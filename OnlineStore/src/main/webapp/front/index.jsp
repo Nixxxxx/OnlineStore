@@ -23,52 +23,7 @@
 	<!-- 网站头部 -->
     <jsp:include page="/front/common/header.jsp"></jsp:include>
 	<!-- //网站头部 -->
-	<!-- 轮播广告及热门商品 -->
-	<div class="container mr-sl mr-sl-1">
-		<div class="mr-spotlight mr-spotlight-1 row">
-			<!-- 显示轮播广告 -->
-			<div
-				class="col-lg-9 col-md-12 col-sm-3 hidden-sm col-xs-6 hidden-xs">
-				<div class="mr-module module " id="Mod159">
-					<div class="module-inner">
-						<div class="module-ct">
-							<div class="mijoshop">
-								<div class="container_oc">
-									<div class="slideshow">
-										<div id="slidershow" class="nivoSlider">
-											<a href="#" class="nivo-imageLink" style="display: block;"><img
-												src="images/img1.png" class="img-responsive"
-												style="display: none;"> </a> <a href="#"
-												class="nivo-imageLink" style="display: none;"> <img
-												src="images/img2.png" class="img-responsive"
-												style="display: none;">
-											</a> <a href="#" class="nivo-imageLink" style="display: none;">
-												<img src="images/img3.png" class="img-responsive"
-												style="display: none;">
-											</a> <a href="#" class="nivo-imageLink" style="display: none;">
-												<img src="images/img4.png" class="img-responsive"
-												style="display: none;">
-											</a>
-										</div>
-									</div>
-									<script type="text/javascript">
-										//实现调用幻灯片插件轮播广告
-										<!--
-										jQuery(document).ready(function() {
-											jQuery('#slidershow').nivoSlider();
-										});
-									//-->
-									</script>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //轮播广告及热门商品  -->
-	<!-- 最新上架商品展示 -->
+	<!-- 所有商品展示 -->
 	<nav class="container mr-masstop hidden-sm hidden-xs">
 	<div class="custom">
 		<div>

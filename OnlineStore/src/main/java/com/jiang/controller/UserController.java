@@ -1,5 +1,9 @@
 package com.jiang.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,9 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jiang.entity.Express;
+import com.jiang.entity.Message;
 import com.jiang.entity.User;
+import com.jiang.service.ExpressService;
+import com.jiang.service.MessageService;
 import com.jiang.service.UserService;
 import com.jiang.util.CryptographyUtil;
+import com.jiang.util.StringUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +32,10 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MessageService messageService;
+	@Autowired
+	private ExpressService expressService;
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -43,7 +56,6 @@ public class UserController {
 	}
 	
 
-	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public JSONObject register(User user, @RequestParam String captcha,@SessionAttribute String sRand,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -57,7 +69,7 @@ public class UserController {
 				user.setPassword(CryptographyUtil.md5(request.getParameter("password"), "jiang"));
 				if(userService.add(user)){
 					result = true;
-					msg = "注册成功，去邮箱激活";
+					msg = "注册成功";
 				}else msg = "注册失败";
 			}
 		}else msg = "验证码错误";
@@ -73,7 +85,6 @@ public class UserController {
 		return null;
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public JSONObject update(User user, HttpServletRequest request, HttpServletResponse response){
 		String msg = "";
@@ -94,11 +105,51 @@ public class UserController {
 		resultJson.put("msg", msg);
 		return resultJson;
 	}
+	
+	@RequestMapping(value = "/express", method = RequestMethod.GET)
+	public ModelAndView express(String page, HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("user");
+		if(user == null)
+			return new ModelAndView("front/login");
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start", (Integer.parseInt(page)-1)*10);
+		map.put("quantity", 10);
+		map.put("userId", user.getId());
+		List<Express> expressList = expressService.findByUserId(map);
+		ModelAndView mav = new ModelAndView("front/user/index");
+		mav.addObject("page", "front/user/express");
+		if(!expressList.isEmpty())
+			mav.addObject("expressList", expressList);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/message", method = RequestMethod.GET)
+	public ModelAndView message(String page, HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("user");
+		if(user == null)
+			return new ModelAndView("front/login");
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start", (Integer.parseInt(page)-1)*10);
+		map.put("quantity", 10);
+		map.put("userId", user.getId());
+		List<Message> messageList = messageService.findByUserId(map);
+		ModelAndView mav = new ModelAndView("front/user/index");
+		mav.addObject("page", "front/user/message");
+		if(!messageList.isEmpty())
+			mav.addObject("messageList", messageList);
+		return mav;
+	}
 
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public ModelAndView info() {
-		ModelAndView mav = new ModelAndView("index");
-		mav.addObject("pagePath", "./front/user/info.jsp");
+		ModelAndView mav = new ModelAndView("front/user/index");
+		mav.addObject("page", "front/user/info");
 		return mav;
 	}
 }

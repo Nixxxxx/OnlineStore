@@ -10,7 +10,7 @@
 <div class="sidebar-content">
 	<div class="row">
 		<div class="col-sm-3 thumbnail">
-			<%-- <img src="${product.imagePath }">  --%>
+			<img src="${product.avater }">
 			<div class="text-danger wrapper-xs text-center invisible" id="error_msg">错误信息</div>
 		</div>
 		<div class="col-sm-7 col-sm-offset-1">
@@ -48,6 +48,5 @@ $(function() {
 		height: 300,
 		width: 700,
 	} );
-	
 })
 </script>

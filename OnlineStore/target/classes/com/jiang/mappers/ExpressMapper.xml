@@ -67,4 +67,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{quantity}
 		</if>
 	</select>
+	
+	<select id="findByUserId" parameterType="Map" resultMap="ExpressResult">
+		select * from t_express
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+		where userId=#{userId}
+	</select>
 </mapper> 

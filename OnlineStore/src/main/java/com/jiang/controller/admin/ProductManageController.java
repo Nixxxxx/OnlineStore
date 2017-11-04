@@ -1,10 +1,13 @@
 package com.jiang.controller.admin;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
@@ -66,14 +69,21 @@ public class ProductManageController {
 		boolean result = false;
 		String msg;
 		if(!image.isEmpty()){
-			String fileName = System.currentTimeMillis() + "." + image.getOriginalFilename().split("\\.")[1];
+			String fileName = System.currentTimeMillis() + ".JPEG";
 			product.setAvater("/OnlineStore/image/avater/"+fileName);
 			try {
 				File file = new File("C:/image/avater/" + fileName);
-				if (!file.exists()) { // 如果路径不存在，创建 
+				if (!file.exists()) { //如果路径不存在，创建 
 					file.mkdirs();  
-				} 
-			image.transferTo(file);
+				}
+				
+				Image srcImg = ImageIO.read((File) image);  
+		        BufferedImage buffImg = null;  
+		        buffImg = new BufferedImage(350, 350, BufferedImage.TYPE_INT_RGB);  
+		        buffImg.getGraphics().drawImage(  
+		                srcImg.getScaledInstance(350, 350, Image.SCALE_SMOOTH), 0,  
+		                0, null);  
+		        ImageIO.write(buffImg, "JPEG", file);  
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = "更新异常";

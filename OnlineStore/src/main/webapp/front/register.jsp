@@ -119,7 +119,7 @@
 								<div class="form-group" style="margin: 20px;">
 									<label
 										style="float: right; color: #858585; margin-right: 80px; margin-top: 10px; font-size: 14px;">已有账号！<a
-										href="login.jsp">去登录</a></label>
+										href="front/login.jsp">去登录</a></label>
 								</div>
 							</fieldset>
 						</form>

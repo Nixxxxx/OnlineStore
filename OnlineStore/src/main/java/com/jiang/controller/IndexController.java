@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jiang.entity.Express;
 import com.jiang.entity.Product;
+import com.jiang.service.ExpressService;
 import com.jiang.service.ProductService;
 import com.jiang.util.PageUtil;
 
@@ -29,22 +31,43 @@ public class IndexController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ExpressService expressService;
 
-	@RequestMapping("/index/{page}")
-	public ModelAndView index(@PathVariable(required = false) Integer page) {
-		if (page != null) {
-			page = 1;
+	@RequestMapping("/product")
+	public ModelAndView product(String page) {
+		if (page == null) {
+			page = "1";
 		}
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start", (page-1)*12);
-		map.put("quantity", 12);
+		map.put("start", (Integer.parseInt(page)-1)*18);
+		map.put("quantity", 18);
 		List<Product> productList = productService.findByPage(map);
 		int total = productService.findAll().size();
-		String pageCode = PageUtil.genPagination("/index", total, page, 12, null);
+		String pageCode = PageUtil.genPagination("product", total, Integer.parseInt(page), 18, null);
 		ModelAndView mav = new ModelAndView("front/index");
 		if(!productList.isEmpty()){
 			mav.addObject("pageCode", pageCode);
 			mav.addObject("productList", productList);
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/express")
+	public ModelAndView express(String page) {
+		if (page == null) {
+			page = "1";
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start", (Integer.parseInt(page)-1)*10);
+		map.put("quantity", 10);
+		List<Express> expressList = expressService.findByPage(map);
+		int total = productService.findAll().size();
+		String pageCode = PageUtil.genPagination("express", total, Integer.parseInt(page), 10, null);
+		ModelAndView mav = new ModelAndView("front/express");
+		if(!expressList.isEmpty()){
+			mav.addObject("pageCode", pageCode);
+			mav.addObject("expressList", expressList);
 		}
 		return mav;
 	}

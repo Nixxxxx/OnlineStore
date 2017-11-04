@@ -39,4 +39,8 @@ public class MessageServiceImpl implements MessageService{
 	public List<Message> findByPage(Map<String, Object> map) {
 		return messageDao.findByPage(map);
 	}
+
+	public List<Message> findByUserId(Map<String, Object> map) {
+		return messageDao.findByUserId(map);
+	}
 }

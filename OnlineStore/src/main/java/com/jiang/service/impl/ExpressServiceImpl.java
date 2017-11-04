@@ -39,4 +39,8 @@ public class ExpressServiceImpl implements ExpressService{
 	public List<Express> findByPage(Map<String, Object> map) {
 		return expressDao.findByPage(map);
 	}
+
+	public List<Express> findByUserId(Map<String, Object> map) {
+		return expressDao.findByUserId(map);
+	}
 }
