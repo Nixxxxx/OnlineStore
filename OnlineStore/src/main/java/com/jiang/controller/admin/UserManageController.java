@@ -33,7 +33,7 @@ public class UserManageController {
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		List<User> userList = userService.findByPage(map);

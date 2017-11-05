@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public boolean add(User user) {
-		System.out.println(user.getVerify());
 		return userDao.add(user) == 1? true : false;
 	}
 	

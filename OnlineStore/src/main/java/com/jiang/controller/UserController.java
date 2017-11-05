@@ -120,6 +120,28 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/order", method = RequestMethod.POST)
+	public void order(@RequestParam(required = true) Integer id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		User user = (User) request.getSession().getAttribute("user");
+		String msg = "";
+		boolean result = false;
+		if(user == null) {
+			msg = "请先登陆";
+		}else {
+			Express express = expressService.findById(id);
+			if(express.getSender() != null) {
+				msg = "此单已被接单";
+			}else {
+				express.setSender(userService.findById(user.getId()));
+				if(expressService.update(express)) {
+					result = true;
+					msg = "接单成功";
+				}else msg = "异常";
+			}
+		}
+		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
+	}
+	
 	@RequestMapping(value = "/message")
 	public ModelAndView message(String page, HttpServletRequest request) {
 		User user = (User) request.getSession().getAttribute("user");
