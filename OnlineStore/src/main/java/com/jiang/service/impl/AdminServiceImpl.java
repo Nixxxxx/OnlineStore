@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService{
 		List<Admin> admins = adminDao.findAll();
 		for(Admin a:admins){
 			if(a.getUserName().equals(admin.getUserName()) && MD5Util.getMD5Code(admin.getPassword()).equals(a.getPassword())){
-				return admin;
+				return a;
 			}
 		}
 		return null;

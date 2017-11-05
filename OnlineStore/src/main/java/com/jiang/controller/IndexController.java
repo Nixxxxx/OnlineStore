@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,8 +34,18 @@ public class IndexController {
 	private ProductService productService;
 	@Autowired
 	private ExpressService expressService;
+	
+	@RequestMapping(value = "/login")
+	public ModelAndView login() {
+		return new ModelAndView("front/login");
+	}
+	
+	@RequestMapping(value = "/register")
+	public ModelAndView register() {
+		return new ModelAndView("front/register");
+	}
 
-	@RequestMapping("/product")
+	@RequestMapping(value = "/product")
 	public ModelAndView product(String page) {
 		if (page == null) {
 			page = "1";
@@ -53,7 +64,7 @@ public class IndexController {
 		return mav;
 	}
 	
-	@RequestMapping("/express")
+	@RequestMapping(value = "/express")
 	public ModelAndView express(String page) {
 		if (page == null) {
 			page = "1";
@@ -80,7 +91,7 @@ public class IndexController {
 	}
 	
 	
-	@RequestMapping("/upload")
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String imgUpload(@RequestParam("upload") MultipartFile upload,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {  
         response.setCharacterEncoding("utf-8");  

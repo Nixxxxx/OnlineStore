@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="Message" id="MessageResult">
 		<result property="id" column="id"/>
 		<result property="message" column="message"/>
+		<result property="verify" column="verify"/>
 		<association property="user" column="userId" select="com.jiang.dao.UserDao.findById"></association>
 		<association property="product" column="productId" select="com.jiang.dao.ProductDao.findById"></association>
 	</resultMap>
@@ -24,17 +25,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    <if test="message!=null and message!='' ">
 				message=#{message},
 			</if>
+			verify=0
 		</set>
 	</insert>
 
 	<update id="update" parameterType="Message">
 		update t_message
 		<set>
-		    <if test="userName!=null and userName!='' ">
-				name=#{userName},
+		    <if test="userId!=null and userId!='' ">
+				userId=#{userId},
 			</if>
-		    <if test="password!=null and password!='' ">
-				password=#{password},
+		    <if test="productId!=null and productId!='' ">
+				productId=#{productId},
+			</if>
+		    <if test="message!=null and message!='' ">
+				message=#{message},
+			</if>
+		    <if test="verify!=null and verify!='' ">
+				verify=#{verify},
 			</if>
 		</set>
 		where id=#{id}
@@ -54,16 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="findByPage" parameterType="Map" resultMap="MessageResult">
 		select * from t_message
+		<if test="userId!=null and userId!=''">
+			where userId=#{userId}
+		</if>
 		<if test="start!=null and quantity!=null">
 			limit #{start},#{quantity}
 		</if>
 	</select>
 	
-	<select id="findByUserId" parameterType="Map" resultMap="MessageResult">
-		select * from t_message
-		<if test="start!=null and quantity!=null">
-			limit #{start},#{quantity}
-		</if>
-		where userId=#{userId}
-	</select>
 </mapper> 

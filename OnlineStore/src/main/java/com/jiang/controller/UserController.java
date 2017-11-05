@@ -39,7 +39,6 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(User user, String captcha, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		System.out.println(1111);
 		String sRand = (String) request.getSession().getAttribute("sRand"); //获取图片验证码实际值
 		boolean result = false;
 		String msg = "验证码错误";
@@ -65,6 +64,7 @@ public class UserController {
 				msg = "该用户名已存在";
 			}else {
 				user.setPassword(MD5Util.getMD5Code(request.getParameter("password")));
+				user.setVerify(0);
 				if(userService.add(user)){
 					result = true;
 					msg = "注册成功";
@@ -75,7 +75,7 @@ public class UserController {
 	}
 	
 
-	@RequestMapping(value = "/logout",method = RequestMethod.GET)
+	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().removeAttribute("user");
 		return null;
@@ -99,9 +99,11 @@ public class UserController {
 		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
-	@RequestMapping(value = "/express", method = RequestMethod.GET)
+	@RequestMapping(value = "/express")
 	public ModelAndView express(String page, HttpServletRequest request) {
 		User user = (User) request.getSession().getAttribute("user");
+		if(user == null)
+			return new ModelAndView("front/login");
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
@@ -109,16 +111,16 @@ public class UserController {
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		map.put("userId", user.getId());
-		List<Express> expressList = expressService.findByUserId(map);
+		List<Express> expressList = expressService.findByPage(map);
 		ModelAndView mav = new ModelAndView("front/user/index");
-		mav.addObject("pagePath", "front/user/express");
+		mav.addObject("pagePath", "/front/user/express.jsp");
 		if(!expressList.isEmpty())
 			mav.addObject("expressList", expressList);
 		mav.addObject("page", Integer.parseInt(page));
 		return mav;
 	}
 	
-	@RequestMapping(value = "/message", method = RequestMethod.GET)
+	@RequestMapping(value = "/message")
 	public ModelAndView message(String page, HttpServletRequest request) {
 		User user = (User) request.getSession().getAttribute("user");
 		if(user == null)
@@ -130,18 +132,21 @@ public class UserController {
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		map.put("userId", user.getId());
-		List<Message> messageList = messageService.findByUserId(map);
+		List<Message> messageList = messageService.findByPage(map);
 		ModelAndView mav = new ModelAndView("front/user/index");
-		mav.addObject("pagePath", "front/user/message");
+		mav.addObject("pagePath", "/front/user/message.jsp");
 		if(!messageList.isEmpty())
 			mav.addObject("messageList", messageList);
 		return mav;
 	}
 
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public ModelAndView info() {
+	@RequestMapping(value = "/info")
+	public ModelAndView info(HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("user");
+		if(user == null)
+			return new ModelAndView("front/login");
 		ModelAndView mav = new ModelAndView("front/user/index");
-		mav.addObject("pagePath", "front/user/info");
+		mav.addObject("pagePath", "/front/user/info.jsp");
 		return mav;
 	}
 }

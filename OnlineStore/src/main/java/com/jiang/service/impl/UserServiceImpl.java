@@ -40,13 +40,14 @@ public class UserServiceImpl implements UserService{
 		List<User> users = userDao.findAll();
 		for(User u:users){
 			if(u.getUserName().equals(user.getUserName()) && MD5Util.getMD5Code(user.getPassword()).equals(u.getPassword())){
-				return user;
+				return u;
 			}
 		}
 		return null;
 	}
 	
 	public boolean add(User user) {
+		System.out.println(user.getVerify());
 		return userDao.add(user) == 1? true : false;
 	}
 	

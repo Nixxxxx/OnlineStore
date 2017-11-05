@@ -43,5 +43,4 @@ public interface MessageService {
 
 	public List<Message> findByPage(Map<String, Object> map);
 
-	public List<Message> findByUserId(Map<String, Object> map);
 }

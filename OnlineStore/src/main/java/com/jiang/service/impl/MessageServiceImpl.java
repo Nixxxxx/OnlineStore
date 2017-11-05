@@ -40,7 +40,4 @@ public class MessageServiceImpl implements MessageService{
 		return messageDao.findByPage(map);
 	}
 
-	public List<Message> findByUserId(Map<String, Object> map) {
-		return messageDao.findByUserId(map);
-	}
 }

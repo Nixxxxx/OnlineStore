@@ -19,5 +19,4 @@ public interface ExpressDao {
 
 	public List<Express> findByPage(Map<String, Object> map);
 
-	public List<Express> findByUserId(Map<String, Object> map);
 }

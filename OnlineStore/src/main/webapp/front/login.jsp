@@ -26,7 +26,7 @@
 						<div class="page-header" style="pause: 0px;"><h1 class="login_h1">会员登录</h1> </div>
 						<!-- 会员登录表单 -->
 						<form id="login_form" class="form-horizontal">
-							<div align="center" id="error_msg" style="color:#ff0000" hidden>错误信息</div>
+							<div align="center" id="error_msg" style="color:#ff0000">错误信息</div>
 							<div class="form-group">
 								<div class="col-sm-4 control-label">
 									<label for="username" class="required">账户 ：</label>
@@ -68,7 +68,7 @@
 							</div>
 							<div class="form-group" style="border-top: 1px solid #D9D9D9; margin: 20px;">
 								<label style="float: right; color: #858585; margin-right: 40px; margin-top: 10px; font-size: 14px;">没有账户？
-									<a href="front/register.jsp">立即注册</a></label>
+									<a href="register">立即注册</a></label>
 							</div>
 						</form>
 					</div>
@@ -83,7 +83,7 @@
 $(function () {
     var $error_msg = $("#error_msg");
     var show_error = function (error_msg) {
-        /* $error_msg.text(error_msg).addClass(); */
+        $error_msg.text(error_msg);
     };
     $("#login_form").submit(function () {
         var userName = $.trim($("#userName").val());
@@ -95,10 +95,6 @@ $(function () {
             show_error("请输入正确格式的用户名");
             return false;
         }
-        if (password == "") {
-            show_error("请输入密码");
-            return false;
-        }
         if (!u_pattern.test(password)) {
             show_error("请输入正确格式的密码");
             return false;
@@ -107,30 +103,26 @@ $(function () {
             show_error("请输入正确格式的验证码");
             return false;
         }
-    	alert(1);
         var login_btn = $("#login_btn");
         $.ajax({
             url: "user/login",
-            type: "POST",
+            type: "post",
             data: {
                 userName: userName,
                 password: password,
                 captcha: captcha
             },
             dataType: "json",
-            beforeSend: function () {
-            	alert(1);
-                login_btn.button("loading");
-            },
             complete: function () {
-                //重置登录按钮
-                login_btn.button("reset");
                 //重置验证码
                 $("#randImage").trigger("click");
             },
             success: function (data) {
             	if(data.result){
-            		window.location.href = "product";
+            		if(window.location.href.indexOf("login")){
+            			window.location.href = "product";
+            		}else
+            			window.location.reload();
             	}else{
                     show_error(data.msg);
             	}

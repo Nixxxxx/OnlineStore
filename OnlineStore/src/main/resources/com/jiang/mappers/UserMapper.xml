@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				college=#{college},
 			</if>
 		    <if test="verify!=null and verify!='' ">
-				verify=#{verify},
+				verify=0,
 			</if>
 		</set>
 	</insert>

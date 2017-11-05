@@ -11,6 +11,7 @@ public class Message {
 	private User user;          //用户
 	private Product product;    //商品 
 	private String message;     //留言信息
+	private Integer verify;     //审核（0：待审核 1：未通过 2：已通过)
 	
 	
 	public Integer getId() {
@@ -36,5 +37,11 @@ public class Message {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public Integer getVerify() {
+		return verify;
+	}
+	public void setVerify(Integer verify) {
+		this.verify = verify;
 	}
 }

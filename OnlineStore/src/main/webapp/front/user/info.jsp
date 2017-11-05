@@ -3,7 +3,7 @@
     <td align="center" valign="top">
 	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
-	        <td width="18" height="45" align="right">&nbsp;</td>
+	        <td width="18" height="15" align="right">&nbsp;</td>
 	        <td colspan="3" class="tableBorder_B_dashed"></td>
 	        <td width="24">&nbsp;</td>
 	      </tr>
@@ -13,9 +13,9 @@
 	        <td>&nbsp;</td>
 	      </tr>
 	      <tr>
-	        <td height="29" align="right">&nbsp;</td>
+	        <td height="20" align="right">&nbsp;</td>
 	        <td width="10" background="static/images/manage_leftTitle_left.GIF">&nbsp;</td>
-	        <td width="989" align="center" background="static/images/manage_leftTitle_mid.GIF" class="word_white"><b>商品列表</b></td>
+	        <td width="989" align="center" background="static/images/manage_leftTitle_mid.GIF" class="word_white"><b>用户信息</b></td>
 	        <td width="10" background="static/images/manage_leftTitle_right.GIF">&nbsp;</td>
 	        <td>&nbsp;</td>
 	      </tr>

@@ -4,7 +4,7 @@
     <td align="center" valign="top">
 	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
-	        <td width="18" height="45" align="right">&nbsp;</td>
+	        <td width="18" height="15" align="right">&nbsp;</td>
 	        <td colspan="3" class="tableBorder_B_dashed"></td>
 	        <td width="24">&nbsp;</td>
 	      </tr>
@@ -14,9 +14,9 @@
 	        <td>&nbsp;</td>
 	      </tr>
 	      <tr>
-	        <td height="29" align="right">&nbsp;</td>
+	        <td height="20" align="right">&nbsp;</td>
 	        <td width="10" background="static/images/manage_leftTitle_left.GIF">&nbsp;</td>
-	        <td width="989" align="center" background="static/images/manage_leftTitle_mid.GIF" class="word_white"><b>留言列表</b></td>
+	        <td width="989" align="center" background="static/images/manage_leftTitle_mid.GIF" class="word_white"><b>疾蜂取件</b></td>
 	        <td width="10" background="static/images/manage_leftTitle_right.GIF">&nbsp;</td>
 	        <td>&nbsp;</td>
 	      </tr>
@@ -31,16 +31,28 @@
 			    </table>
 		        <table width="100%" height="60"  border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#FFFFFF" bordercolorlight="#E6E6E6">
 	              <tr bgcolor="#eeeeee">
-	                <td width="75%" height="24" align="center">信息</td>
-	                <td width="25%" align="center">审核</td>
+	              	<td width="5%" height="24" align="center">序号</td>
+	                <td width="80%" align="center">信息</td>
+	                <td width="15%" align="center">审核</td>
 	              </tr>
-	              <c:forEach var="express" items="${expressList }">
+	              <c:forEach var="express" items="${expressList }" varStatus="status">
 	              <tr style="padding:5px;">
-	                <td height="20" align="center">${express.message }</td>
-	                <td align="center">${express.verify }</td>
+	              	<td height="20" align="center">${status.index+1 }</td>
+	                <td align="left">${express.message }</td>
+	                <td align="center">
+	                	<c:if test="${express.verify == 0}">待审核</c:if>
+	                	<c:if test="${express.verify == 1}">未通过</c:if>
+	                	<c:if test="${express.verify == 2}">已通过</c:if>
+	                	<c:if test="${express.verify == 3}">已被接单</c:if>
+	                </td>
 	              </tr>
 	              </c:forEach>
-		          </table>
+			      <c:if test="${expressList == null }">
+				  <tr>
+					<td colspan="4">无记录！</td>
+				  </tr>
+				  </c:if>
+		        </table>
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 				    <td height="30" align="right">当前页数：[ ${page } / ${total } ]&nbsp;

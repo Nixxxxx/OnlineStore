@@ -10,11 +10,11 @@
 			<div class="toolbar-ct-2">
 				<c:choose>
 				<c:when test="${user == null }">
-					<a href="./front/login.jsp">登录</a>&nbsp; ｜ &nbsp;<a href="./front/register.jsp">注册</a>
+					<a href="login">登录</a>&nbsp; ｜ &nbsp;<a href="register">注册</a>
 				</c:when>
 				<c:otherwise>
-					您好，${user.name }&nbsp; &nbsp;<a href="modifyMember.jsp">修改</a>&nbsp;&nbsp;
-						|&nbsp;&nbsp;<a href="logout.jsp">退出</a>
+					您好，${user.userName }&nbsp; &nbsp;<a href="user/info">用户页</a>&nbsp;&nbsp;
+						|&nbsp;&nbsp;<a href="user/logout">退出</a>
 				</c:otherwise>
 				</c:choose>
 			</div>
@@ -49,7 +49,6 @@
 <header id="mr-header" class="wrap mr-header">
 	<div class="container">
 		<div class="row">
-			<!-- //网站Logo -->
 			<!-- 主导航条 -->
 			<nav id="mr-mainnav"
 				class="col-xs-12 col-md-6 mr-mainnav navbar navbar-default">
@@ -58,18 +57,13 @@
 						data-responsive="true">
 						<ul class="nav navbar-nav level0">
 							<li itemprop="name" data-id="435" data-level="1"><a
-								id="index" itemprop="url" class="" href="index.jsp"
-								data-target="#">首页 </a></li>
+								itemprop="url" href="product">首页 </a></li>
 							<li itemprop="name" data-id="510" data-level="1"><a
-								id="jingying" itemprop="url" class=""
-								href="#" data-target="#">疾峰取件</a></li>
-
+								itemprop="url" href="express">疾峰取件</a></li>
 							<li itemprop="name" data-id="510" data-level="1"><a
-								id="wenyi" itemprop="url" class="" href="#"
-								data-target="#">关于我们</a></li>
+								 itemprop="url" href="about" >关于我们</a></li>
 						</ul>
 					</div>
-
 				</div>
 			</nav>
 			<!-- //主导航条 -->
