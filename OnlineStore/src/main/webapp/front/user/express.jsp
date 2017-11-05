@@ -4,14 +4,9 @@
     <td align="center" valign="top">
 	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
-	        <td width="18" height="15" align="right">&nbsp;</td>
-	        <td colspan="3" class="tableBorder_B_dashed"></td>
-	        <td width="24">&nbsp;</td>
-	      </tr>
-	      <tr>
-	        <td align="right">&nbsp;</td>
-	        <td height="10" colspan="3">&nbsp;</td>
-	        <td>&nbsp;</td>
+	        <td width="18" height="15"></td>
+	        <td colspan="3" align="right"><button onclick="expressAdd()">添加快件</button></td>
+	        <td width="24"></td>
 	      </tr>
 	      <tr>
 	        <td height="20" align="right">&nbsp;</td>
@@ -56,12 +51,14 @@
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 				    <td height="30" align="right">当前页数：[ ${page } / ${total } ]&nbsp;
-					  <c:if test="">
-					  <a href="express?page=1">第一页</a>　<a href="">上一页</a>
+				      <a href="user/express?page=1">首页</a>
+					  <c:if test="${page > 1 }">
+					  <a href="user/express?page=${page-1 }">上一页</a>
 					  </c:if>
-					  <c:if test="${express != null }">
-					  <a href="">下一页</a><a href="">最后一页&nbsp;</a>
+					  <c:if test="${page < total }">
+					  <a href="user/express?page=${page+1 }">下一页</a>
 					  </c:if>
+					  <a href="user/express?page=${total }">尾页</a>
 					</td>
 				  </tr>
 				</table>
@@ -69,3 +66,8 @@
 	      </tr>
 	    </table>
     </td>
+    <script>
+    	function expressAdd(){
+    		var result = window.prompt("Some Notice Information", "Some Default Value");
+    	}
+    </script>

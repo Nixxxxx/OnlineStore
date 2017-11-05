@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <td align="center" valign="top">
 	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
@@ -20,47 +21,82 @@
 	        <td>&nbsp;</td>
 	      </tr>
 	    </table>
-	    <table width="92%" height="192"  border="0" cellpadding="0" cellspacing="0">
-	      <tr>
-		    <td valign="top">
-				<table width="100%" height="14"  border="0" cellpadding="0" cellspacing="0">
-			       <tr>
-			         <td height="13" align="center">&nbsp;</td>
-			       </tr>
-			    </table>
-		        <table width="100%" height="60"  border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#FFFFFF" bordercolorlight="#E6E6E6">
-	              <tr bgcolor="#eeeeee">
-	                <td width="40%" height="24" align="center">商品名称</td>
-	                <td width="22%" align="center">价格</td>
-	                <td width="11%" align="center">是否新品</td>
-	                <td width="11%" align="center">是否特价</td>
-	                <td width="8%" align="center">修改</td>
-	                <td width="8%" align="center">删除</td>
-	              </tr>
-	              <%-- <c:forEach var="" items=""> --%>
-	              <tr style="padding:5px;">
-	                <td height="20" align="center"><a href=""></a></td>
-	                <td align="center" >元</td>
-	                <td align="center"></td>
-	                <td align="center"></td>
-	                <td align="center"><a href=""><img src="images/modify.gif" width="19" height="19"></a></td>
-	                <td align="center"><a href=""><img src="images/del.gif" width="20" height="20"></a></td>
-	              </tr>
-	              <%-- </c:forEach> --%>
-		          </table>
-				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-				  <tr>
-				    <td height="30" align="right">当前页数：[/]&nbsp;
-					  <c:if test="">
-					  <a href="index.jsp?Page=1">第一页</a>　<a href="">上一页</a>
-					  </c:if>
-					  <c:if test="${message != null }">
-					  <a href="">下一页</a><a href="">最后一页&nbsp;</a>
-					  </c:if>
-					</td>
-				  </tr>
-				</table>
-		    </td>
-	      </tr>
-	    </table>
+	    <!-- 填写物流信息 -->
+		<div class="row">
+			<div id="content_oc" class="col-sm-12">
+				<h2>小蜜蜂认证
+					<c:if test="${user.verify == 0 }">(未认证)</c:if>
+					<c:if test="${user.verify == 1 }">(待审核)</c:if>
+					<c:if test="${user.verify == 2 }">(未通过)</c:if>
+					<c:if test="${user.verify == 3 }">(已认证)</c:if>
+				</h2>
+				<form id="verify_form">
+					<div class="table-responsive cart-info">
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td class="text-right" width="20%">真实姓名：</td>
+									<td class="text-left quantity">
+										<div class="input-group btn-block" style="max-width: 400px;">
+											<input type="text" name="name" size="10" class="form-control" value="${user.name }" required>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-right">手机：</td>
+									<td class="text-left quantity">
+										<div class="input-group btn-block" style="max-width: 400px;">
+											<input type="text" name="mobile" size="10" class="form-control" value="${user.mobile }" required>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-right">邮箱：</td>
+									<td class="text-left quantity">
+										<div class="input-group btn-block" style="max-width: 400px;">
+											<input type="text" name="email" size="1" class="form-control" value="${user.email }" required>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-right">学院专业班级：</td>
+									<td class="text-left quantity">
+										<div class="input-group btn-block" style="max-width: 400px;">
+											<input type="text" name="college" size="1" class="form-control" value="${user.college }" required>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br><br><button type="submit">确认认证</button>
+					</div>
+				</form>
+			</div>
+		</div>
     </td>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script>
+    	$(function(){
+    		$("#verify_form").submit(function(){
+    			if(confirm("确定要更新认证信息？")){
+	    			$.ajax({
+	    				url: "user/verify",
+	    				type: "post",
+	    				data: $("#verify_form").serialize(),
+	    				dataType: "json",
+	    				success: function(data){
+	    					alert(data.msg);
+	    					window.location.reload();
+	    				},
+	    				error: function(XMLHttpRequest, textStatus){
+	    					if(textStatuc == "timeout"){
+	    						alert("超时");
+	    					}else{
+	    						alert("失败");
+	    					}
+	    				}
+	    			});
+    			}
+    		})
+    	})
+    </script>

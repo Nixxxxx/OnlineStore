@@ -18,7 +18,6 @@
 <script src="static/js/jsArr02.js" type="text/javascript"></script>
 <script src="static/js/tab.js" type="text/javascript"></script>
 </head>
-
 <body>
 	<!-- 网站头部 -->
 	<jsp:include page="/front/common/header.jsp" />
@@ -60,6 +59,20 @@
 											</tr>
 											</c:forEach>
 										</tbody>
+									</table>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									  <tr>
+									    <td height="30" align="right">当前页数：[ ${page } / ${total } ]&nbsp;
+									      <a href="express?page=1">首页</a>
+										  <c:if test="${page > 1 }">
+										  <a href="express?page=${page-1 }">上一页</a>
+										  </c:if>
+										  <c:if test="${page < total }">
+										  <a href="express?page=${page+1 }">下一页</a>
+										  </c:if>
+										  <a href="express?page=${total }">尾页</a>
+										</td>
+									  </tr>
 									</table>
 								</div>
 								<!-- //显示购物车中的商品 -->

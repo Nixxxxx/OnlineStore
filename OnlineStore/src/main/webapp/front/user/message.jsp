@@ -48,7 +48,7 @@
 	                </td>
 	              </tr>
 	              </c:forEach>
-		          </table>
+		        </table>
 				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 				    <td height="30" align="right">当前页数：[ ${page } / ${total } ]&nbsp;

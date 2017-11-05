@@ -80,6 +80,20 @@ public class UserController {
 		request.getSession().removeAttribute("user");
 		return null;
 	}
+	
+	@RequestMapping(value = "verify", method = RequestMethod.POST)
+	public void verify(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String msg = "";
+		if(request.getSession().getAttribute("user") != null) {
+			user.setVerify(1);
+			if(userService.update(user)) {
+				msg = "认证信息已更新，等待管理员审核";
+			}else {
+				msg = "认证信息更新失败";
+			}
+		}
+		ResponseUtil.write(response, new JSONObject().put("msg", msg));
+	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(User user, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -117,6 +131,7 @@ public class UserController {
 		if(!expressList.isEmpty())
 			mav.addObject("expressList", expressList);
 		mav.addObject("page", Integer.parseInt(page));
+		mav.addObject("total", expressService.findAll().size()/10 + 1);
 		return mav;
 	}
 	
@@ -159,6 +174,8 @@ public class UserController {
 		mav.addObject("pagePath", "/front/user/message.jsp");
 		if(!messageList.isEmpty())
 			mav.addObject("messageList", messageList);
+		mav.addObject("page", Integer.parseInt(page));
+		mav.addObject("total", messageService.findAll().size()/10 + 1);
 		return mav;
 	}
 

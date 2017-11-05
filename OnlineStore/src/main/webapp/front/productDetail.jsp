@@ -41,15 +41,13 @@
 									<div class="col-xs-12 col-md-8 col-sm-8">
 										<div style="margin-left: 30px; margin-top: 20px">
 											<h1 class="product-title">${product.name }</h1>
-											<ul class="list-unstyled price"><li><h2>${product.price }元</h2></li></ul>
-											<ul class="list-unstyled price"><li>原价: ${product.price }元</li></ul>
-											<div class="rating"><p>商城活动：全场满99包邮</p></div>
+											<ul class="list-unstyled"><li><h2>${product.price }元</h2></li></ul>
 											<div id="product"><hr>
 												<div class="form-group">
-													<label class="control-label" for="shuliang"> 数量 </label>
-													<textarea rows="5" cols="10"></textarea>
-													<input type="number" name="quantity" value="1" size="2"
-														id="shuliang" class="form-control"> <br>
+													<div class="btn-group">
+														<button type="button" onclick="addCart()" class="btn btn-primary btn-primary">
+															<i class="fa fa-shopping-cart"></i>留言订购</button>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -69,7 +67,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 			<!-- //页面主体内容 -->
@@ -79,5 +76,8 @@
 	<%@ include file="/front/common/footer.jsp"%>
 	<!-- //版权栏 -->
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	<script type="text/javascript">
+	
+	</script>
 </body>
 </html>

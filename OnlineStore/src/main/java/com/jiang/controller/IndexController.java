@@ -24,7 +24,6 @@ import com.jiang.entity.Express;
 import com.jiang.entity.Product;
 import com.jiang.service.ExpressService;
 import com.jiang.service.ProductService;
-import com.jiang.util.PageUtil;
 
 @Controller
 @RequestMapping("/")
@@ -54,13 +53,12 @@ public class IndexController {
 		map.put("start", (Integer.parseInt(page)-1)*18);
 		map.put("quantity", 18);
 		List<Product> productList = productService.findByPage(map);
-		int total = productService.findAll().size();
-		String pageCode = PageUtil.genPagination("product", total, Integer.parseInt(page), 18, null);
 		ModelAndView mav = new ModelAndView("front/index");
 		if(!productList.isEmpty()){
-			mav.addObject("pageCode", pageCode);
 			mav.addObject("productList", productList);
 		}
+		mav.addObject("page", Integer.parseInt(page));
+		mav.addObject("total", productService.findAll().size()/18 + 1);
 		return mav;
 	}
 	
@@ -73,13 +71,12 @@ public class IndexController {
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		List<Express> expressList = expressService.findByPage(map);
-		int total = productService.findAll().size();
-		String pageCode = PageUtil.genPagination("express", total, Integer.parseInt(page), 10, null);
 		ModelAndView mav = new ModelAndView("front/express");
 		if(!expressList.isEmpty()){
-			mav.addObject("pageCode", pageCode);
 			mav.addObject("expressList", expressList);
 		}
+		mav.addObject("page", Integer.parseInt(page));
+		mav.addObject("total", expressService.findAll().size()/10 + 1);
 		return mav;
 	}
 	
@@ -96,7 +93,7 @@ public class IndexController {
 			HttpServletRequest request, HttpServletResponse response) throws IOException {  
         response.setCharacterEncoding("utf-8");  
         PrintWriter out = response.getWriter();  
-        // CKEditor提交的很重要的一个参数  
+        // CKEditor提交的很重要的一个参数
         String callback = request.getParameter("CKEditorFuncNum");
 		String fileName = UUID.randomUUID().toString().replace("-", "") 
 				+ "."+upload.getOriginalFilename().split("\\.")[1];
