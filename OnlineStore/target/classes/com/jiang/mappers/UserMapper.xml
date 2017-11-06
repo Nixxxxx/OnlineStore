@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="User" id="UserResult">
 		<result property="id" column="id"/>
-		<result property="userName" column="username"/>
+		<result property="userName" column="userName"/>
 		<result property="password" column="password"/>
 		<result property="name" column="name"/>
 		<result property="mobile" column="mobile"/>
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert t_user
 		<set>
 		    <if test="userName!=null and userName!='' ">
-				username=#{userName},
+				userName=#{userName},
 			</if>
 		    <if test="password!=null and password!='' ">
 				password=#{password},
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update t_user
 		<set>
 		    <if test="userName!=null and userName!='' ">
-				username=#{userName},
+				userName=#{userName},
 			</if>
 		    <if test="password!=null and password!='' ">
 				password=#{password},
@@ -82,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_user
 	</select>
 	
-	<select id="getTotal" parameterType="Map" resultType="Long">
+	<select id="getTotal" parameterType="Map" resultType="Integer">
 		select count(*) from t_user
 	</select>
 	

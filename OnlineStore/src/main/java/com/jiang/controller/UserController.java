@@ -131,7 +131,7 @@ public class UserController {
 		if(!expressList.isEmpty())
 			mav.addObject("expressList", expressList);
 		mav.addObject("page", Integer.parseInt(page));
-		mav.addObject("total", expressService.findAll().size()/10 + 1);
+		mav.addObject("total", expressService.findAllByUser(map)/10 + 1);
 		return mav;
 	}
 	
@@ -175,7 +175,7 @@ public class UserController {
 		if(!messageList.isEmpty())
 			mav.addObject("messageList", messageList);
 		mav.addObject("page", Integer.parseInt(page));
-		mav.addObject("total", messageService.findAll().size()/10 + 1);
+		mav.addObject("total", messageService.findAllByUser(map)/10 + 1);
 		return mav;
 	}
 

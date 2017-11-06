@@ -40,7 +40,7 @@ public class UserManageController {
 		int total = userService.findAll().size();
 		String pageCode = PageUtil.genPagination("manage/user/list", total, Integer.parseInt(page),10, null);
 		ModelAndView mav = new ModelAndView("manage/index");
-		mav.addObject("pagePath", "./user/list.jsp");
+		mav.addObject("pagePath", "/manage/user/list.jsp");
 		if(!userList.isEmpty()){
 			mav.addObject("pageCode", pageCode);
 			mav.addObject("userList", userList);

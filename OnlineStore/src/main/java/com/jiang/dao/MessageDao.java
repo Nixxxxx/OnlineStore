@@ -18,4 +18,6 @@ public interface MessageDao {
 	public List<Message> findAll();
 
 	public List<Message> findByPage(Map<String, Object> map);
+
+	public Integer findAllByUser(Map<String, Object> map);
 }

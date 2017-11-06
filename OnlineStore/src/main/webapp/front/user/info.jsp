@@ -4,14 +4,9 @@
     <td align="center" valign="top">
 	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
-	        <td width="18" height="15" align="right">&nbsp;</td>
-	        <td colspan="3" class="tableBorder_B_dashed"></td>
-	        <td width="24">&nbsp;</td>
-	      </tr>
-	      <tr>
-	        <td align="right">&nbsp;</td>
-	        <td height="10" colspan="3">&nbsp;</td>
-	        <td>&nbsp;</td>
+	        <td width="18" height="15"></td>
+	        <td colspan="3" align="right"><button onclick="changePwd()">修改密码</button></td>
+	        <td width="24"></td>
 	      </tr>
 	      <tr>
 	        <td height="20" align="right">&nbsp;</td>
@@ -99,4 +94,13 @@
     			}
     		})
     	})
+    	
+    	function changePwd(){
+   			var password = $.trim(window.prompt("请输入新密码"));
+			alert(password);
+   	        var pattern = /^[a-zA-Z0-9_@]{4,20}$/;
+   	        if(!pattern.test(password)){
+   	        	alert(密码格式不正确);
+   	        }
+   		}
     </script>

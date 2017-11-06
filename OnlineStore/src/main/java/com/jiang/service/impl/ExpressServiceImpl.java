@@ -40,4 +40,8 @@ public class ExpressServiceImpl implements ExpressService{
 		return expressDao.findByPage(map);
 	}
 
+	public Integer findAllByUser(Map<String, Object> map) {
+		return expressDao.findAllByUser(map);
+	}
+
 }

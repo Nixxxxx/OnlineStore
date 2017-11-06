@@ -59,6 +59,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findAll" resultMap="MessageResult">
 		select * from t_message
 	</select>
+	
+	<select id="findAllByUser" parameterType="Map" resultType="Integer">
+		select count(*) from t_message
+		<if test="userId!=null and userId!='' ">
+			where userId=#{userId}
+		</if>
+	</select>
 
 	<select id="findByPage" parameterType="Map" resultMap="MessageResult">
 		select * from t_message

@@ -19,4 +19,6 @@ public interface ExpressDao {
 
 	public List<Express> findByPage(Map<String, Object> map);
 
+	public Integer findAllByUser(Map<String, Object> map);
+
 }
