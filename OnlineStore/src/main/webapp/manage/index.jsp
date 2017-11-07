@@ -81,7 +81,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		<section class="sidebar">
 		<ul class="sidebar-menu">
 			<li class="header">MAIN NAVIGATION</li>
-			<li><a href="#"><i class="fa fa-circle-o"></i> 通知</a></li>
+			<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 通知</a></li>
 			<li><a href="manage/admin/list"><i class="fa fa-circle-o"></i> 管理员管理 </a></li>
 			<li><a href="manage/user/list"><i class="fa fa-circle-o"></i> 用户管理 </a></li>
 			<li><a href="manage/product/list"><i class="fa fa-circle-o"></i> 商品管理 </a></li>

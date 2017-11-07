@@ -26,7 +26,7 @@
 			<div id="mr-content" class="mr-content col-xs-12">
 				<div class="login-wrap" style="margin-bottom: 60px; margin-top: 50px">
 					<div style="max-width: 540px; margin: 0 auto;">
-						<a href="product" title="点击返回首页"><img src="./static/images/51logo.png"></a>
+						<a href="product" title="点击返回首页"><img src="./static/images/logo/IMANGO.png"></a>
 					</div>
 					<div class="login">
 						<div class="page-header" style="pause: 0px;"><h1 class="login_h1">会员登录</h1> </div>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.dao.AdminDao">
+
+	<resultMap type="Admin" id="AdminResult">
+		<result property="id" column="id"/>
+		<result property="userName" column="username"/>
+		<result property="password" column="password"/>
+	</resultMap>
+	
+	<!--<select id="list" parameterType="Map" resultMap="PassengerResult">-->
+		<!--select * from t_resources-->
+		<!--<where>-->
+		    <!--<if test="name!=null and name!='' ">-->
+		    	<!--and name like #{name}-->
+		    <!--</if>-->
+			<!--<if test="userUk!=null and userUk!='' ">-->
+				<!--and userUk=#{userUk}-->
+			<!--</if>-->
+		<!--</where>-->
+		<!--order by publishDate desc-->
+		<!--<if test="start!=null and size!=null">-->
+			<!--limit #{start},#{size}-->
+		<!--</if>-->
+	<!--</select>-->
+
+	<!--<select id="getTotal" parameterType="Map" resultType="Long">-->
+		<!--select count(*) from t_resources-->
+		<!--<where>-->
+			<!--<if test="name!=null and name!='' ">-->
+		    	<!--and name like #{name}-->
+		    <!--</if>-->
+			<!--<if test="userUk!=null and userUk!='' ">-->
+				<!--and userUk=#{userUk}-->
+			<!--</if>-->
+		<!--</where>-->
+	<!--</select>-->
+	<!---->
+
+	<insert id="add" parameterType="Admin">
+		insert t_admin
+		<set>
+		    <if test="userName!=null and userName!='' ">
+				userName=#{userName},
+			</if>
+		    <if test="password!=null and password!='' ">
+				password=#{password},
+			</if>
+		</set>
+	</insert>
+
+	<update id="update" parameterType="Admin">
+		update t_admin
+		<set>
+		    <if test="userName!=null and userName!='' ">
+				name=#{userName},
+			</if>
+		    <if test="password!=null and password!='' ">
+				password=#{password},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_admin where id=#{id}
+	</delete>
+
+	<!--<select id="listNewest" parameterType="Integer" resultMap="PassengerResult">-->
+		<!--select * from t_resources-->
+		<!--order by publishDate desc-->
+		<!--limit 0,#{n}-->
+	<!--</select>-->
+	<!---->
+	<select id="findById" parameterType="Integer" resultMap="AdminResult">
+		select * from t_admin where id=#{id}
+	</select>
+	
+	<select id="findAll" resultMap="AdminResult">
+		select * from t_admin
+	</select>
+
+	<select id="findByPage" parameterType="Map" resultMap="AdminResult">
+		select * from t_admin
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+	</select>	
+</mapper> 

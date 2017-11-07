@@ -97,7 +97,7 @@ public class IndexController {
         String callback = request.getParameter("CKEditorFuncNum");
 		String fileName = UUID.randomUUID().toString().replace("-", "") 
 				+ "."+upload.getOriginalFilename().split("\\.")[1];
-		String imagePath = "C:/image/other/";
+		String imagePath = "C:/IMANGO/image/other/";
         if(!upload.isEmpty()){
 			try {
 				File file = new File(imagePath + fileName);

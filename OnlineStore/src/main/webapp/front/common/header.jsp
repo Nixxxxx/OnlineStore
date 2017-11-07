@@ -13,7 +13,7 @@
 					<a href="login">登录</a>&nbsp; ｜ &nbsp;<a href="register">注册</a>
 				</c:when>
 				<c:otherwise>
-					您好，${user.userName }&nbsp; &nbsp;<a href="user/info">用户页</a>&nbsp;&nbsp;
+					您好，${user.userName }&nbsp; &nbsp;<a href="user/info" target="_blank">用户页</a>&nbsp;&nbsp;
 						|&nbsp;&nbsp;<a href="javascript:logout()">退出</a>
 				</c:otherwise>
 				</c:choose>

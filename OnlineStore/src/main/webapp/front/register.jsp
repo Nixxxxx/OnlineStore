@@ -28,7 +28,7 @@
 					style="margin-bottom: 60px; margin-top: 50px">
 					<div style="max-width: 540px; margin: 0 auto;">
 						<a href="product" title="点击返回首页"><img
-							src="./static/images/51logo.png"></a>
+							src="./static/images/logo/IMANGO.png"></a>
 					</div>
 					<div class="login">
 						<div class="page-header" style="pause: 0px;">

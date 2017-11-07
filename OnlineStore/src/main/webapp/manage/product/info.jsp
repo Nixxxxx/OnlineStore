@@ -18,7 +18,7 @@
 				<input type="hidden" name="id" value="${product.id }"> 
 				<div class="form-group input-group">
 					<span class="input-group-addon">封&nbsp;&nbsp;&nbsp;面</span> 
-					<input type="file" id="image" name="image" accept="image">
+					<input type="file" id="file" name="file" accept="image">
 				</div>
 				<div class="form-group input-group">
 					<span class="input-group-addon">名&nbsp;&nbsp;&nbsp;称</span> 

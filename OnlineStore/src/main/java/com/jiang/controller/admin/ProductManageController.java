@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jiang.entity.Product;
@@ -64,26 +66,22 @@ public class ProductManageController {
 	
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public void update(@RequestParam(value = "image", required = false) MultipartFile image, Product product, 
+	public void update(@RequestParam(value = "file", required = false) MultipartFile file, Product product, 
 			HttpServletResponse response) throws Exception{
 		boolean result = false;
 		String msg;
-		if(!image.isEmpty()){
-			String fileName = System.currentTimeMillis() + ".JPEG";
+		if(!file.isEmpty()){
+			String fileName = System.currentTimeMillis() + ".jpg";
 			product.setAvater("/OnlineStore/image/avater/"+fileName);
 			try {
-				File file = new File("C:/image/avater/" + fileName);
-				if (!file.exists()) { //如果路径不存在，创建 
-					file.mkdirs();  
-				}
-				
-				Image srcImg = ImageIO.read((File) image);  
-		        BufferedImage buffImg = null;  
-		        buffImg = new BufferedImage(350, 350, BufferedImage.TYPE_INT_RGB);  
-		        buffImg.getGraphics().drawImage(  
-		                srcImg.getScaledInstance(350, 350, Image.SCALE_SMOOTH), 0,  
-		                0, null);  
-		        ImageIO.write(buffImg, "JPEG", file);  
+				Image img = ImageIO.read(((DiskFileItem)((CommonsMultipartFile)file).getFileItem()).getStoreLocation());
+				BufferedImage image = new BufferedImage(350, 350,BufferedImage.TYPE_INT_RGB );   
+		        image.getGraphics().drawImage(img, 0, 0, 350, 350, null); // 绘制缩小后的图  
+		        File destFile = new File("C:/IMANGO/image/avater/" + fileName); 
+				if (!destFile.exists()) { // 如果路径不存在，创建  
+					destFile.mkdirs();  
+				} 
+		        ImageIO.write(image, "jpg", destFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = "更新异常";

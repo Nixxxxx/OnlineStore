@@ -16,16 +16,16 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (URI.indexOf("/manage/login") > 0 || URI.indexOf("/manage/admin/login") > 0)
 			return true;
 		
-		// 管理员登陆验证请求，放行。
+		// 用户登陆验证请求，放行。
 		if (URI.indexOf("/user/login") > 0)
 			return true;
 		
-		// 登陆验证请求，放行。
+		// 用户请求，放行。
 		if (URI.indexOf("user") > 0 && URI.indexOf("manage") == 0 && request.getSession().getAttribute("user") == null) {
 			response.sendRedirect("/OnlineStore/login");
 		}
 
-		// 登陆验证请求，放行。
+		// 管理员请求，放行。
 		if (URI.indexOf("manage") > 0 && request.getSession().getAttribute("admin") == null) {
 			response.sendRedirect("/OnlineStore/manage/login");
 		}

@@ -60,11 +60,10 @@
 									</div>
 									<div class="col-sm-12 description_oc clearfix">
 										<ul class="nav nav-tabs htabs">
-											<li class="active" style="width: 150px"><a href="#tab-description" data-toggle="tab"
-												aria-expanded="true">商品描述</a></li>
+											<li class="active" style="width: 150px"><a href="javascript:void(0)">商品描述</a></li>
 										</ul>
 										<div class="tab-content" style="border: 1px solid #eee; overflow: hidden;">
-											<div class="tab-pane active" id="tab-description">${product.introduction }</div>
+											<div class="tab-pane active">${product.introduction }</div>
 										</div>
 									</div>
 								</div>
