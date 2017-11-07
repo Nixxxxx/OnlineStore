@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <td align="center" valign="top">
-	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+	    <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	      <tr>
 	        <td width="18" height="15"></td>
 	        <td colspan="3" align="right">
@@ -68,7 +68,7 @@
 		    </td>
 	      </tr>
 	    </table>
-    </td>
+	</td>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script>
     	function addExpress(){

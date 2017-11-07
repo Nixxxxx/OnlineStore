@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <base href="<%=basePath%>">
-<link rel="shortcut icon" href="./static/images/51logo.png">
+<link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="./static/css/login.css">
 <style>

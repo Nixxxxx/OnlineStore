@@ -9,8 +9,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>51商城――后台管理</title>
+<title>用户管理端 - 蜂巢商城</title>
 <base href="<%=basePath%>">
+<link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="static/css/style.css" rel="stylesheet">
 </head>

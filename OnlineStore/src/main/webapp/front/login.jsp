@@ -9,9 +9,15 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>登录-51商城</title>
+<title>登录-蜂巢商城</title>
 <base href="<%=basePath%>">
+<link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
+<style>
+.invisible {
+	visibility: hidden;
+}
+</style>
 </head>
 <body>
 	<div id="mr-mainbody" class="container mr-mainbody">
@@ -26,10 +32,10 @@
 						<div class="page-header" style="pause: 0px;"><h1 class="login_h1">会员登录</h1> </div>
 						<!-- 会员登录表单 -->
 						<form id="login_form" class="form-horizontal">
-							<div align="center" id="error_msg" style="color:#ff0000">错误信息</div>
+							<div align="center" id="error_msg" style="color: #ff0000;" class="invisible">错误信息</div>
 							<div class="form-group">
 								<div class="col-sm-4 control-label">
-									<label for="username" class="required">账户 ：</label>
+									<label for="userName" class="required">账户 ：</label>
 								</div>
 								<div class="col-sm-8">
 									<!-- 账户文本框 -->
@@ -83,7 +89,7 @@
 $(function () {
     var $error_msg = $("#error_msg");
     var show_error = function (error_msg) {
-        $error_msg.text(error_msg);
+        $error_msg.text(error_msg).removeClass("invisible");
     };
     $("#login_form").submit(function () {
         var userName = $.trim($("#userName").val());

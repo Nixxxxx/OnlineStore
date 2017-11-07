@@ -79,9 +79,9 @@ public class UserController {
 	
 
 	@RequestMapping(value = "/logout")
-	public String logout(HttpServletRequest request, HttpServletResponse response) {
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.getSession().removeAttribute("user");
-		return null;
+		ResponseUtil.write(response, new JSONObject().put("result", true));
 	}
 	
 	@RequestMapping(value = "/verify", method = RequestMethod.POST)
@@ -206,7 +206,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/addMessage", method = RequestMethod.POST)
-	public void addMessage(String msg,Integer userId, Integer productId,
+	public void addMessage(String msg, Integer userId, Integer productId,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Message message = new Message(userService.findById(userId),productService.findById(productId), msg, 0);
 		boolean result = false;

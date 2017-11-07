@@ -16,16 +16,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add" parameterType="Message">
 		insert t_message
 		<set>
-		    <if test="user!=null and user!='' ">
+		    <if test="user!=null">
 				userId=#{user.id},
 			</if>
-		    <if test="product!=null and product!='' ">
+		    <if test="product!=null">
 				productId=#{product.id},
 			</if>
 		    <if test="message!=null and message!='' ">
 				message=#{message},
 			</if>
-		    <if test="verify!=null and verify!='' ">
+		    <if test="verify!=null">
 				verify=#{verify},
 			</if>
 		</set>
@@ -34,16 +34,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="Message">
 		update t_message
 		<set>
-		    <if test="user!=null and user!='' ">
+		    <if test="user!=null">
 				userId=#{user.id},
 			</if>
-		    <if test="product!=null and product!='' ">
+		    <if test="product!=null">
 				productId=#{product.id},
 			</if>
 		    <if test="message!=null and message!='' ">
 				message=#{message},
 			</if>
-		    <if test="verify!=null and verify!='' ">
+		    <if test="verify!=null">
 				verify=#{verify},
 			</if>
 		</set>

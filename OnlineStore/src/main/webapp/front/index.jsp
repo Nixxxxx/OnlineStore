@@ -10,13 +10,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>蜂巢</title>
+<title>蜂巢商城</title>
 <base href="<%=basePath%>">
+<link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
-<script src="./static/js/jsArr01.js" type="text/javascript"></script>
-<script src="./static/js/module.js" type="text/javascript"></script>
-<script src="./static/js/jsArr02.js" type="text/javascript"></script>
-<script src="./static/js/tab.js" type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 	<!-- 网站头部 -->

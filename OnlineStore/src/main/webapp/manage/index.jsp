@@ -15,8 +15,7 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <base href="<%=basePath%>">
 
-<!-- logo -->
-<link rel="shortcut icon" href="static/images/avater.jpg">
+<link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">

@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="toolbar-ct-1">
-			<i class="fa fa-phone"></i><span style="margin-right: 15px;">电话：400-675-1066</span>
+			<i class="fa fa-phone"></i><span style="margin-right: 15px;">电话：189-7492-7540</span>
 			</div>
 			<div class="toolbar-ct-2">
 				<c:choose>
@@ -14,7 +14,7 @@
 				</c:when>
 				<c:otherwise>
 					您好，${user.userName }&nbsp; &nbsp;<a href="user/info">用户页</a>&nbsp;&nbsp;
-						|&nbsp;&nbsp;<a href="user/logout">退出</a>
+						|&nbsp;&nbsp;<a href="javascript:logout()">退出</a>
 				</c:otherwise>
 				</c:choose>
 			</div>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="toolbar-ct col-xs-12 col-md-6  hidden-sm hidden-xs">
 					<div class="toolbar-ct-1">
-						<img src="./static/images/51logo.png">
+						<img src="./static/images/logo/IMANGO.jpg">
 					</div>
 					<div>
 						<!-- 搜索条 -->
@@ -56,12 +56,9 @@
 					<div class="mr-megamenu animate slide" data-duration="400"
 						data-responsive="true">
 						<ul class="nav navbar-nav level0">
-							<li itemprop="name" data-id="435" data-level="1"><a
-								itemprop="url" href="product">首页 </a></li>
-							<li itemprop="name" data-id="510" data-level="1"><a
-								itemprop="url" href="express">疾峰取件</a></li>
-							<li itemprop="name" data-id="510" data-level="1"><a
-								 itemprop="url" href="about" >关于我们</a></li>
+							<li data-level="1"><a href="product">首页 </a></li>
+							<li data-level="1"><a href="express">疾峰取件</a></li>
+							<li data-level="1"><a href="about" >关于我们</a></li>
 						</ul>
 					</div>
 				</div>
@@ -70,3 +67,17 @@
 		</div>
 	</div>
 </header>
+<script>
+function logout(){
+	$.post(
+		"user/logout",
+		{},
+		function(data){
+			if(data.result){
+				alert("已退出登录");
+				window.location.reload();
+			}
+		},"json"
+	)
+}
+</script>

@@ -8,6 +8,6 @@
 	  <td height="19" align="center"> All CopyRights &copy; reserved 2017 蜂巢</td>
 	</tr>
 	<tr>
-	  <td height="21" align="center">客服热线：0431-84978981  E-mail：mingrisoft@mingrisoft.com</td>
+	  <td height="21" align="center">客服热线：189-7492-7540  QQ群：~</td>
 	</tr>
 </table>

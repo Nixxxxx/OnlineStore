@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    <if test="message!=null and message!='' ">
 				message=#{message},
 			</if>
-		    <if test="verify!=null and verify!='' ">
+		    <if test="verify!=null">
 				verify=#{verify},
 			</if>
 		    <if test="sender!=null">

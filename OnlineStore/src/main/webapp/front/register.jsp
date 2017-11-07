@@ -9,9 +9,15 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>注册-51商城</title>
+<title>注册-蜂巢商城</title>
 <base href="<%=basePath %>">
+<link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
+<style>
+.invisible {
+	visibility: hidden;
+}
+</style>
 </head>
 <body>
 	<!-- 主体内容 -->
@@ -30,7 +36,7 @@
 						</div>
 						<!-- 会员注册表单 -->
 						<form id="register_form" class="form-horizontal">
-							<div align="center" id="error_msg" style="color:#ff0000">错误信息</div>
+							<div align="center" id="error_msg" style="color:#ff0000" class="invisible">错误信息</div>
 							<fieldset>
 								<div class="form-group">
 									<div class="col-sm-4 control-label">
@@ -106,7 +112,7 @@
 $(function () {
     var $error_msg = $("#error_msg");
     var show_error = function (error_msg) {
-        $error_msg.text(error_msg);
+        $error_msg.text(error_msg).removeClass("invisible");
     };
     $("#register_form").submit(function () {
         var userName = $.trim($("#userName").val());
