@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -43,12 +44,19 @@
 											<h1 class="product-title">${product.name }</h1>
 											<ul class="list-unstyled"><li><h2>${product.price }元</h2></li></ul>
 											<div id="product"><hr>
+												<c:if test="${user != null }">
 												<div class="form-group">
 													<div class="btn-group">
-														<button type="button" onclick="addCart()" class="btn btn-primary btn-primary">
+														<input id="productId" value="${product.id }" hidden>
+														<input id="userId" value="${user.id }" hidden>
+														<textarea id="msg" style="width:400px;height:150px;" placeholder="留言信息" maxlength=100></textarea>
+													</div>
+													<div class="btn-group">
+														<button type="button" onclick="addMessage()" class="btn btn-primary btn-primary">
 															<i class="fa fa-shopping-cart"></i>留言订购</button>
 													</div>
 												</div>
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -77,7 +85,23 @@
 	<!-- //版权栏 -->
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 	<script type="text/javascript">
-	
+	function addMessage(){
+			$.post(
+        		"user/addMessage", 
+        		{	msg: $("#msg").val(),
+        			productId: $("#productId").val(),
+        			userId: $("#userId").val()
+        			},
+        		function(data){
+        			if(data.result){
+        				alert("留言成功");
+        				window.location.reloac();
+        			}else{
+        				alert("留言失败");
+        			}
+        		},"json"
+        	)
+		}
 	</script>
 </body>
 </html>

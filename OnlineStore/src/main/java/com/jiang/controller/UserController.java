@@ -21,6 +21,7 @@ import com.jiang.entity.Message;
 import com.jiang.entity.User;
 import com.jiang.service.ExpressService;
 import com.jiang.service.MessageService;
+import com.jiang.service.ProductService;
 import com.jiang.service.UserService;
 import com.jiang.util.MD5Util;
 import com.jiang.util.ResponseUtil;
@@ -36,6 +37,8 @@ public class UserController {
 	private MessageService messageService;
 	@Autowired
 	private ExpressService expressService;
+	@Autowired
+	private ProductService productService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(User user, String captcha, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -81,18 +84,30 @@ public class UserController {
 		return null;
 	}
 	
-	@RequestMapping(value = "verify", method = RequestMethod.POST)
+	@RequestMapping(value = "/verify", method = RequestMethod.POST)
 	public void verify(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Integer id = ((User) request.getSession().getAttribute("user")).getId();
+		user.setId(id);
 		String msg = "";
-		if(request.getSession().getAttribute("user") != null) {
-			user.setVerify(1);
-			if(userService.update(user)) {
-				msg = "认证信息已更新，等待管理员审核";
-			}else {
-				msg = "认证信息更新失败";
-			}
+		user.setVerify(1);
+		if(userService.update(user)) {
+			msg = "认证信息已更新，等待管理员审核";
+			request.getSession().setAttribute("user", userService.findById(id));
+		}else {
+			msg = "认证信息更新失败";
 		}
 		ResponseUtil.write(response, new JSONObject().put("msg", msg));
+	}
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public void changePassword(String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		User user = (User) request.getSession().getAttribute("user");
+		user = new User(user.getId(), MD5Util.getMD5Code(password));
+		boolean result = false;
+		if(userService.update(user)) {
+			result = true;
+		}
+		ResponseUtil.write(response, new JSONObject().put("result", result));
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -133,6 +148,17 @@ public class UserController {
 		mav.addObject("page", Integer.parseInt(page));
 		mav.addObject("total", expressService.findAllByUser(map)/10 + 1);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/addExpress", method = RequestMethod.POST)
+	public void addExpress(String message, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Integer userId = ((User) request.getSession().getAttribute("user")).getId();
+		Express express = new Express(userService.findById(userId), message, 0);
+		boolean result = false;
+		if(expressService.add(express)) {
+			result = true;
+		}
+		ResponseUtil.write(response, new JSONObject().put("result", result));
 	}
 	
 	@RequestMapping(value = "/order", method = RequestMethod.POST)
@@ -177,6 +203,17 @@ public class UserController {
 		mav.addObject("page", Integer.parseInt(page));
 		mav.addObject("total", messageService.findAllByUser(map)/10 + 1);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/addMessage", method = RequestMethod.POST)
+	public void addMessage(String msg,Integer userId, Integer productId,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Message message = new Message(userService.findById(userId),productService.findById(productId), msg, 0);
+		boolean result = false;
+		if(messageService.add(message)) {
+			result = true;
+		}
+		ResponseUtil.write(response, new JSONObject().put("result", result));
 	}
 
 	@RequestMapping(value = "/info")

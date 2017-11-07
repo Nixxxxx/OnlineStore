@@ -13,7 +13,17 @@ public class Express {
 	private Integer verify;    //审核（0：未审核 1：审核未通过 2：已审核 3：已被接单）
 	private User sender; 	   //配送用户
 	
-	
+	public Express(User user, String message, Integer verify) {
+		super();
+		this.user = user;
+		this.message = message;
+		this.verify = verify;
+	}
+
+	public Express() {
+		super();
+	}
+
 	public Integer getId() {
 		return id;
 	}

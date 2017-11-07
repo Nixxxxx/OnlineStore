@@ -14,6 +14,18 @@ public class Message {
 	private Integer verify;     //审核（0：待审核 1：未通过 2：已通过)
 	
 	
+	public Message() {
+		super();
+	}
+
+	public Message(User user, Product product, String message, Integer verify) {
+		super();
+		this.user = user;
+		this.product = product;
+		this.message = message;
+		this.verify = verify;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -5,7 +5,10 @@
 	    <table width="100%"  border="0" cellpadding="0" cellspacing="0">
 	      <tr>
 	        <td width="18" height="15"></td>
-	        <td colspan="3" align="right"><button onclick="expressAdd()">添加快件</button></td>
+	        <td colspan="3" align="right">
+	        	<div align="left"><textarea id="message" style="width:900px;height:75px;" placeholder="输入你的快件信息" maxlength=100></textarea></div>
+	        	<button onclick="addExpress()">添加快件</button>
+	        </td>
 	        <td width="24"></td>
 	      </tr>
 	      <tr>
@@ -66,8 +69,20 @@
 	      </tr>
 	    </table>
     </td>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script>
-    	function expressAdd(){
-    		var result = window.prompt("Some Notice Information", "Some Default Value");
+    	function addExpress(){
+    		$.post(
+	        	"user/addExpress", 
+	        	{message: $("#message").val()},
+	        	function(data){
+	        		if(data.result){
+	        			alert("添加成功,等待管理员审核");
+	        			window.location.reload();
+	        		}else{
+	        			alert("修改失败");
+	        		}
+	        	},"json"
+	        )
     	}
     </script>

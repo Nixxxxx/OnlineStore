@@ -81,7 +81,6 @@
 	    				dataType: "json",
 	    				success: function(data){
 	    					alert(data.msg);
-	    					window.location.reload();
 	    				},
 	    				error: function(XMLHttpRequest, textStatus){
 	    					if(textStatuc == "timeout"){
@@ -92,15 +91,27 @@
 	    				}
 	    			});
     			}
-    		})
+                return false;
+    		});
     	})
     	
     	function changePwd(){
    			var password = $.trim(window.prompt("请输入新密码"));
-			alert(password);
    	        var pattern = /^[a-zA-Z0-9_@]{4,20}$/;
    	        if(!pattern.test(password)){
-   	        	alert(密码格式不正确);
+   	        	alert("密码格式不正确");
+   	        }else{
+   	        	$.post(
+   	        		"user/changePassword", 
+   	        		{password:password},
+   	        		function(data){
+   	        			if(data.result){
+   	        				alert("修改成功");
+   	        			}else{
+   	        				alert("修改失败");
+   	        			}
+   	        		},"json"
+   	        	)
    	        }
    		}
     </script>

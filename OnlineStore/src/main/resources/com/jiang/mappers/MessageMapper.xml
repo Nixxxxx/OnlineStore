@@ -16,27 +16,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add" parameterType="Message">
 		insert t_message
 		<set>
-		    <if test="userId!=null and userId!='' ">
-				userId=#{userId},
+		    <if test="user!=null and user!='' ">
+				userId=#{user.id},
 			</if>
-		    <if test="productId!=null and productId!='' ">
-				productId=#{productId},
+		    <if test="product!=null and product!='' ">
+				productId=#{product.id},
 			</if>
 		    <if test="message!=null and message!='' ">
 				message=#{message},
 			</if>
-			verify=0
+		    <if test="verify!=null and verify!='' ">
+				verify=#{verify},
+			</if>
 		</set>
 	</insert>
 
 	<update id="update" parameterType="Message">
 		update t_message
 		<set>
-		    <if test="userId!=null and userId!='' ">
-				userId=#{userId},
+		    <if test="user!=null and user!='' ">
+				userId=#{user.id},
 			</if>
-		    <if test="productId!=null and productId!='' ">
-				productId=#{productId},
+		    <if test="product!=null and product!='' ">
+				productId=#{product.id},
 			</if>
 		    <if test="message!=null and message!='' ">
 				message=#{message},
