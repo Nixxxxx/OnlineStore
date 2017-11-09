@@ -13,10 +13,6 @@
 <title>疾蜂取件-51商城</title>
 <base href="<%=basePath%>">
 <link rel="stylesheet" href="static/css/mr-01.css" type="text/css">
-<script src="static/js/jsArr01.js" type="text/javascript"></script>
-<script src="static/js/module.js" type="text/javascript"></script>
-<script src="static/js/jsArr02.js" type="text/javascript"></script>
-<script src="static/js/tab.js" type="text/javascript"></script>
 </head>
 <body>
 	<!-- 网站头部 -->
@@ -87,7 +83,7 @@
 	<!-- 版权栏 -->
 	<%@ include file="/front/common/footer.jsp"%>
 	<!-- //版权栏 -->
-	
+<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
     //删除

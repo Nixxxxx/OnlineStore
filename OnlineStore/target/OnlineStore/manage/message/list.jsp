@@ -24,6 +24,7 @@
 								<th>用户</th>
 								<th>商品</th>
 								<th>留言</th>
+								<th>审核</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -43,6 +44,13 @@
 									<td><a href="product/${message.product.id }" target="_blank">${message.product.name }</a></td>
 									<td>${message.message }</td>
 									<td>
+										<c:if test="${message.verify == 0}">待审核</c:if>
+										<c:if test="${message.verify == 1}">未通过</c:if>
+										<c:if test="${message.verify == 2}">已通过</c:if>
+									</td>
+									<td>
+										<a data-id="${message.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核通过</a>
+										<a data-id="${message.id }" class="deny" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核拒绝</a>
 										<a data-id="${message.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i> 删除</a>
 									</td>
 								</tr>
@@ -137,6 +145,59 @@ $(function(){
         $("#user_email").val($(this).prevAll(".user_email").val());
         $("#user_college").val($(this).prevAll(".user_college").val());
     });
+   	
+    //通过审核
+	$(".approve").click(function () {
+	    if (confirm("确认通过审核吗？")) {
+	        var id = $(this).data("id");
+	        $.ajax({
+	            url: "manage/message/update",
+	            type: "post",
+	            data: {id: id, verify: 2},
+	            dataType: "json",
+	            success: function (data) {
+	                alert(data.msg);
+	                if (data.result) {
+	                	window.location.reload();
+	                }
+	            },
+	            error: function (XMLHttpRequest, textStatus) {
+	                if (textStatus === "timeout") {
+	                    alert("审核超时！");
+	                } else {
+	                    alert("审核失败！");
+	                }
+	            }
+	        })
+	    }
+	});
+
+
+	//拒绝审核
+	$(".deny").click(function () {
+	  if (confirm("确认拒绝审核吗？")) {
+	      var id = $(this).data("id");
+	      $.ajax({
+	          url: "manage/message/update",
+	          type: "post",
+	          data: {id: id, verify: 1},
+	          dataType: "json",
+	          success: function (data) {
+	              alert(data.msg);
+	              if (data.result) {
+	              	window.location.reload();
+	              }
+	          },
+	          error: function (XMLHttpRequest, textStatus) {
+	              if (textStatus === "timeout") {
+	                  alert("审核超时！");
+	              } else {
+	                  alert("审核失败！");
+	              }
+	          }
+	      })
+	  }
+	});
 	
     //删除
     $(".del").click(function () {

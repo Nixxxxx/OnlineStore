@@ -42,9 +42,9 @@
 									</td>
 									<td>${express.sender.userName }</td>
 									<td>
-										<a data-id="${express.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>通过</a>
-										<a data-id="${express.id }" class="deny" href="javascript:void(0)"> <i class="fa fa-trash"></i>拒绝</a>
-										<a data-id="${express.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i>删除用户</a>
+										<a data-id="${express.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核通过</a>
+										<a data-id="${express.id }" class="deny" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核拒绝</a>
+										<a data-id="${express.id }" class="del" href="javascript:void(0)"> <i class="fa fa-trash"></i>删除</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -77,7 +77,7 @@ $(function(){
 	        $.ajax({
 	            url: "manage/express/update",
 	            type: "post",
-	            data: {id: id, verify: 3},
+	            data: {id: id, verify: 2},
 	            dataType: "json",
 	            success: function (data) {
 	                alert(data.msg);
@@ -104,7 +104,7 @@ $(function(){
 	      $.ajax({
 	          url: "manage/express/update",
 	          type: "post",
-	          data: {id: id, verify: 2},
+	          data: {id: id, verify: 1},
 	          dataType: "json",
 	          success: function (data) {
 	              alert(data.msg);

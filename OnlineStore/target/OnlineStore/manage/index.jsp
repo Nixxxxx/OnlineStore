@@ -105,7 +105,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		</div>
 		
 		<footer class="main-footer text-center"> 
-			<strong> <a href="" target="_blank">蜂巢</a></strong> 
+			<strong> <a href="product" target="_blank">蜂巢</a></strong> 
 			All Rights Reserved &copy; 2017 
 		</footer>
 	</div>
