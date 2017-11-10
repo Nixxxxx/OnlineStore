@@ -52,9 +52,11 @@ public class AdminController {
 		ResponseUtil.write(response, new JSONObject().put("result", result).put("msg", msg));
 	}
 	
+	
 	@RequestMapping(value = "/logout")
-	public void logout(HttpServletRequest request) {
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.getSession().removeAttribute("admin");
+		ResponseUtil.write(response, new JSONObject().put("result", true));
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)

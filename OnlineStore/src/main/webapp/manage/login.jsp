@@ -58,16 +58,12 @@ body {
 				</div>
 				<button type="submit" class="btn btn-lg btn-primary btn-block"
 					id="login_btn" data-loading-text="登录中...">立即登录</button>
-				<div class="text-center m-t m-b">
-					<span class="left">记住我：</span> <input id="checkbox" type="checkbox"
-						name="checkbox" />
-				</div>
 				<div class="line line-dashed"></div>
 			</form>
 		</div>
 		<div class="text-center">
 			<p>
-				<small class="text-muted"> <a href="#" target="_blank">蜂巢</a><br>
+				<small class="text-muted"> <a href="product" target="_blank">蜂巢</a><br>
 					All Rights Reserved &copy; 2017
 				</small>
 			</p>

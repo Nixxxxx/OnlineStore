@@ -63,19 +63,23 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		<header class="main-header">
 			<a href="javascript:void(0)" class="logo">
 			<span class="logo-lg"><b>蜂巢商城后台</b></span>
-		</a>
-		<nav class="navbar navbar-static-top">
-
-		<div class="navbar-custom-menu">
-			<ul class="nav navbar-nav">
-				<li class="dropdown user user-menu">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-					<span class="hidden-xs">${admin.userName }</span>
-				  </a>
-				</li>
-			</ul>
-		</div>
-		</nav> 
+			</a>
+			<nav class="navbar navbar-static-top">
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown user user-menu">
+						  <a href="javascript:void(0)" class="dropdown-toggle"> 
+							<span class="hidden-xs">${admin.userName }</span>
+						  </a>
+						</li>
+						<li class="dropdown user user-menu">
+						  <a href="javascript:logout()" class="dropdown-toggle"> 
+							<span class="hidden-xs">退出</span>
+						  </a>
+						</li>
+					</ul>
+				</div>
+			</nav> 
 		</header>
 		<aside class="main-sidebar">
 		<section class="sidebar">
@@ -111,5 +115,19 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 	</div>
 
 <script src="https://cdn.bootcss.com/admin-lte/2.3.11/js/demo.js"></script>
+<script>
+function logout(){
+	$.post(
+		"manage/admin/logout",
+		{},
+		function(data){
+			if(data.result){
+				alert("已退出登录");
+				window.location.reload();
+			}
+		},"json"
+	)
+}
+</script>
 </body>
 </html>

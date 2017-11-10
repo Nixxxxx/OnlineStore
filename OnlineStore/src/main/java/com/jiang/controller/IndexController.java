@@ -57,6 +57,7 @@ public class IndexController {
 		if(!productList.isEmpty()){
 			mav.addObject("productList", productList);
 		}
+		mav.addObject("pagePath", "/front/productList.jsp");
 		mav.addObject("page", Integer.parseInt(page));
 		mav.addObject("total", productService.findAll().size()/18 + 1);
 		return mav;
@@ -71,10 +72,11 @@ public class IndexController {
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		List<Express> expressList = expressService.findByPage(map);
-		ModelAndView mav = new ModelAndView("front/express");
+		ModelAndView mav = new ModelAndView("front/index");
 		if(!expressList.isEmpty()){
 			mav.addObject("expressList", expressList);
 		}
+		mav.addObject("pagePath", "/front/express.jsp");
 		mav.addObject("page", Integer.parseInt(page));
 		mav.addObject("total", expressService.findAll().size()/10 + 1);
 		return mav;
@@ -82,7 +84,8 @@ public class IndexController {
 	
 	@RequestMapping(value = "/product/{id}")
 	public ModelAndView productDetail(@PathVariable Integer id) {
-		ModelAndView mav = new ModelAndView("front/productDetail");
+		ModelAndView mav = new ModelAndView("front/index");
+		mav.addObject("pagePath", "/front/productDetail.jsp");
 		mav.addObject("product", productService.findById(id));
 		return mav;
 	}

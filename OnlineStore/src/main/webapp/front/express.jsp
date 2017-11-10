@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>疾蜂取件-51商城</title>
-<base href="<%=basePath%>">
-<link rel="stylesheet" href="static/css/mr-01.css" type="text/css">
-</head>
-<body>
-	<!-- 网站头部 -->
-	<jsp:include page="/front/common/header.jsp" />
-	<!-- //网站头部 -->
 	<div id="mr-mainbody" class="container mr-mainbody">
 		<div class="row">
 			<!-- 页面主体内容 -->
@@ -80,9 +63,6 @@
 			<!-- //页面主体内容 -->
 		</div>
 	</div>
-	<!-- 版权栏 -->
-	<%@ include file="/front/common/footer.jsp"%>
-	<!-- //版权栏 -->
 <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
@@ -113,5 +93,3 @@ $(function(){
     });
 })
 </script>
-</body>
-</html>
