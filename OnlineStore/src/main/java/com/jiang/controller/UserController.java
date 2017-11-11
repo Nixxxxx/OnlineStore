@@ -172,6 +172,11 @@ public class UserController {
 			Express express = expressService.findById(id);
 			if(express.getSender() != null) {
 				msg = "此单已被接单";
+				
+			}else if(user.getVerify() != 2){
+				msg = "小蜜蜂认证未通过";
+			}else if(express.getUser().getId() == user.getId()) {
+				msg = "不能接自己发布的订单";
 			}else {
 				express.setSender(userService.findById(user.getId()));
 				if(expressService.update(express)) {

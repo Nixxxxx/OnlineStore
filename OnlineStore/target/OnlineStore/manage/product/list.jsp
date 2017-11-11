@@ -34,7 +34,7 @@
 							<c:forEach var="product" items="${productList }" varStatus="status">
 								<tr>
 									<td>${status.index+1 }</td>
-									<td>${product.name }</td>
+									<td><a href="product/${product.name }" target="_blank">${product.name }</a></td>
 									<td>${product.price }</td>
 									<td>
 									  <a href="manage/product/${product.id }"><i class="fa fa-edit"></i> 编辑</a>

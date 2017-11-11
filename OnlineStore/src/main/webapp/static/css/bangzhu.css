@@ -1,0 +1,267 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+.container{margin:0 auto;width:1100px;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family:"微软雅黑","宋体";
+	min-width:1200px;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body{min-width:1200px;}
+
+
+/*banner部分*/
+#banner
+{
+	height:690px;
+	background:url(../imgs/bg.jpg);
+	position:relative;
+}
+
+#banner .banner-shade
+{
+	width:100%;
+	height:100%;
+	background:#000000;
+	opacity:0.7;
+	FILTER:alpha(opacity=70);
+	position:absolute;
+	z-index:1;
+	top:0;
+	left:0;
+}
+
+#banner #banner-content
+{
+	width:100%;
+	position:absolute;
+	top:200px;
+	text-align:center;
+	color:#fff;
+	z-index:2;
+}
+
+#banner #banner-content h1
+{
+	font-size:60px;
+	line-height:120px;
+}
+
+#banner #banner-content p
+{
+	line-height:24px;
+}
+
+#banner .banner-btn
+{
+	width:400px;
+	margin:50px auto 0px;
+}
+#banner .banner-start,#banner .banner-items
+{
+	display:inline-block;
+}
+
+#banner .banner-start
+{
+	background:url(../imgs/btn1.png);
+	color:#fff;
+	width:146px;
+	height:48px;
+	line-height:48px;
+	transition:all 0.2s;
+}
+
+#banner .banner-start:hover
+{
+	background:url(../imgs/btn3.png);	
+}
+
+#banner .banner-items
+{
+	background:url(../imgs/btn2.png);
+	width:146px;
+	height:48px;
+	color:#ff4444;
+	line-height:48px;
+	transition:all 0.2s;
+}
+
+#banner .banner-items:hover
+{
+	background:url(../imgs/btn1.png);
+	color:#fff;	
+}
+/*banner部分结束*/
+
+/*介绍部分开始*/
+#introduce
+{
+	width:1170px;
+	height:286px;
+	margin:0 auto;
+}
+
+#introduce .introduce-content
+{
+	width:320px;
+	padding:35px 30px;
+	text-align:center;
+}
+
+#introduce .introduce-content img
+{
+	width:100px;
+}
+
+#introduce .introduce-content h3
+{
+	font-size:20px;
+	line-height:40px;
+	font-weight:500;
+}
+
+#introduce .introduce-content p
+{
+	font-size:14px;
+	line-height:22px;
+}
+/*介绍部分结束*/
+
+/*项目部分开始*/
+#items
+{
+	width:100%;
+	height:670px;
+	background:#2b2b2d;
+	text-align:center;
+	padding-top:20px;
+}
+
+#items h1
+{
+	display:block;
+	font-size:40px;
+	font-weight:200;
+	line-height:120px;
+	color:#fff;
+}
+
+#items #items-btn
+{
+	width:600px;
+	margin:0 auto;
+}
+
+#items #items-btn ul li
+{
+	float:left;
+	margin:10px;
+}
+
+
+
+/*help*/
+#help-menu
+{
+	position:fixed;
+	top:100px;
+	height:300px;
+	width:120px;
+	right:50px;
+	
+}
+.help-menu-ul
+{
+	position:absolute;
+}
+
+.help-menu-ul li
+{
+	width:120px;
+	height:60px;
+}
+
+.help-menu-ul li a
+{
+	font-size:16px;
+	color:#000;
+	float:left;
+	line-height:60px;
+}
+
+.help-menu-ul li span
+{
+	width:12px;
+	height:12px;
+	border-radius:50%;
+	display:inline-block;
+	background:#000;
+	margin:24px 10px 0px 0;
+	float:left;
+}
+
+.menu-line
+{
+	display:block;
+	width:1px;
+	height:182px;
+	background:#000;
+	position:absolute;
+	top:34px;
+	left:6px;
+}
+.help-content{
+padding-right:150px;
+width:960px;
+margin-bottom:30px;
+}
+.help-content h1
+{
+	font-size:30px;
+	line-height:60px;
+}
+
+.help-content p
+{
+	line-height:24px;
+}

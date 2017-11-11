@@ -48,7 +48,15 @@
 										<c:if test="${express.verify == 2}">已通过</c:if>
 										<c:if test="${express.verify == 3}">已接单</c:if>
 									</td>
-									<td>${express.sender.userName }</td>
+						            <td class="message_sender">
+						              <input class="sender_userName" type="hidden" value="${express.sender.userName }">
+						              <input class="sender_name" type="hidden" value="${express.sender.name }">
+						              <input class="sender_mobile" type="hidden" value="${express.sender.mobile }">
+						              <input class="sender_email" type="hidden" value="${express.sender.email }">
+						              <input class="sender_college" type="hidden" value="${express.sender.college }">
+						              <input class="sender_verify" type="hidden" value="${express.sender.verify }">
+						              <a class="sender" href="javascript:void(0)" data-toggle="modal" data-remote="false" data-target="#user_modal" data-backdrop="static">
+						                  ${express.sender.userName }</a></td>
 									<td>
 										<c:if test="${express.verify != 3}">
 										<a data-id="${express.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核通过</a>
@@ -153,7 +161,22 @@ $(function(){
         	$("#user_verify").val("待审核");
         else if(verify == 1)
         	$("#user_verify").val("未通过");
-        if(verify == 2)
+        else if(verify == 2)
+        	$("#user_verify").val("已通过");
+    });
+	
+	$(".sender").click(function () {
+        $("#user_userName").val($(this).prevAll(".sender_userName").val());
+        $("#user_name").val($(this).prevAll(".sender_name").val());
+        $("#user_mobile").val($(this).prevAll(".sender_mobile").val());
+        $("#user_email").val($(this).prevAll(".sender_email").val());
+        $("#user_college").val($(this).prevAll(".sender_college").val());
+        var verify = $(this).prevAll(".sender_verify").val();
+        if(verify == 0)
+        	$("#user_verify").val("待审核");
+        else if(verify == 1)
+        	$("#user_verify").val("未通过");
+        else if(verify == 2)
         	$("#user_verify").val("已通过");
     });
 	

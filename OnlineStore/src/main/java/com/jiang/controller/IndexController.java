@@ -39,6 +39,13 @@ public class IndexController {
 		return new ModelAndView("front/login");
 	}
 	
+	@RequestMapping(value = "/index")
+	public ModelAndView index() {
+		ModelAndView mav = new ModelAndView("front/index");
+		mav.addObject("pagePath","/front/about.jsp");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/register")
 	public ModelAndView register() {
 		return new ModelAndView("front/register");

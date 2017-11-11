@@ -89,38 +89,38 @@
         <!-- /.box-header -->
           <div class="box-body">
             <div class="form-group">
-              <label for="user_userName" class="col-sm-2 control-label">用户名</label>
-              <div class="col-sm-10">
+              <label for="user_userName" class="col-sm-3 control-label">用户名</label>
+              <div class="col-sm-9">
                 <input type="text" class="form-control pull-right" id="user_userName" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="user_name" class="col-sm-2 control-label">真实姓名</label>
-              <div class="col-sm-10">
+              <label for="user_name" class="col-sm-3 control-label">真实姓名</label>
+              <div class="col-sm-9">
                 <input type="text" class="form-control pull-right" id="user_name" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="user_mobile" class="col-sm-2 control-label">手机</label>
-              <div class="col-sm-10">
+              <label for="user_mobile" class="col-sm-3 control-label">手机</label>
+              <div class="col-sm-9">
                 <input type="text" class="form-control pull-right" id="user_mobile" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="user_email" class="col-sm-2 control-label">邮箱</label>
-              <div class="col-sm-10">
+              <label for="user_email" class="col-sm-3 control-label">邮箱</label>
+              <div class="col-sm-9">
                 <input type="text" class="form-control pull-right" id="user_email" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="user_college" class="col-sm-2 control-label">学院专业班级</label>
-              <div class="col-sm-10">
+              <label for="user_college" class="col-sm-3 control-label">学院专业班级</label>
+              <div class="col-sm-9">
                 <input type="text" class="form-control pull-right" id="user_college" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="user_verify" class="col-sm-2 control-label">小蜜蜂</label>
-              <div class="col-sm-10">
+              <label for="user_verify" class="col-sm-3 control-label">小蜜蜂</label>
+              <div class="col-sm-9">
                 <input type="text" class="form-control pull-right" id="user_verify" readonly>
               </div>
             </div>
@@ -144,6 +144,13 @@ $(function(){
         $("#user_mobile").val($(this).prevAll(".user_mobile").val());
         $("#user_email").val($(this).prevAll(".user_email").val());
         $("#user_college").val($(this).prevAll(".user_college").val());
+        var verify = $(this).prevAll(".user_verify").val();
+        if(verify == 0)
+        	$("#user_verify").val("待审核");
+        else if(verify == 1)
+        	$("#user_verify").val("未通过");
+        if(verify == 2)
+        	$("#user_verify").val("已通过");
     });
    	
     //通过审核
