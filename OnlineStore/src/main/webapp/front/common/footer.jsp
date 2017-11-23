@@ -37,8 +37,8 @@
 	<section class="mr-copyright">
 		<div class="container">
 			<div style="width:auto; height:auto; margin:auto;">
-				<small> Copyright &copy;&nbsp;
-					<a href="index" target="_blank">蜂巢团队</a>
+				<small> Copyright &copy;&nbsp;2017
+					<a href="https://github.com/Nixxxxx" target="_blank"> ~ </a>
 					| <a href="manage/login" target="_blank">管理员登录</a>
 				</small>
 			</div>

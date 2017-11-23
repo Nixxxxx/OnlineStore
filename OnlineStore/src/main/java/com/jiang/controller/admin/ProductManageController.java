@@ -77,7 +77,7 @@ public class ProductManageController {
 				Image img = ImageIO.read(((DiskFileItem)((CommonsMultipartFile)file).getFileItem()).getStoreLocation());
 				BufferedImage image = new BufferedImage(350, 350,BufferedImage.TYPE_INT_RGB );   
 		        image.getGraphics().drawImage(img, 0, 0, 350, 350, null); // 绘制缩小后的图  
-		        File destFile = new File("C:/IMANGO/image/avater/" + fileName); 
+		        File destFile = new File("/root/IMANGO/image/avater/" + fileName); 
 				if (!destFile.exists()) { // 如果路径不存在，创建  
 					destFile.mkdirs();  
 				} 

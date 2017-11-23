@@ -61,10 +61,12 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header">
-			<a href="javascript:void(0)" class="logo">
+			<a href="./" class="logo">
+			<span class="logo-mini"><b>蜂巢</b></span>
 			<span class="logo-lg"><b>蜂巢商城后台</b></span>
 			</a>
 			<nav class="navbar navbar-static-top">
+			<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span></a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<li class="dropdown user user-menu">
@@ -85,12 +87,20 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		<section class="sidebar">
 		<ul class="sidebar-menu">
 			<li class="header">MAIN NAVIGATION</li>
-			<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 通知</a></li>
-			<li><a href="manage/admin/list"><i class="fa fa-circle-o"></i> 管理员管理 </a></li>
-			<li><a href="manage/user/list"><i class="fa fa-circle-o"></i> 用户管理 </a></li>
-			<li><a href="manage/product/list"><i class="fa fa-circle-o"></i> 商品管理 </a></li>
-			<li><a href="manage/message/list"><i class="fa fa-circle-o"></i> 留言管理 </a></li>
-			<li><a href="manage/express/list"><i class="fa fa-circle-o"></i> 疾蜂取件 </a></li>
+			<li class="active treeview menu-open">
+				<a href="#"><i class="fa fa-dashboard"></i>
+					<span>蜂巢商城</span> 
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 通知</a></li>
+					<li><a href="manage/admin/list"><i class="fa fa-circle-o"></i> 管理员管理 </a></li>
+					<li><a href="manage/user/list"><i class="fa fa-circle-o"></i> 用户管理 </a></li>
+					<li><a href="manage/product/list"><i class="fa fa-circle-o"></i> 商品管理 </a></li>
+					<li><a href="manage/message/list"><i class="fa fa-circle-o"></i> 留言管理 </a></li>
+					<li><a href="manage/express/list"><i class="fa fa-circle-o"></i> 疾蜂取件 </a></li>
+				</ul>
+			</li>
 			<li class="header">THEMES</li>
 			<li><a href="javascript:void(0)" data-skin="skin-blue">
 				<i class="fa fa-circle-o text-aqua"></i> <span>Blue</span></a></li>
@@ -108,9 +118,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 			</c:if>
 		</div>
 		
-		<footer class="main-footer text-center"> 
-			<strong> <a href="product" target="_blank">蜂巢</a></strong> 
-			All Rights Reserved &copy; 2017 
+		<footer class="main-footer text-center">
+			<strong><a href="product" target="_blank">蜂巢</a></strong> 
+			Copyright &copy; 2017 
+			<strong><a href="https://github.com/Nixxxxx" target="_blank"> ~ </a></strong> 
 		</footer>
 	</div>
 

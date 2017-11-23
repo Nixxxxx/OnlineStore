@@ -63,8 +63,8 @@ body {
 		</div>
 		<div class="text-center">
 			<p>
-				<small class="text-muted"> <a href="product" target="_blank">蜂巢</a><br>
-					All Rights Reserved &copy; 2017
+				<small class="text-muted"><a href="product" target="_blank">蜂巢</a><br>
+					Copyright &copy; 2017 <a href="https://github.com/Nixxxxx" target="_blank"> ~ </a>
 				</small>
 			</p>
 		</div>

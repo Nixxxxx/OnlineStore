@@ -15,11 +15,23 @@
 <link rel="shortcut icon" href="static/images/logo/logo.jpg">
 <link rel="stylesheet" href="./static/css/mr-01.css" type="text/css">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+#iframe{
+    margin:auto;
+    left:0;
+    right:0;
+    width:900px;
+    height:450px;
+}
+</style>
 </head>
 <body>
 	<!-- 网站头部 -->
     <jsp:include page="/front/common/header.jsp"></jsp:include>
 	<!-- //网站头部 -->
+	<div id="iframe">
+		<iframe src="./front/common/lunbo.jsp" width="900" height="450" frameborder="0" scrolling="no"></iframe>
+	</div>
 	<jsp:include page="${pagePath }"></jsp:include>
 	<!-- 版权栏 -->
 	<%@ include file="/front/common/footer.jsp"%>

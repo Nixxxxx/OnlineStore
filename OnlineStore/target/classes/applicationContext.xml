@@ -22,7 +22,7 @@
 		class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="url" value="jdbc:mysql://localhost:3306/db_onlinestore?useUnicode=true&amp;characterEncoding=UTF-8"/>
 		<property name="username" value="root"/>
-		<property name="password" value="123456"/>
+		<property name="password" value="Caofeng2012@"/>
 	</bean>
 
 	<!-- 配置mybatis的sqlSessionFactory -->

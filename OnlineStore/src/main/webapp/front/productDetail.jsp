@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-	<div id="mr-mainbody" class="container mr-mainbody">
+	<div id="mr-mainbody" style="margin:auto; left:0; right:0;" class="container mr-mainbody">
 		<div class="row">
 			<!-- 页面主体内容 -->
 			<div id="mr-content"
@@ -50,13 +50,46 @@
 									</div>
 								</div>
 								<!-- //显示商品详细信息 -->
-								<!-- //根据商品ID获取并显示商品信息 -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- //页面主体内容 -->
+			<!-- 显示左侧热门商品 -->
+			<div class="mr-sidebar mr-sidebar-left col-xs-12 col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9  hidden-sm hidden-xs">
+				<div class="mr-module module " id="Mod157">
+					<div class="module-inner">
+						<h3 class="module-title ">
+							<span>热门商品</span>
+						</h3>
+						<div class="module-ct">
+							<div class="mrshop">
+								<div class="container_oc">
+									<div class="box_oc">
+										<div>
+											<div class="box-product product-grid">
+												<div>
+													<div class="image">
+														<a href="product/${product.id }"><img
+															src="${product.avater }" width="80px">
+														</a>
+													</div>
+													<div class="name">
+														<a href="product/${product.id }"> ${product.name } </a>
+													</div>
+													<div class="price"> ${product.price } 元 </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // 显示左侧热门商品 -->
 		</div>
 	</div>
 	<script type="text/javascript">
