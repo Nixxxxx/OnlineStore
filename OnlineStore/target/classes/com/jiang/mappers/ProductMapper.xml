@@ -58,11 +58,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findAll" resultMap="ProductResult">
-		select * from t_product
+		select * from t_product order by id desc
 	</select>
 	
 	<select id="findByPage" parameterType="Map" resultMap="ProductResult">
-		select * from t_product
+		select * from t_product order by id desc
 		<if test="start!=null and quantity!=null">
 			limit #{start},#{quantity}
 		</if>

@@ -10,34 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="password" column="password"/>
 	</resultMap>
 	
-	<!--<select id="list" parameterType="Map" resultMap="PassengerResult">-->
-		<!--select * from t_resources-->
-		<!--<where>-->
-		    <!--<if test="name!=null and name!='' ">-->
-		    	<!--and name like #{name}-->
-		    <!--</if>-->
-			<!--<if test="userUk!=null and userUk!='' ">-->
-				<!--and userUk=#{userUk}-->
-			<!--</if>-->
-		<!--</where>-->
-		<!--order by publishDate desc-->
-		<!--<if test="start!=null and size!=null">-->
-			<!--limit #{start},#{size}-->
-		<!--</if>-->
-	<!--</select>-->
-
-	<!--<select id="getTotal" parameterType="Map" resultType="Long">-->
-		<!--select count(*) from t_resources-->
-		<!--<where>-->
-			<!--<if test="name!=null and name!='' ">-->
-		    	<!--and name like #{name}-->
-		    <!--</if>-->
-			<!--<if test="userUk!=null and userUk!='' ">-->
-				<!--and userUk=#{userUk}-->
-			<!--</if>-->
-		<!--</where>-->
-	<!--</select>-->
-	<!---->
 
 	<insert id="add" parameterType="Admin">
 		insert t_admin
@@ -55,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update t_admin
 		<set>
 		    <if test="userName!=null and userName!='' ">
-				name=#{userName},
+				userName=#{userName},
 			</if>
 		    <if test="password!=null and password!='' ">
 				password=#{password},
@@ -68,22 +40,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_admin where id=#{id}
 	</delete>
 
-	<!--<select id="listNewest" parameterType="Integer" resultMap="PassengerResult">-->
-		<!--select * from t_resources-->
-		<!--order by publishDate desc-->
-		<!--limit 0,#{n}-->
-	<!--</select>-->
-	<!---->
 	<select id="findById" parameterType="Integer" resultMap="AdminResult">
 		select * from t_admin where id=#{id}
 	</select>
 	
 	<select id="findAll" resultMap="AdminResult">
-		select * from t_admin
+		select * from t_admin order by id desc
 	</select>
 
 	<select id="findByPage" parameterType="Map" resultMap="AdminResult">
-		select * from t_admin
+		select * from t_admin order by id desc
 		<if test="start!=null and quantity!=null">
 			limit #{start},#{quantity}
 		</if>

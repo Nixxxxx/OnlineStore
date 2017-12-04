@@ -158,10 +158,12 @@ $(function(){
         $("#user_college").val($(this).prevAll(".user_college").val());
         var verify = $(this).prevAll(".user_verify").val();
         if(verify == 0)
-        	$("#user_verify").val("待审核");
+        	$("#user_verify").val("未认证");
         else if(verify == 1)
-        	$("#user_verify").val("未通过");
+        	$("#user_verify").val("待审核");
         else if(verify == 2)
+        	$("#user_verify").val("未通过");
+        else if(verify == 3)
         	$("#user_verify").val("已通过");
     });
 	
@@ -173,10 +175,12 @@ $(function(){
         $("#user_college").val($(this).prevAll(".sender_college").val());
         var verify = $(this).prevAll(".sender_verify").val();
         if(verify == 0)
-        	$("#user_verify").val("待审核");
+        	$("#user_verify").val("未认证");
         else if(verify == 1)
-        	$("#user_verify").val("未通过");
+        	$("#user_verify").val("待审核");
         else if(verify == 2)
+        	$("#user_verify").val("未通过");
+        else if(verify == 3)
         	$("#user_verify").val("已通过");
     });
 	

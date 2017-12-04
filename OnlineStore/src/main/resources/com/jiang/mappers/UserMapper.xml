@@ -79,15 +79,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findAll" resultMap="UserResult">
-		select * from t_user
+		select * from t_user order by id desc
 	</select>
 	
-	<select id="getTotal" parameterType="Map" resultType="Integer">
+	<select id="getTotal" resultType="Integer">
 		select count(*) from t_user
 	</select>
 	
 	<select id="findByPage" parameterType="Map" resultMap="UserResult">
-		select * from t_user
+		select * from t_user order by id desc
 		<if test="start!=null and quantity!=null">
 			limit #{start},#{quantity}
 		</if>

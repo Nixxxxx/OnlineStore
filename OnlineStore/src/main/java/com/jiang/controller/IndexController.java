@@ -78,14 +78,14 @@ public class IndexController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
-		List<Express> expressList = expressService.findByPage(map);
+		List<Express> expressList = expressService.findVerifyByPage(map);
 		ModelAndView mav = new ModelAndView("front/index");
 		if(!expressList.isEmpty()){
 			mav.addObject("expressList", expressList);
 		}
 		mav.addObject("pagePath", "/front/express.jsp");
 		mav.addObject("page", Integer.parseInt(page));
-		mav.addObject("total", expressService.findAll().size()/10 + 1);
+		mav.addObject("total", expressService.countVerify()/10 + 1);
 		return mav;
 	}
 	

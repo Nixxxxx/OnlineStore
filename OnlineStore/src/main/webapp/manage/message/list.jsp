@@ -44,9 +44,10 @@
 									<td><a href="product/${message.product.id }" target="_blank">${message.product.name }</a></td>
 									<td>${message.message }</td>
 									<td>
-										<c:if test="${message.verify == 0}">待审核</c:if>
-										<c:if test="${message.verify == 1}">未通过</c:if>
-										<c:if test="${message.verify == 2}">已通过</c:if>
+										<c:if test="${message.verify == 0}">未认证</c:if>
+										<c:if test="${message.verify == 1}">待审核</c:if>
+										<c:if test="${message.verify == 2}">未通过</c:if>
+										<c:if test="${message.verify == 3}">已认证</c:if>
 									</td>
 									<td>
 										<a data-id="${message.id }" class="approve" href="javascript:void(0)"> <i class="fa fa-trash"></i>审核通过</a>
@@ -146,10 +147,12 @@ $(function(){
         $("#user_college").val($(this).prevAll(".user_college").val());
         var verify = $(this).prevAll(".user_verify").val();
         if(verify == 0)
-        	$("#user_verify").val("待审核");
+        	$("#user_verify").val("未认证");
         else if(verify == 1)
+        	$("#user_verify").val("待审核");
+        else if(verify == 2)
         	$("#user_verify").val("未通过");
-        if(verify == 2)
+        else if(verify == 3)
         	$("#user_verify").val("已通过");
     });
    	

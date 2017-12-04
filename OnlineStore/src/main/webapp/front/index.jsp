@@ -29,9 +29,6 @@
 	<!-- 网站头部 -->
     <jsp:include page="/front/common/header.jsp"></jsp:include>
 	<!-- //网站头部 -->
-	<div id="iframe">
-		<iframe src="./front/common/lunbo.jsp" width="900" height="450" frameborder="0" scrolling="no"></iframe>
-	</div>
 	<jsp:include page="${pagePath }"></jsp:include>
 	<!-- 版权栏 -->
 	<%@ include file="/front/common/footer.jsp"%>

@@ -44,4 +44,12 @@ public class ExpressServiceImpl implements ExpressService{
 		return expressDao.findAllByUser(map);
 	}
 
+	public Integer countVerify() {
+		return expressDao.countVerify();
+	}
+
+	public List<Express> findVerifyByPage(Map<String, Object> map) {
+		return expressDao.findVerifyByPage(map);
+	}
+
 }

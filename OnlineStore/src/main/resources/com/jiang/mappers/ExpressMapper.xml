@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findAll" resultMap="ExpressResult">
-		select * from t_express
+		select * from t_express order by id desc
 	</select>
 
 	<select id="findAllByUser" parameterType="Map" resultType="Integer">
@@ -66,16 +66,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="userId!=null">
 			where userId=#{userId}
 		</if>
+		order by id desc
 	</select>
 	
-	<select id="findByPage" parameterType="Map" resultMap="ExpressResult">
+	<select id="findVerifyByPage" parameterType="Map" resultMap="ExpressResult">
 		select * from t_express
-		<if test="userId!=null and userId!='' ">
-			where userId=#{userId}
-		</if>
+		<choose>
+			<when test="userId!=null and userId!='' ">
+				where userId=#{userId}
+			</when>
+			<otherwise>
+				where verify>1
+			</otherwise>
+		</choose>
+		order by id desc
 		<if test="start!=null and quantity!=null">
 			limit #{start},#{quantity}
 		</if>
+	</select>
+	
+	<select id="findByPage" parameterType="Map" resultMap="ExpressResult">
+		select * from t_express order by id desc
+		<if test="start!=null and quantity!=null">
+			limit #{start},#{quantity}
+		</if>
+	</select>
+	
+	
+	<select id="countVerify" resultType="Integer">
+		select count(*) from t_express where verify>1
 	</select>
 	
 </mapper> 

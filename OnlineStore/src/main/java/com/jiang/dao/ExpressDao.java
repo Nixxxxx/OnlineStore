@@ -17,8 +17,12 @@ public interface ExpressDao {
 	
 	public List<Express> findAll();
 
-	public List<Express> findByPage(Map<String, Object> map);
+	public List<Express> findVerifyByPage(Map<String, Object> map);
 
+	public List<Express> findByPage(Map<String, Object> map);
+	
 	public Integer findAllByUser(Map<String, Object> map);
+
+	public Integer countVerify();
 
 }

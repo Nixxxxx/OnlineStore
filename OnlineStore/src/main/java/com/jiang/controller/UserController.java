@@ -140,7 +140,7 @@ public class UserController {
 		map.put("start", (Integer.parseInt(page)-1)*10);
 		map.put("quantity", 10);
 		map.put("userId", user.getId());
-		List<Express> expressList = expressService.findByPage(map);
+		List<Express> expressList = expressService.findVerifyByPage(map);
 		ModelAndView mav = new ModelAndView("front/user/index");
 		mav.addObject("pagePath", "/front/user/express.jsp");
 		if(!expressList.isEmpty())

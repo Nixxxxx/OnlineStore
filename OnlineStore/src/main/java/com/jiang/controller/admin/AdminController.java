@@ -81,7 +81,7 @@ public class AdminController {
 		boolean result = false;
 		String msg = "";
 		if (!adminService.checkUserName(admin.getUserName(), admin.getId())) {
-			msg = "该邮箱已存在";
+			msg = "该用户名已存在";
 		}else {
 			admin.setPassword(MD5Util.getMD5Code(admin.getPassword()));
 			if(adminService.update(admin)){

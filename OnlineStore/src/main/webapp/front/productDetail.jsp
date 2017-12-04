@@ -29,7 +29,7 @@
 													<div class="btn-group">
 														<input id="productId" value="${product.id }" hidden>
 														<input id="userId" value="${user.id }" hidden>
-														<textarea id="msg" style="width:400px;height:150px;" placeholder="留言信息" maxlength=100></textarea>
+														<textarea id="msg" style="width:400px;height:150px;" placeholder="留言信息（格式：商品种类+数量+收件人+联系方式+在校地址）" maxlength=100></textarea>
 													</div>
 													<div class="btn-group">
 														<button type="button" onclick="addMessage()" class="btn btn-primary btn-primary">

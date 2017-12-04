@@ -56,9 +56,9 @@
 					<div class="mr-megamenu animate slide" data-duration="400"
 						data-responsive="true">
 						<ul class="nav navbar-nav level0">
-							<li data-level="1"><a href="index">首页 </a></li>
-							<li data-level="1"><a href="product">商品列表</a></li>
+							<li data-level="1"><a href="product">首页</a></li>
 							<li data-level="1"><a href="express">疾峰取件</a></li>
+							<li data-level="1"><a href="index">关于我们 </a></li>
 						</ul>
 					</div>
 				</div>

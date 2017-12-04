@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 所有商品展示 -->
+
+
+	<div id="iframe">
+		<iframe src="./front/common/lunbo.jsp" width="900" height="450" frameborder="0" scrolling="no"></iframe>
+	</div>
+
 	<nav class="container mr-masstop hidden-sm hidden-xs">
 	<div class="custom">
 		<div>

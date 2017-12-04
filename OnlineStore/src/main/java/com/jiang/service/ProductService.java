@@ -41,5 +41,10 @@ public interface ProductService {
 	 */
 	public List<Product> findAll();
 
+	/**
+	 * 分页查找
+	 * @param map
+	 * @return
+	 */
 	public List<Product> findByPage(Map<String, Object> map);
 }

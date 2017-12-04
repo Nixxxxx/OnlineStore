@@ -5,9 +5,9 @@
 	     <img src="static/images/copyright_line.GIF" width="1280" height="2" border="0" /></td>
 	</tr>
 	<tr>
-	  <td height="19" align="center"> All CopyRights &copy; reserved 2017 蜂巢</td>
+	  <td height="19" align="center"> CopyRight &copy; 2017 ~ </td>
 	</tr>
 	<tr>
-	  <td height="21" align="center">客服热线：189-7492-7540  QQ群：~</td>
+	  <td height="21" align="center">客服热线：189-7492-7540  QQ群：648261603</td>
 	</tr>
 </table>

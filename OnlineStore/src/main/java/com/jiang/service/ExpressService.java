@@ -41,8 +41,31 @@ public interface ExpressService {
 	 */
 	public List<Express> findAll();
 
+	/**
+	 * 用户分页查找（已认证和特定userId）
+	 * @param map
+	 * @return
+	 */
+	public List<Express> findVerifyByPage(Map<String, Object> map);
+	
+	/**
+	 * 分页查找（所有）
+	 * @param map
+	 * @return
+	 */
 	public List<Express> findByPage(Map<String, Object> map);
 
+	/**
+	 * 查找某用户发布的订单
+	 * @param map
+	 * @return
+	 */
 	public Integer findAllByUser(Map<String, Object> map);
+	
+	/**
+	 * 所以已认证和已被接单数量
+	 * @return
+	 */
+	public Integer countVerify();
 
 }

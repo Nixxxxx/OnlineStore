@@ -120,8 +120,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 		
 		<footer class="main-footer text-center">
 			<strong><a href="product" target="_blank">蜂巢</a></strong> 
-			Copyright &copy; 2017 
-			<strong><a href="https://github.com/Nixxxxx" target="_blank"> ~ </a></strong> 
+			<strong>Copyright &copy; 2017  ~ </strong> 
 		</footer>
 	</div>
 

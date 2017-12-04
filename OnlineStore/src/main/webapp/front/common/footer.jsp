@@ -7,38 +7,28 @@
 	    </dl>
 	    <dl class="foot">
 	        <dd>
-	            <img src="static/images/logo/qrcode.png" alt="微信公众号">
-	            <span>微信公众号</span>
+	            <img src="static/images/logo/qqqrcode.png" alt="QQ群">
+	            <span><small>QQ群：648261603</small></span>
 	        </dd>
 	    </dl>
 	    <dl class="foot">
-	        <dt>蜂巢理念：</dt>
-	    </dl>
-	    <dl class="foot">
-	        <dt></dt>
 	        <dd>
-	            <div>
-	                <a href="javascript:void(0)">团结</a>
-	            </div>
-	            <div>
-	                <a href="javascript:void(0)">感恩</a>
-	            </div>
-	            <div>
-	                <a href="javascript:void(0)">真诚</a>
-	            </div>
-	            <div>
-	                <a href="javascript:void(0)">求实</a>
-	            </div>
+	            <img src="static/images/logo/qrcode.png" alt="微信公众号">
+	            <span><small>微信公众号</small></span>
 	        </dd>
 	    </dl>
+		<div class="container">
+			<div style="width:auto; height:auto; margin:auto;">
+				<h2>蜂巢理念：团结    感恩    真诚   求实</h2>
+			</div>
+		</div>
 	</div>
 </div>
 <footer id="mr-footer" class="wrap mr-footer">
 	<section class="mr-copyright">
 		<div class="container">
 			<div style="width:auto; height:auto; margin:auto;">
-				<small> Copyright &copy;&nbsp;2017
-					<a href="https://github.com/Nixxxxx" target="_blank"> ~ </a>
+				<small> Copyright &copy;&nbsp;2017 ~ 
 					| <a href="manage/login" target="_blank">管理员登录</a>
 				</small>
 			</div>
